@@ -1,4 +1,6 @@
+import 'package:cat_bombers/pages/faster_quiz.dart';
 import 'package:cat_bombers/pages/home_page.dart';
+import 'package:cat_bombers/pages/review_quiz.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,10 +14,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const Homepage());
+        title: 'Cat-Bombers',
+        theme: ThemeData(primarySwatch: Colors.indigo),
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const Homepage(),
+          '/quiz-page': (context) => const FasterQuiz(),
+          '/review-page': (context) => const ReviewQuiz(),
+        });
   }
 }

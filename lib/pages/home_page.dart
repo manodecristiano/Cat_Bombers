@@ -61,7 +61,9 @@ class Homepage extends StatelessWidget {
                 ),
                 Divider(),
                 OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/quiz-page');
+                  },
                   child: const AutoSizeText(
                     'TEST RÁPIDO',
                     style: TextStyle(
@@ -83,7 +85,9 @@ class Homepage extends StatelessWidget {
                 Divider(),
                 Divider(),
                 OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/review-page');
+                  },
                   child: const AutoSizeText(
                     'Tipo de TEST',
                     style: TextStyle(
