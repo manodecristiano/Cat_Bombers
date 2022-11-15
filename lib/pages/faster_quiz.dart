@@ -19,6 +19,7 @@ class _FasterQuizState extends State<FasterQuiz> {
   int totalQuestions = 5;
   int totalOptions = 4;
   int questionIndex = 0;
+  int progressBar = 1;
   Quiz quiz = Quiz(name: 'Test Rápido', questions: []);
 
   Future<void> readJson() async {
@@ -50,6 +51,63 @@ class _FasterQuizState extends State<FasterQuiz> {
   void initState() {
     super.initState();
     readJson();
+  }
+
+  void _optionSelected(String userSelected) {
+//Marcar como opción correcta si es la recogida en el Json
+    quiz.questions[questionIndex].selected = userSelected;
+    if (userSelected == quiz.questions[questionIndex].correctAnswer) {
+      print('correct');
+      quiz.questions[questionIndex].correct = true;
+//Aumentamnos el valor total de correctas
+      quiz.right += 1;
+    } else {
+      print('NO correct');
+    }
+
+//Siguiente pregunta y recarga la pantalla
+    if (questionIndex < totalQuestions - 1) {
+      questionIndex += 1;
+    } else {
+      showDialog(
+          barrierDismissible: false,
+          context: context,
+          builder: (BuildContext context) => _buildResultDialog(context));
+    }
+    progressBar += 1;
+
+    setState(() {});
+  }
+
+  Widget _buildResultDialog(BuildContext context) {
+    return AlertDialog(
+      title: Text('Resultado',
+          style:
+              TextStyle(color: Colors.amber[700], fontWeight: FontWeight.bold)),
+      backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Preguntas  :  ' '$totalQuestions'),
+          Text('Correctas   :  ' '${quiz.right}',
+              style: TextStyle(
+                  color: Colors.greenAccent, fontWeight: FontWeight.bold)),
+          Text('Incorrectas:  ' '${(totalQuestions - quiz.right)}',
+              style: TextStyle(
+                  color: Colors.redAccent, fontWeight: FontWeight.bold)),
+          Text('Porcentaje :  ' '${quiz.percent}%'),
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: Text('Cerrar'),
+        ),
+      ],
+    );
   }
 
   @override
@@ -120,14 +178,19 @@ class _FasterQuizState extends State<FasterQuiz> {
                   leading: AutoSizeText('${index + 1}'),
                   title: AutoSizeText(
                       quiz.questions[questionIndex].options[index]),
-                  onTap: () {},
+                  onTap: () {
+                    _optionSelected(
+                        quiz.questions[questionIndex].options[index]);
+                  },
                 ),
               );
             },
           ),
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            _optionSelected('Skipped');
+          },
           child: const Text('Skip'),
         ),
         Container(
@@ -137,7 +200,7 @@ class _FasterQuizState extends State<FasterQuiz> {
             child: LinearProgressIndicator(
               color: Colors.amber[700],
               backgroundColor: const Color(0xFFD9D9D9),
-              value: .5,
+              value: progressBar / totalQuestions,
               minHeight: 20,
             ),
           ),
