@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cat_bombers/classes/question.dart';
 import 'package:cat_bombers/classes/quiz.dart';
+import 'package:cat_bombers/pages/home_page.dart';
+import 'package:cat_bombers/pages/result_quiz.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
@@ -82,8 +84,7 @@ class _FasterQuizState extends State<FasterQuiz> {
   Widget _buildResultDialog(BuildContext context) {
     return AlertDialog(
       title: Text('Resultado',
-          style:
-              TextStyle(color: Colors.amber[700], fontWeight: FontWeight.bold)),
+          style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold)),
       backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
       content: Column(
         mainAxisSize: MainAxisSize.min,
@@ -101,11 +102,35 @@ class _FasterQuizState extends State<FasterQuiz> {
       ),
       actions: [
         TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          child: Text('Cerrar'),
-        ),
+            child: Text('Ver respuestas'),
+            onPressed: () {
+              Navigator.of(context).pop();
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: ((context) => ResultQuiz(quiz: quiz)),
+                ),
+              );
+            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.amber),
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.black87),
+            )),
+        TextButton(
+            child: Text('Cerrar'),
+            onPressed: () {
+              //NAVEGAR HACIA ATRáS
+              Navigator.of(context).pop();
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: ((context) => Homepage()),
+                  ));
+            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.amber),
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.black87),
+            )),
       ],
     );
   }
@@ -189,9 +214,13 @@ class _FasterQuizState extends State<FasterQuiz> {
         ),
         TextButton(
           onPressed: () {
-            _optionSelected('Skipped');
+            _optionSelected('Pasada');
           },
-          child: const Text('Skip'),
+          child: const Text('Pasar'),
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.white70),
+            foregroundColor: MaterialStateProperty.all<Color>(Colors.black45),
+          ),
         ),
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
