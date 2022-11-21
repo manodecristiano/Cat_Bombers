@@ -11,15 +11,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class FasterQuiz extends StatefulWidget {
-  final int totalQuestionsfinal;
-  const FasterQuiz(this.totalQuestionsfinal, {super.key});
+  final int totalQuestions;
+  const FasterQuiz(this.totalQuestions, {super.key});
 
   @override
   State<FasterQuiz> createState() => _FasterQuizState();
 }
 
 class _FasterQuizState extends State<FasterQuiz> {
-  int totalQuestions = 
   int totalOptions = 4;
   int questionIndex = 0;
   int progressBar = 1;
@@ -45,7 +44,7 @@ class _FasterQuizState extends State<FasterQuiz> {
       Question question = Question.fromJson(data[correctAnswer]);
       question.addOptions(otherOptions);
       quiz.questions.add(question);
-      if (quiz.questions.length >= totalQuestions) break;
+      if (quiz.questions.length >= widget.totalQuestions) break;
     }
     setState(() {});
   }
@@ -69,7 +68,7 @@ class _FasterQuizState extends State<FasterQuiz> {
     }
 
 //Siguiente pregunta y recarga la pantalla
-    if (questionIndex < totalQuestions - 1) {
+    if (questionIndex < widget.totalQuestions - 1) {
       questionIndex += 1;
     } else {
       showDialog(
@@ -91,11 +90,11 @@ class _FasterQuizState extends State<FasterQuiz> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Preguntas  :  ' '$totalQuestions'),
+          Text('Preguntas  :  ' '${widget.totalQuestions}'),
           Text('Correctas   :  ' '${quiz.right}',
               style: TextStyle(
                   color: Colors.greenAccent, fontWeight: FontWeight.bold)),
-          Text('Incorrectas:  ' '${(totalQuestions - quiz.right)}',
+          Text('Incorrectas:  ' '${(widget.totalQuestions - quiz.right)}',
               style: TextStyle(
                   color: Colors.redAccent, fontWeight: FontWeight.bold)),
           Text('Porcentaje :  ' '${quiz.percent}%'),
@@ -230,7 +229,7 @@ class _FasterQuizState extends State<FasterQuiz> {
             child: LinearProgressIndicator(
               color: Colors.amber[700],
               backgroundColor: const Color(0xFFD9D9D9),
-              value: progressBar / totalQuestions,
+              value: progressBar / widget.totalQuestions,
               minHeight: 20,
             ),
           ),
