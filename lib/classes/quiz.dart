@@ -4,6 +4,7 @@ class Quiz {
   String name;
   List<Question> questions;
   int right = 0;
+  int totalNumberquestions = 0;
 
   Quiz({required this.name, required this.questions});
 

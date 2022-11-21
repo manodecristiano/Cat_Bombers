@@ -11,14 +11,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class FasterQuiz extends StatefulWidget {
-  const FasterQuiz({super.key});
+  final int totalQuestionsfinal;
+  const FasterQuiz(this.totalQuestionsfinal, {super.key});
 
   @override
   State<FasterQuiz> createState() => _FasterQuizState();
 }
 
 class _FasterQuizState extends State<FasterQuiz> {
-  int totalQuestions = 5;
+  int totalQuestions = 
   int totalOptions = 4;
   int questionIndex = 0;
   int progressBar = 1;
@@ -214,7 +215,7 @@ class _FasterQuizState extends State<FasterQuiz> {
         ),
         TextButton(
           onPressed: () {
-            _optionSelected('Pasada');
+            _optionSelected('No contestada');
           },
           child: const Text('Pasar'),
           style: ButtonStyle(

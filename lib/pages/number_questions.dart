@@ -1,10 +1,18 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:flutter/material.dart';
+import 'package:cat_bombers/classes/question.dart';
+import 'package:cat_bombers/classes/quiz.dart';
+import 'package:cat_bombers/pages/faster_quiz.dart';
+import 'package:cat_bombers/pages/home_page.dart';
+import 'package:cat_bombers/pages/result_quiz.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class Homepage extends StatelessWidget {
-  const Homepage({super.key});
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+class Number_questions extends StatelessWidget {
+  const Number_questions({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,14 +55,14 @@ class Homepage extends StatelessWidget {
                   margin: const EdgeInsets.only(top: 10),
                   child: const Center(
                     child: AutoSizeText(
-                      'Menú',
+                      'Selecciona el número de preguntas',
                       style: TextStyle(
                         color: Colors.black87,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Roboto',
                       ),
                       maxLines: 1,
-                      minFontSize: 40,
+                      minFontSize: 18,
                       maxFontSize: 100,
                     ),
                   ),
@@ -62,34 +70,14 @@ class Homepage extends StatelessWidget {
                 Divider(),
                 OutlinedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/select_number_quiz');
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: ((context) => FasterQuiz(10)),
+                        ));
                   },
                   child: const AutoSizeText(
-                    'TEST RÁPIDO',
-                    style: TextStyle(
-                      color: Color.fromRGBO(239, 71, 111, 1.0),
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Roboto',
-                    ),
-                    maxLines: 1,
-                    minFontSize: 20,
-                    maxFontSize: 100,
-                  ),
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(239, 222, 150, 1.0),
-                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                    elevation: 8,
-                    side: const BorderSide(width: 0.2),
-                  ),
-                ),
-                Divider(),
-                Divider(),
-                OutlinedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/type_quiz');
-                  },
-                  child: const AutoSizeText(
-                    'Tipo de TEST',
+                    '10',
                     style: TextStyle(
                       color: Colors.black87,
                       fontWeight: FontWeight.bold,
@@ -102,17 +90,21 @@ class Homepage extends StatelessWidget {
                   style: OutlinedButton.styleFrom(
                     backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
                     padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                    elevation: 3,
+                    elevation: 5,
                     side: const BorderSide(width: 0.2),
                   ),
                 ),
                 Divider(),
                 OutlinedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/progress-user');
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: ((context) => FasterQuiz(20)),
+                        ));
                   },
                   child: const AutoSizeText(
-                    'Progreso',
+                    '20',
                     style: TextStyle(
                       color: Colors.black87,
                       fontWeight: FontWeight.bold,
@@ -125,7 +117,34 @@ class Homepage extends StatelessWidget {
                   style: OutlinedButton.styleFrom(
                     backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
                     padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                    elevation: 8,
+                    elevation: 5,
+                    side: const BorderSide(width: 0.2),
+                  ),
+                ),
+                Divider(),
+                OutlinedButton(
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: ((context) => FasterQuiz(30)),
+                        ));
+                  },
+                  child: const AutoSizeText(
+                    '30',
+                    style: TextStyle(
+                      color: Colors.black87,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Roboto',
+                    ),
+                    maxLines: 1,
+                    minFontSize: 20,
+                    maxFontSize: 100,
+                  ),
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
+                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                    elevation: 5,
                     side: const BorderSide(width: 0.2),
                   ),
                 ),
