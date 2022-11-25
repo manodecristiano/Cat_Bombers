@@ -1,8 +1,10 @@
 import 'package:cat_bombers/pages/faster_quiz.dart';
 import 'package:cat_bombers/pages/home_page.dart';
+import 'package:cat_bombers/pages/menu_test.dart';
 import 'package:cat_bombers/pages/progress_user.dart';
 import 'package:cat_bombers/pages/number_questions.dart';
 import 'package:cat_bombers/pages/base.dart';
+import 'package:cat_bombers/pages/select_theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -29,9 +31,11 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => const Homepage(),
           '/quiz-page': (context) => const FasterQuiz(0),
+          '/menu-test': (context) => const MenuTest(),
           '/statistics-user': (context) => const ReviewQuiz(),
           '/progress-user': (context) => const Progress_user(),
           '/select_number_quiz': (context) => const Number_questions(),
+          '/select-theme': (context) => const SelectTheme(),
         });
   }
 }

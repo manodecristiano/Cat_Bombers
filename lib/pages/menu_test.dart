@@ -3,36 +3,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class Homepage extends StatelessWidget {
-  const Homepage({super.key});
+class MenuTest extends StatelessWidget {
+  const MenuTest({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
-      // appBar: AppBar(
-      //   elevation: 5,
-      //   backgroundColor: Colors.amber[200],
-      // ),
+      appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.black87,
+        ),
+        elevation: 0,
+        backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
+        title: AutoSizeText(
+          'Cat-BOMBERS',
+          style: TextStyle(
+            color: Color.fromRGBO(236, 194, 44, 1.0),
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Roboto',
+          ),
+          maxLines: 1,
+          minFontSize: 38,
+          maxFontSize: 38,
+        ),
+      ),
       body: Center(
         child: Column(children: [
-          Container(
-            margin: const EdgeInsets.only(
-              top: 30,
-            ),
-            // ignore: prefer_const_constructors
-            child: AutoSizeText(
-              'Cat-BOMBERS',
-              style: TextStyle(
-                color: Color.fromRGBO(236, 194, 44, 1.0),
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Roboto',
-              ),
-              maxLines: 1,
-              minFontSize: 48,
-              maxFontSize: 100,
-            ),
-          ),
           Card(
             margin: const EdgeInsets.all(30),
             shape:
@@ -47,7 +44,7 @@ class Homepage extends StatelessWidget {
                   margin: const EdgeInsets.only(top: 10),
                   child: const Center(
                     child: AutoSizeText(
-                      'Menú',
+                      'Menú Test',
                       style: TextStyle(
                         color: Colors.black87,
                         fontWeight: FontWeight.bold,
@@ -65,9 +62,9 @@ class Homepage extends StatelessWidget {
                     Navigator.pushNamed(context, '/select_number_quiz');
                   },
                   child: const AutoSizeText(
-                    'TEST RÁPIDO',
+                    'SIMULACRO',
                     style: TextStyle(
-                      color: Color.fromRGBO(239, 71, 111, 1.0),
+                      color: Color.fromRGBO(249, 240, 229, 1.0),
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Roboto',
                     ),
@@ -76,7 +73,7 @@ class Homepage extends StatelessWidget {
                     maxFontSize: 100,
                   ),
                   style: OutlinedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(239, 222, 150, 1.0),
+                    backgroundColor: Color.fromRGBO(239, 71, 111, 1.0),
                     padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
                     elevation: 8,
                     side: const BorderSide(width: 0.2),
@@ -85,10 +82,33 @@ class Homepage extends StatelessWidget {
                 Divider(),
                 OutlinedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/menu-test');
+                    Navigator.pushNamed(context, '/type_quiz');
                   },
                   child: const AutoSizeText(
-                    'MENÚ TEST',
+                    'CREAR TEST',
+                    style: TextStyle(
+                      color: Colors.black87,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Roboto',
+                    ),
+                    maxLines: 1,
+                    minFontSize: 20,
+                    maxFontSize: 100,
+                  ),
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
+                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                    elevation: 8,
+                    side: const BorderSide(width: 0.2),
+                  ),
+                ),
+                Divider(),
+                OutlinedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/select-theme');
+                  },
+                  child: const AutoSizeText(
+                    'POR TEMAS',
                     style: TextStyle(
                       color: Colors.black87,
                       fontWeight: FontWeight.bold,
@@ -111,30 +131,7 @@ class Homepage extends StatelessWidget {
                     Navigator.pushNamed(context, '/progress-user');
                   },
                   child: const AutoSizeText(
-                    'PERFIL',
-                    style: TextStyle(
-                      color: Colors.black87,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Roboto',
-                    ),
-                    maxLines: 1,
-                    minFontSize: 20,
-                    maxFontSize: 100,
-                  ),
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
-                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                    elevation: 8,
-                    side: const BorderSide(width: 0.2),
-                  ),
-                ),
-                Divider(),
-                OutlinedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/progress-user');
-                  },
-                  child: const AutoSizeText(
-                    'OPCIONES',
+                    'TEST de FALLADAS',
                     style: TextStyle(
                       color: Colors.black87,
                       fontWeight: FontWeight.bold,
