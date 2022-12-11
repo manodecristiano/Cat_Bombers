@@ -154,6 +154,15 @@ class Homepage extends StatelessWidget {
               ],
             ),
           ),
+          Card(
+            child: Column(children: [
+              SizedBox(
+                height: 250.0,
+                width: 340,
+                child: Image.asset('assets/img/bombers.png'),
+              )
+            ]),
+          ),
         ]),
       ),
     );

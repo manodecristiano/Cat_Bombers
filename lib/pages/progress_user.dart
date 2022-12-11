@@ -18,7 +18,7 @@ class Progress_user extends StatefulWidget {
 }
 
 class _Progress_user extends State<Progress_user> {
-  Quiz quiz = Quiz(name: 'Progreso', questions: []);
+  Quiz quiz = Quiz(name: 'Progress', questions: []);
 
   @override
   Widget build(BuildContext context) {
@@ -41,33 +41,20 @@ class _Progress_user extends State<Progress_user> {
       ),
       body: Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
         ConstrainedBox(
+            constraints: const BoxConstraints(maxHeight: 450),
+            child: Card(
+              margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
+              child: Column(children: [
+                SizedBox(
+                  height: 250.0,
+                  width: 340,
+                  child: Image.asset('assets/img/bombers.png'),
+                )
+              ]),
+            )),
+        ConstrainedBox(
           constraints: const BoxConstraints(maxHeight: 450),
-          child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
-            child: quiz.questions.isNotEmpty
-                ? Card(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.all(20),
-                          child: AutoSizeText(
-                            '10',
-                            minFontSize: 16,
-                            maxFontSize: 35,
-                            style: TextStyle(
-                              color: Colors.black54,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Roboto',
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                : const CircularProgressIndicator(
-                    color: Colors.amber, backgroundColor: Colors.transparent),
-          ),
+          child: Image.asset('assets/img/bombers.png'),
         ),
       ]),
     );
