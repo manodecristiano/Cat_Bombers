@@ -108,7 +108,7 @@ class Homepage extends StatelessWidget {
                 Divider(),
                 OutlinedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/progress-user');
+                    Navigator.pushNamed(context, '/perfil-user');
                   },
                   child: const AutoSizeText(
                     'PERFIL',
