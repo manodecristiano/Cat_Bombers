@@ -1,9 +1,12 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cat_bombers/classes/question.dart';
 import 'package:cat_bombers/classes/quiz.dart';
 import 'package:cat_bombers/pages/home_page.dart';
 import 'package:cat_bombers/pages/result_quiz.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
@@ -24,8 +27,9 @@ class _Perfil_user extends State<Perfil_user> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
+      backgroundColor: Color.fromARGB(186, 43, 40, 46),
       appBar: AppBar(
+        // ignore: prefer_const_constructors
         iconTheme: IconThemeData(
           color: Colors.black87,
         ),
@@ -41,25 +45,88 @@ class _Perfil_user extends State<Perfil_user> {
         backgroundColor: Colors.amber[200],
       ),
       body: Center(
-        child: Column(
+        child: ListView(
           children: [
-            Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)),
-              color: Color.fromRGBO(249, 240, 229, 1.0),
-              margin:
-                  const EdgeInsets.only(left: 2, right: 2, top: 2, bottom: 10),
+            Container(
+              height: 250,
+              margin: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                // ignore: prefer_const_literals_to_create_immutables
+                boxShadow: [
+                  // ignore: prefer_const_constructors
+                  BoxShadow(
+                    color: Color.fromARGB(255, 250, 146, 27),
+                    blurRadius: 25.0,
+                  )
+                ],
+                gradient: const LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: <Color>[
+                    Color.fromARGB(255, 148, 86, 16),
+                    Color.fromARGB(255, 12, 8, 2),
+                  ],
+                ), // Color of the container
+                borderRadius:
+                    BorderRadius.circular(20.0), // Radius of the border
+                border: Border.all(
+                    width: 2, color: Color.fromARGB(255, 247, 176, 110)),
+              ),
+              child: ListView(
+                shrinkWrap: true,
+                padding: const EdgeInsets.all(20.0),
+                // ignore: prefer_const_literals_to_create_immutables
+                children: [
+                  AutoSizeText('NIVELL: 57',
+                      minFontSize: 25,
+                      maxFontSize: 35,
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 248, 242, 163),
+                          fontWeight: FontWeight.bold)),
+                  AutoSizeText('Carlos Carreño',
+                      minFontSize: 20,
+                      maxFontSize: 35,
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 206, 191, 185),
+                          fontWeight: FontWeight.bold)),
+                  AutoSizeText('Test realizados: 345',
+                      minFontSize: 15,
+                      maxFontSize: 35,
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 206, 191, 185),
+                          fontWeight: FontWeight.bold)),
+                  AutoSizeText('Preguntas:',
+                      minFontSize: 10,
+                      maxFontSize: 35,
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 206, 191, 185),
+                          fontWeight: FontWeight.bold)),
+                ],
+              ),
             ),
-            AutoSizeText('NIVEL: 57',
-                minFontSize: 25,
-                maxFontSize: 35,
-                style: TextStyle(
-                    color: Colors.brown, fontWeight: FontWeight.bold)),
-            Text('Nombre : Carlos Messi',
-                style: TextStyle(color: Colors.brown)),
-            Text('Test Realizados:85'),
-            Text('Total de preguntas: 345'),
-            Expanded(
+            Container(
+              height: 250,
+              margin: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Color.fromARGB(255, 250, 146, 27),
+                    blurRadius: 15.0,
+                  )
+                ],
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: <Color>[
+                    Color.fromARGB(255, 66, 39, 7),
+                    Color.fromARGB(255, 0, 0, 0),
+                  ],
+                ), // Color of the container
+                borderRadius:
+                    BorderRadius.circular(60.0), // Radius of the border
+                border: Border.all(
+                    width: 1.2, color: Color.fromARGB(255, 245, 187, 132)),
+              ),
               child: PieChart(
                 PieChartData(
                     borderData: FlBorderData(
@@ -69,6 +136,70 @@ class _Perfil_user extends State<Perfil_user> {
                     centerSpaceRadius: 0,
                     sections: sectionsChart),
               ),
+            ),
+            Container(
+              height: 250,
+              margin: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Color.fromARGB(255, 250, 146, 27),
+                    blurRadius: 15.0,
+                  )
+                ],
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: <Color>[
+                    Color.fromARGB(255, 66, 39, 7),
+                    Color.fromARGB(255, 0, 0, 0),
+                  ],
+                ), // Color of the container
+                borderRadius:
+                    BorderRadius.circular(60.0), // Radius of the border
+                border: Border.all(
+                    width: 1.2, color: Color.fromARGB(255, 245, 187, 132)),
+              ),
+              child: PieChart(
+                PieChartData(
+                    borderData: FlBorderData(
+                      show: false,
+                    ),
+                    sectionsSpace: 0,
+                    centerSpaceRadius: 0,
+                    sections: sectionsChart),
+              ),
+            ),
+            Container(
+              alignment: Alignment.center,
+              height: 250,
+              margin: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Color.fromARGB(255, 250, 146, 27),
+                    blurRadius: 15.0,
+                  )
+                ],
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: <Color>[
+                    Color.fromARGB(255, 66, 39, 7),
+                    Color.fromARGB(255, 0, 0, 0),
+                  ],
+                ), // Color of the container
+                borderRadius:
+                    BorderRadius.circular(60.0), // Radius of the border
+                border: Border.all(
+                    width: 1.2, color: Color.fromARGB(255, 245, 187, 132)),
+              ),
+              child: AutoSizeText('LOGROS ',
+                  minFontSize: 25,
+                  maxFontSize: 35,
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 248, 242, 163),
+                      fontWeight: FontWeight.bold)),
             ),
           ],
         ),
