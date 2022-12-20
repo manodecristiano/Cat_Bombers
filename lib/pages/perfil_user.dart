@@ -21,6 +21,52 @@ class Perfil_user extends StatefulWidget {
   State<Perfil_user> createState() => _Perfil_user();
 }
 
+class PanelUser extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      shrinkWrap: true,
+      padding: const EdgeInsets.all(20.0),
+      // ignore: prefer_const_literals_to_create_immutables
+      children: [
+        AutoSizeText('NIVELL: 57',
+            minFontSize: 25,
+            maxFontSize: 35,
+            style: TextStyle(
+                color: Color.fromARGB(255, 248, 242, 163),
+                fontWeight: FontWeight.bold)),
+        AutoSizeText('Carlos Carreño',
+            minFontSize: 20,
+            maxFontSize: 35,
+            style: TextStyle(
+                color: Color.fromARGB(255, 206, 191, 185),
+                fontWeight: FontWeight.bold)),
+        AutoSizeText('Test realizados: 345',
+            minFontSize: 15,
+            maxFontSize: 35,
+            style: TextStyle(
+                color: Color.fromARGB(255, 206, 191, 185),
+                fontWeight: FontWeight.bold)),
+        AutoSizeText('Superados: 253',
+            minFontSize: 10,
+            maxFontSize: 35,
+            style: TextStyle(
+                color: Color.fromARGB(255, 206, 191, 185),
+                fontWeight: FontWeight.bold))
+      ],
+    );
+  }
+}
+
+class ImageUser extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      child: Image.asset('assets/img/bomber01.png'),
+    );
+  }
+}
+
 class _Perfil_user extends State<Perfil_user> {
   Quiz quiz = Quiz(name: 'Perfil', questions: []);
 
@@ -48,17 +94,11 @@ class _Perfil_user extends State<Perfil_user> {
         child: ListView(
           children: [
             Container(
+              width: 200,
               height: 250,
               margin: EdgeInsets.all(20),
               decoration: BoxDecoration(
                 // ignore: prefer_const_literals_to_create_immutables
-                boxShadow: [
-                  // ignore: prefer_const_constructors
-                  BoxShadow(
-                    color: Color.fromARGB(255, 250, 146, 27),
-                    blurRadius: 25.0,
-                  )
-                ],
                 gradient: const LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -71,36 +111,29 @@ class _Perfil_user extends State<Perfil_user> {
                     BorderRadius.circular(20.0), // Radius of the border
                 border: Border.all(
                     width: 2, color: Color.fromARGB(255, 247, 176, 110)),
-              ),
-              child: ListView(
-                shrinkWrap: true,
-                padding: const EdgeInsets.all(20.0),
                 // ignore: prefer_const_literals_to_create_immutables
+                boxShadow: [
+                  // ignore: prefer_const_constructors
+                  BoxShadow(
+                    color: Color.fromARGB(255, 250, 146, 27),
+                    blurRadius: 25.0,
+                  )
+                ],
+              ),
+              child: Stack(
                 children: [
-                  AutoSizeText('NIVELL: 57',
-                      minFontSize: 25,
-                      maxFontSize: 35,
-                      style: TextStyle(
-                          color: Color.fromARGB(255, 248, 242, 163),
-                          fontWeight: FontWeight.bold)),
-                  AutoSizeText('Carlos Carreño',
-                      minFontSize: 20,
-                      maxFontSize: 35,
-                      style: TextStyle(
-                          color: Color.fromARGB(255, 206, 191, 185),
-                          fontWeight: FontWeight.bold)),
-                  AutoSizeText('Test realizados: 345',
-                      minFontSize: 15,
-                      maxFontSize: 35,
-                      style: TextStyle(
-                          color: Color.fromARGB(255, 206, 191, 185),
-                          fontWeight: FontWeight.bold)),
-                  AutoSizeText('Preguntas:',
-                      minFontSize: 10,
-                      maxFontSize: 35,
-                      style: TextStyle(
-                          color: Color.fromARGB(255, 206, 191, 185),
-                          fontWeight: FontWeight.bold)),
+                  Positioned(
+                    height: 250,
+                    width: 250,
+                    left: -30,
+                    child: ImageUser(),
+                  ),
+                  Positioned(
+                    top: 130,
+                    width: 180,
+                    left: 180,
+                    child: PanelUser(),
+                  ),
                 ],
               ),
             ),
