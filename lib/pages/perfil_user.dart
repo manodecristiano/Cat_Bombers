@@ -5,7 +5,7 @@ import 'package:cat_bombers/classes/question.dart';
 import 'package:cat_bombers/classes/quiz.dart';
 import 'package:cat_bombers/pages/home_page.dart';
 import 'package:cat_bombers/pages/result_quiz.dart';
-import 'package:fl_chart/fl_chart.dart';
+//import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -13,6 +13,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pie_chart/pie_chart.dart';
 
 class Perfil_user extends StatefulWidget {
   const Perfil_user({super.key});
@@ -67,6 +68,15 @@ class ImageUser extends StatelessWidget {
   }
 }
 
+class ImageFire extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      child: Image.asset('assets/img/fire01.png'),
+    );
+  }
+}
+
 class _Perfil_user extends State<Perfil_user> {
   Quiz quiz = Quiz(name: 'Perfil', questions: []);
 
@@ -94,6 +104,7 @@ class _Perfil_user extends State<Perfil_user> {
         child: ListView(
           children: [
             Container(
+              clipBehavior: Clip.antiAlias,
               width: 200,
               height: 250,
               margin: EdgeInsets.all(20),
@@ -129,7 +140,13 @@ class _Perfil_user extends State<Perfil_user> {
                     child: ImageUser(),
                   ),
                   Positioned(
-                    top: 130,
+                    top: 140,
+                    width: 180,
+                    left: 200,
+                    child: ImageFire(),
+                  ),
+                  Positioned(
+                    top: 10,
                     width: 180,
                     left: 180,
                     child: PanelUser(),
@@ -138,71 +155,57 @@ class _Perfil_user extends State<Perfil_user> {
               ),
             ),
             Container(
-              height: 250,
-              margin: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Color.fromARGB(255, 250, 146, 27),
-                    blurRadius: 15.0,
-                  )
-                ],
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: <Color>[
-                    Color.fromARGB(255, 66, 39, 7),
-                    Color.fromARGB(255, 0, 0, 0),
+                height: 250,
+                margin: EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromARGB(255, 250, 146, 27),
+                      blurRadius: 15.0,
+                    )
                   ],
-                ), // Color of the container
-                borderRadius:
-                    BorderRadius.circular(60.0), // Radius of the border
-                border: Border.all(
-                    width: 1.2, color: Color.fromARGB(255, 245, 187, 132)),
-              ),
-              child: PieChart(
-                PieChartData(
-                    borderData: FlBorderData(
-                      show: false,
-                    ),
-                    sectionsSpace: 0,
-                    centerSpaceRadius: 0,
-                    sections: sectionsChart),
-              ),
-            ),
-            Container(
-              height: 250,
-              margin: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Color.fromARGB(255, 250, 146, 27),
-                    blurRadius: 15.0,
-                  )
-                ],
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: <Color>[
-                    Color.fromARGB(255, 66, 39, 7),
-                    Color.fromARGB(255, 0, 0, 0),
-                  ],
-                ), // Color of the container
-                borderRadius:
-                    BorderRadius.circular(60.0), // Radius of the border
-                border: Border.all(
-                    width: 1.2, color: Color.fromARGB(255, 245, 187, 132)),
-              ),
-              child: PieChart(
-                PieChartData(
-                    borderData: FlBorderData(
-                      show: false,
-                    ),
-                    sectionsSpace: 0,
-                    centerSpaceRadius: 0,
-                    sections: sectionsChart),
-              ),
-            ),
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: <Color>[
+                      Color.fromARGB(255, 66, 39, 7),
+                      Color.fromARGB(255, 0, 0, 0),
+                    ],
+                  ), // Color of the container
+                  borderRadius:
+                      BorderRadius.circular(60.0), // Radius of the border
+                  border: Border.all(
+                      width: 1.2, color: Color.fromARGB(255, 245, 187, 132)),
+                ),
+                child: PieChart(
+                  dataMap: dataMapTemaLey,
+                  animationDuration: Duration(milliseconds: 2000),
+                  chartLegendSpacing: 32,
+                  chartRadius: MediaQuery.of(context).size.width / 2.5,
+                  colorList: colorList,
+                  initialAngleInDegree: 0,
+                  chartType: ChartType.disc,
+                  ringStrokeWidth: 32,
+
+                  legendOptions: LegendOptions(
+                    showLegendsInRow: false,
+                    legendPosition: LegendPosition.right,
+                    showLegends: true,
+                    //legendShape: _BoxShape.circle,
+                    legendTextStyle: TextStyle(
+                        fontWeight: FontWeight.bold, color: Colors.amber),
+                  ),
+                  chartValuesOptions: ChartValuesOptions(
+                    chartValueBackgroundColor: Colors.amber,
+                    showChartValueBackground: true,
+                    showChartValues: true,
+                    showChartValuesInPercentage: true,
+                    showChartValuesOutside: true,
+                    decimalPlaces: 0,
+                  ),
+                  // gradientList: ---To add gradient colors---
+                  // emptyColorGradient: ---Empty Color gradient---
+                )),
             Container(
               alignment: Alignment.center,
               height: 250,
@@ -240,188 +243,46 @@ class _Perfil_user extends State<Perfil_user> {
     );
   }
 
-  List<PieChartSectionData> sectionsChart = [
-    PieChartSectionData(
-      value: 4.5,
-      title: "Hidráulica",
-      showTitle: true,
-      color: Colors.orange,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 4.5,
-      title: "Automoción",
-      showTitle: true,
-      color: Colors.blue,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 4.5,
-      title: "Electricidad",
-      showTitle: true,
-      color: Colors.red,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 4.5,
-      title: "Fuego",
-      showTitle: true,
-      color: Colors.purple,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 4.5,
-      title: "Constitució",
-      showTitle: true,
-      color: Colors.orange,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 4.5,
-      title: "Igualdad",
-      showTitle: true,
-      color: Colors.blue,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 4.5,
-      title: "Estatut",
-      showTitle: true,
-      color: Colors.purple,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 4.5,
-      title: "Mecánica",
-      showTitle: true,
-      color: Colors.orange,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 4.5,
-      title: "Construcció",
-      showTitle: true,
-      color: Colors.blue,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 4.5,
-      title: "Química",
-      showTitle: true,
-      color: Colors.red,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 4.5,
-      title: "Ley 5/1994",
-      showTitle: true,
-      color: Colors.purple,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 4.5,
-      title: "R.Químic",
-      showTitle: true,
-      color: Colors.orange,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 4.5,
-      title: "Trebep",
-      showTitle: true,
-      color: Colors.blue,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 4.5,
-      title: "Sanitari",
-      showTitle: true,
-      color: Colors.red,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 4.5,
-      title: "R.Laborales",
-      showTitle: true,
-      color: Colors.purple,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 4.5,
-      title: "R.Químic",
-      showTitle: true,
-      color: Colors.orange,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 4.5,
-      title: "Estructura",
-      showTitle: true,
-      color: Colors.blue,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 4.5,
-      title: "Física",
-      showTitle: true,
-      color: Colors.red,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 4.5,
-      title: "Meteorologia",
-      showTitle: true,
-      color: Colors.purple,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 4.5,
-      title: "P.Civil",
-      showTitle: true,
-      color: Colors.black26,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 4.5,
-      title: "A.Extintores",
-      showTitle: true,
-      color: Colors.orange,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 4.5,
-      title: "Cartografia",
-      showTitle: true,
-      color: Colors.blue,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 4.5,
-      title: "P.Incendios",
-      showTitle: true,
-      color: Colors.red,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 4.5,
-      title: "Guardia",
-      showTitle: true,
-      color: Colors.purple,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 4.5,
-      title: "Gas",
-      showTitle: true,
-      color: Colors.red,
-      radius: 100,
-    ),
-    PieChartSectionData(
-      value: 4.5,
-      title: "Territori",
-      showTitle: true,
-      color: Colors.purple,
-      radius: 100,
-    ),
+  Map<String, double> dataMapTemaLey = {
+    "Constitució": 3,
+    "Igualtat": 2,
+    "Estatut": 2,
+    "Lley 5/1994": 2,
+    "Trebep": 3,
+    "R.Laborales": 2,
+    "D.Estructura": 5,
+    "P.Civil": 2,
+    "D.Guardia": 5,
+  };
+  Map<String, double> dataMapTemas1 = {
+    "Automoció": 5,
+    "Mecánica": 6,
+    "Construcció": 3,
+    "Química": 2,
+    "R.Químic": 5,
+    "Física": 3,
+    "A.Extintores": 5,
+    "P.Incendis": 2,
+  };
+
+  Map<String, double> dataMapTemas2 = {
+    "Hidráulica": 3,
+    "Gas": 3,
+    "Electricitat": 2,
+    "Foc": 5,
+    "Sanitari": 2,
+    "Territori": 2,
+    "Meteorologia": 2,
+    "Cartografia": 3,
+  };
+  final colorList = <Color>[
+    Color.fromARGB(255, 87, 71, 23),
+    Color.fromARGB(255, 128, 123, 108),
+    Color.fromARGB(255, 138, 105, 7),
+    Color.fromARGB(255, 31, 25, 6),
+    Color.fromARGB(255, 228, 224, 30),
+    Color.fromARGB(218, 179, 76, 8),
+    Color.fromARGB(255, 145, 26, 5),
+    Color.fromARGB(218, 240, 106, 17)
   ];
 }
