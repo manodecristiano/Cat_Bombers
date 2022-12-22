@@ -80,6 +80,37 @@ class ImageFire extends StatelessWidget {
 class _Perfil_user extends State<Perfil_user> {
   Quiz quiz = Quiz(name: 'Perfil', questions: []);
 
+  MaterialButton ButtonchangeLista(String nombreBoton) {
+    return MaterialButton(
+      onPressed: () {
+        if (nombreBoton == 'LLeis') {
+          setState(() {
+            list = dataMapTemaLey;
+          });
+        } else if (nombreBoton == 'Mecanic') {
+          setState(() {
+            list = dataMapTemesMecanics;
+          });
+        } else if (nombreBoton == 'Natural') {
+          setState(() {
+            list = dataMapTemasNaturalesa;
+          });
+        } // acción del botón
+      },
+      child: AutoSizeText(
+        nombreBoton,
+        style: TextStyle(
+          color: Color.fromARGB(255, 247, 176, 110),
+          fontWeight: FontWeight.bold,
+          fontFamily: 'Roboto',
+        ),
+        maxLines: 1,
+        minFontSize: 10,
+        maxFontSize: 30,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -155,8 +186,9 @@ class _Perfil_user extends State<Perfil_user> {
               ),
             ),
             Container(
-                height: 250,
-                margin: EdgeInsets.all(20),
+                height: 45,
+                width: 20,
+                margin: EdgeInsets.only(left: 65, right: 65, bottom: 0),
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
@@ -172,40 +204,72 @@ class _Perfil_user extends State<Perfil_user> {
                       Color.fromARGB(255, 0, 0, 0),
                     ],
                   ), // Color of the container
-                  borderRadius:
-                      BorderRadius.circular(60.0), // Radius of the border
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30)), // Radius of the border
                   border: Border.all(
                       width: 1.2, color: Color.fromARGB(255, 245, 187, 132)),
                 ),
-                child: PieChart(
-                  dataMap: dataMapTemaLey,
-                  animationDuration: Duration(milliseconds: 2000),
-                  chartLegendSpacing: 32,
-                  chartRadius: MediaQuery.of(context).size.width / 2.5,
-                  colorList: colorList,
-                  initialAngleInDegree: 0,
-                  chartType: ChartType.disc,
-                  ringStrokeWidth: 32,
-
-                  legendOptions: LegendOptions(
-                    showLegendsInRow: false,
-                    legendPosition: LegendPosition.right,
-                    showLegends: true,
-                    //legendShape: _BoxShape.circle,
-                    legendTextStyle: TextStyle(
-                        fontWeight: FontWeight.bold, color: Colors.amber),
-                  ),
-                  chartValuesOptions: ChartValuesOptions(
-                    chartValueBackgroundColor: Colors.amber,
-                    showChartValueBackground: true,
-                    showChartValues: true,
-                    showChartValuesInPercentage: true,
-                    showChartValuesOutside: true,
-                    decimalPlaces: 0,
-                  ),
-                  // gradientList: ---To add gradient colors---
-                  // emptyColorGradient: ---Empty Color gradient---
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    ButtonchangeLista('Mecanic'),
+                    ButtonchangeLista('LLeis'),
+                    ButtonchangeLista('Natural'),
+                  ],
                 )),
+            Container(
+              height: 250,
+              margin: EdgeInsets.only(left: 10, right: 10, bottom: 0),
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Color.fromARGB(255, 250, 146, 27),
+                    blurRadius: 15.0,
+                  )
+                ],
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: <Color>[
+                    Color.fromARGB(255, 66, 39, 7),
+                    Color.fromARGB(255, 0, 0, 0),
+                  ],
+                ), // Color of the container
+                borderRadius:
+                    BorderRadius.circular(60.0), // Radius of the border
+                border: Border.all(
+                    width: 1.2, color: Color.fromARGB(255, 245, 187, 132)),
+              ),
+              child: PieChart(
+                dataMap: list,
+                animationDuration: Duration(milliseconds: 2000),
+                chartLegendSpacing: 32,
+                chartRadius: MediaQuery.of(context).size.width / 2.5,
+                colorList: colorList,
+                initialAngleInDegree: 0,
+                chartType: ChartType.disc,
+                ringStrokeWidth: 32,
+                legendOptions: LegendOptions(
+                  showLegendsInRow: false,
+                  legendPosition: LegendPosition.right,
+                  showLegends: true,
+                  //legendShape: _BoxShape.circle,
+                  legendTextStyle: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.amber),
+                ),
+                chartValuesOptions: ChartValuesOptions(
+                  chartValueBackgroundColor: Colors.amber,
+                  showChartValueBackground: true,
+                  showChartValues: true,
+                  showChartValuesInPercentage: true,
+                  showChartValuesOutside: true,
+                  decimalPlaces: 0,
+                ),
+                // gradientList: ---To add gradient colors---
+                // emptyColorGradient: ---Empty Color gradient---
+              ),
+            ),
             Container(
               alignment: Alignment.center,
               height: 250,
@@ -243,6 +307,18 @@ class _Perfil_user extends State<Perfil_user> {
     );
   }
 
+  Map<String, double> list = {
+    "Constitució": 3,
+    "Igualtat": 2,
+    "Estatut": 2,
+    "Lley 5/1994": 2,
+    "Trebep": 3,
+    "R.Laborales": 2,
+    "D.Estructura": 5,
+    "P.Civil": 2,
+    "D.Guardia": 5,
+  };
+
   Map<String, double> dataMapTemaLey = {
     "Constitució": 3,
     "Igualtat": 2,
@@ -254,7 +330,7 @@ class _Perfil_user extends State<Perfil_user> {
     "P.Civil": 2,
     "D.Guardia": 5,
   };
-  Map<String, double> dataMapTemas1 = {
+  Map<String, double> dataMapTemesMecanics = {
     "Automoció": 5,
     "Mecánica": 6,
     "Construcció": 3,
@@ -265,15 +341,15 @@ class _Perfil_user extends State<Perfil_user> {
     "P.Incendis": 2,
   };
 
-  Map<String, double> dataMapTemas2 = {
-    "Hidráulica": 3,
+  Map<String, double> dataMapTemasNaturalesa = {
+    "Hidráulica": 1,
     "Gas": 3,
-    "Electricitat": 2,
-    "Foc": 5,
-    "Sanitari": 2,
-    "Territori": 2,
-    "Meteorologia": 2,
-    "Cartografia": 3,
+    "Electricitat": 5,
+    "Foc": 2,
+    "Sanitari": 1,
+    "Territori": 0,
+    "Meteorologia": 0,
+    "Cartografia": 0,
   };
   final colorList = <Color>[
     Color.fromARGB(255, 87, 71, 23),
@@ -283,6 +359,7 @@ class _Perfil_user extends State<Perfil_user> {
     Color.fromARGB(255, 228, 224, 30),
     Color.fromARGB(218, 179, 76, 8),
     Color.fromARGB(255, 145, 26, 5),
-    Color.fromARGB(218, 240, 106, 17)
+    Color.fromARGB(218, 240, 106, 17),
+    Color.fromARGB(218, 77, 83, 15)
   ];
 }
