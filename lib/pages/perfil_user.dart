@@ -36,7 +36,7 @@ class PanelUser extends StatelessWidget {
             style: TextStyle(
                 color: Color.fromARGB(255, 248, 242, 163),
                 fontWeight: FontWeight.bold)),
-        AutoSizeText('Carlos Carreño',
+        AutoSizeText('Xavier Chapie',
             minFontSize: 20,
             maxFontSize: 35,
             style: TextStyle(
@@ -158,7 +158,7 @@ class _Perfil_user extends State<Perfil_user> {
                   // ignore: prefer_const_constructors
                   BoxShadow(
                     color: Color.fromARGB(255, 250, 146, 27),
-                    blurRadius: 25.0,
+                    blurRadius: 15.0,
                   )
                 ],
               ),
@@ -193,7 +193,7 @@ class _Perfil_user extends State<Perfil_user> {
                   boxShadow: [
                     BoxShadow(
                       color: Color.fromARGB(255, 250, 146, 27),
-                      blurRadius: 15.0,
+                      blurRadius: 5.0,
                     )
                   ],
                   gradient: LinearGradient(
@@ -260,7 +260,8 @@ class _Perfil_user extends State<Perfil_user> {
                 ),
                 chartValuesOptions: ChartValuesOptions(
                   chartValueBackgroundColor: Colors.amber,
-                  showChartValueBackground: true,
+                  chartValueStyle: TextStyle(color: Colors.amber),
+                  showChartValueBackground: false,
                   showChartValues: true,
                   showChartValuesInPercentage: true,
                   showChartValuesOutside: true,
@@ -294,18 +295,41 @@ class _Perfil_user extends State<Perfil_user> {
                 border: Border.all(
                     width: 1.2, color: Color.fromARGB(255, 245, 187, 132)),
               ),
-              child: AutoSizeText('LOGROS ',
-                  minFontSize: 25,
-                  maxFontSize: 35,
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 248, 242, 163),
-                      fontWeight: FontWeight.bold)),
+              child: ListView(
+                children: [
+                  AutoSizeText(
+                    'LOGROS',
+                    minFontSize: 25,
+                    maxFontSize: 35,
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 248, 242, 163),
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                      height: 100,
+                      width: 100,
+                      child: ListView.builder(
+                        itemCount: iconsLogros.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Icon(iconsLogros[index]);
+                        },
+                      )),
+                ],
+              ),
             ),
           ],
         ),
       ),
     );
   }
+
+  List<IconData> iconsLogros = [
+    Icons.star,
+    Icons.favorite,
+    Icons.thumb_up,
+    Icons.thumb_down,
+    Icons.comment
+  ];
 
   Map<String, double> list = {
     "Constitució": 3,
