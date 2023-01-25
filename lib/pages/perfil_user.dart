@@ -299,10 +299,11 @@ class _Perfil_user extends State<Perfil_user> {
                 children: [
                   AutoSizeText(
                     'LOGROS',
+                    textAlign: TextAlign.center,
                     minFontSize: 25,
                     maxFontSize: 35,
                     style: TextStyle(
-                        color: Color.fromARGB(255, 248, 242, 163),
+                        color: Color.fromARGB(255, 245, 187, 132),
                         fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
