@@ -286,7 +286,7 @@ class _Perfil_user extends State<Perfil_user> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: <Color>[
-                    Color.fromARGB(255, 66, 39, 7),
+                    Color.fromARGB(210, 221, 231, 192),
                     Color.fromARGB(255, 0, 0, 0),
                   ],
                 ), // Color of the container
@@ -295,23 +295,20 @@ class _Perfil_user extends State<Perfil_user> {
                 border: Border.all(
                     width: 1.2, color: Color.fromARGB(255, 245, 187, 132)),
               ),
-              child: Row(
-                children: [
-                  GridView(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
+              child: GridView(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3, crossAxisSpacing: 16),
+                  children: [
+                    ListView.builder(
+                      itemCount: iconsLogros.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          leading: Icon(iconsLogros[index]),
+                          title: Text("${index + 1}"),
+                        );
+                      },
                     ),
-                    scrollDirection: Axis.horizontal,
-                    children: List.generate(100, (index) {
-                      return Center(
-                        child: Text(
-                          'Item 555',
-                        ),
-                      );
-                    }),
-                  ),
-                ],
-              ),
+                  ]),
             ),
           ],
         ),
