@@ -295,26 +295,21 @@ class _Perfil_user extends State<Perfil_user> {
                 border: Border.all(
                     width: 1.2, color: Color.fromARGB(255, 245, 187, 132)),
               ),
-              child: ListView(
+              child: Row(
                 children: [
-                  AutoSizeText(
-                    'LOGROS',
-                    textAlign: TextAlign.center,
-                    minFontSize: 25,
-                    maxFontSize: 35,
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 245, 187, 132),
-                        fontWeight: FontWeight.bold),
+                  GridView(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                    ),
+                    scrollDirection: Axis.horizontal,
+                    children: List.generate(100, (index) {
+                      return Center(
+                        child: Text(
+                          'Item 555',
+                        ),
+                      );
+                    }),
                   ),
-                  SizedBox(
-                      height: 100,
-                      width: 100,
-                      child: ListView.builder(
-                        itemCount: iconsLogros.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Icon(iconsLogros[index]);
-                        },
-                      )),
                 ],
               ),
             ),
@@ -332,6 +327,24 @@ class _Perfil_user extends State<Perfil_user> {
     Icons.comment
   ];
 
+/*
+     AutoSizeText(
+                    'LOGROS',
+                    textAlign: TextAlign.center,
+                    minFontSize: 25,
+                    maxFontSize: 35,
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 245, 187, 132),
+                        fontWeight: FontWeight.bold),
+                  ),
+  /*height: 100,
+                      width: 100,
+                      child: ListView.builder(
+                        itemCount: iconsLogros.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Icon(iconsLogros[index]);
+                        },
+                      )*/ */
   Map<String, double> list = {
     "Constitució": 3,
     "Igualtat": 2,
