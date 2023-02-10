@@ -272,9 +272,45 @@ class _Perfil_user extends State<Perfil_user> {
               ),
             ),
             Container(
+              height: 45,
+              width: 20,
+              margin: EdgeInsets.only(left: 85, right: 85, bottom: 0, top: 25),
+              padding: EdgeInsets.only(left: 0, right: 0, bottom: 0, top: 5),
+              decoration: BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Color.fromARGB(255, 250, 146, 27),
+                    blurRadius: 5.0,
+                  )
+                ],
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: <Color>[
+                    Color.fromARGB(255, 66, 39, 7),
+                    Color.fromARGB(255, 0, 0, 0),
+                  ],
+                ), // Color of the container
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30)), // Radius of the border
+                border: Border.all(
+                    width: 1.2, color: Color.fromARGB(255, 245, 187, 132)),
+              ),
+              child: AutoSizeText(
+                'LOGROS',
+                textAlign: TextAlign.center,
+                minFontSize: 25,
+                maxFontSize: 35,
+                style: TextStyle(
+                    color: Color.fromARGB(255, 245, 187, 132),
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            Container(
               alignment: Alignment.center,
               height: 250,
-              margin: EdgeInsets.all(20),
+              margin: EdgeInsets.only(left: 20, right: 20, bottom: 0, top: 0),
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(
@@ -299,15 +335,12 @@ class _Perfil_user extends State<Perfil_user> {
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3, crossAxisSpacing: 16),
                   children: [
-                    ListView.builder(
-                      itemCount: iconsLogros.length,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          leading: Icon(iconsLogros[index]),
-                          title: Text("${index + 1}"),
-                        );
-                      },
-                    ),
+                    Icon(iconsLogros[0]),
+                    Icon(iconsLogros[1]),
+                    Icon(iconsLogros[2]),
+                    Icon(iconsLogros[3]),
+                    Icon(iconsLogros[4]),
+                    Icon(iconsLogros[5]),
                   ]),
             ),
           ],
@@ -321,10 +354,22 @@ class _Perfil_user extends State<Perfil_user> {
     Icons.favorite,
     Icons.thumb_up,
     Icons.thumb_down,
-    Icons.comment
+    Icons.comment,
+    Icons.favorite_border_outlined
   ];
 
 /*
+
+ListView.builder(
+                      itemCount: iconsLogros.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          leading: Icon(iconsLogros[index]),
+                          title: Text("${index + 1}"),
+                        );
+                      },
+                    ),
+
      AutoSizeText(
                     'LOGROS',
                     textAlign: TextAlign.center,
