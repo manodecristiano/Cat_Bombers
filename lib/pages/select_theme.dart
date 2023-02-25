@@ -85,7 +85,7 @@ class SelectTheme extends StatelessWidget {
                     Navigator.pushNamed(context, '/electricidad');
                   },
                   child: const AutoSizeText(
-                    'ELectricidad',
+                    'Electricitat',
                     style: TextStyle(
                       color: Colors.black87,
                       fontWeight: FontWeight.bold,
@@ -108,7 +108,7 @@ class SelectTheme extends StatelessWidget {
                     Navigator.pushNamed(context, '/constitucion');
                   },
                   child: const AutoSizeText(
-                    'Constitución',
+                    'Constitució',
                     style: TextStyle(
                       color: Colors.black87,
                       fontWeight: FontWeight.bold,
@@ -131,7 +131,7 @@ class SelectTheme extends StatelessWidget {
                     Navigator.pushNamed(context, '/contruccion');
                   },
                   child: const AutoSizeText(
-                    'Construcción',
+                    'Construcció',
                     style: TextStyle(
                       color: Colors.black87,
                       fontWeight: FontWeight.bold,

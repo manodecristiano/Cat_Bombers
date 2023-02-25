@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
+class FasterQuiz extends StatefulWidget {
+  final int totalQuestions;
+  const FasterQuiz(this.totalQuestions, {super.key});
+}
+
 class MenuTest extends StatelessWidget {
   const MenuTest({super.key});
 
@@ -59,7 +64,11 @@ class MenuTest extends StatelessWidget {
                 Divider(),
                 OutlinedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/select_number_quiz');
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: ((context) => FasterQuiz(100)),
+                        ));
                   },
                   child: const AutoSizeText(
                     'SIMULACRO',

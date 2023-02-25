@@ -83,15 +83,15 @@ class _Perfil_user extends State<Perfil_user> {
   MaterialButton ButtonchangeLista(String nombreBoton) {
     return MaterialButton(
       onPressed: () {
-        if (nombreBoton == 'LLeis') {
+        if (nombreBoton == 'Legislatius') {
           setState(() {
             list = dataMapTemaLey;
           });
-        } else if (nombreBoton == 'Mecanic') {
+        } else if (nombreBoton == 'Altres') {
           setState(() {
             list = dataMapTemesMecanics;
           });
-        } else if (nombreBoton == 'Natural') {
+        } else if (nombreBoton == 'Naturals') {
           setState(() {
             list = dataMapTemasNaturalesa;
           });
@@ -114,7 +114,7 @@ class _Perfil_user extends State<Perfil_user> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(186, 43, 40, 46),
+      backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
       appBar: AppBar(
         // ignore: prefer_const_constructors
         iconTheme: IconThemeData(
@@ -188,7 +188,7 @@ class _Perfil_user extends State<Perfil_user> {
             Container(
                 height: 45,
                 width: 20,
-                margin: EdgeInsets.only(left: 65, right: 65, bottom: 0),
+                margin: EdgeInsets.only(left: 55, right: 55, bottom: 0),
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
@@ -213,9 +213,9 @@ class _Perfil_user extends State<Perfil_user> {
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
-                    ButtonchangeLista('Mecanic'),
-                    ButtonchangeLista('LLeis'),
-                    ButtonchangeLista('Natural'),
+                    ButtonchangeLista('Altres'),
+                    ButtonchangeLista('Legislatius'),
+                    ButtonchangeLista('Naturals'),
                   ],
                 )),
             Container(
@@ -298,7 +298,7 @@ class _Perfil_user extends State<Perfil_user> {
                     width: 1.2, color: Color.fromARGB(255, 245, 187, 132)),
               ),
               child: AutoSizeText(
-                'LOGROS',
+                'ÈXITS',
                 textAlign: TextAlign.center,
                 minFontSize: 25,
                 maxFontSize: 35,
