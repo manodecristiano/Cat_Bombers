@@ -2,11 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-
-class FasterQuiz extends StatefulWidget {
-  final int totalQuestions;
-  const FasterQuiz(this.totalQuestions, {super.key});
-}
+import 'package:cat_bombers/pages/faster_quiz.dart';
 
 class MenuTest extends StatelessWidget {
   const MenuTest({super.key});
@@ -67,7 +63,7 @@ class MenuTest extends StatelessWidget {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: ((context) => FasterQuiz(100)),
+                          builder: ((context) => FasterQuiz(10)),
                         ));
                   },
                   child: const AutoSizeText(
