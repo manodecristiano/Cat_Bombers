@@ -1,9 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cat_bombers/classes/question.dart';
 import 'package:cat_bombers/classes/quiz.dart';
-import 'package:cat_bombers/pages/faster_quiz.dart';
+import 'package:cat_bombers/pages/test_rapido.dart';
 import 'package:cat_bombers/pages/home_page.dart';
-import 'package:cat_bombers/pages/result_quiz.dart';
+import 'package:cat_bombers/pages/resultado_test.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 

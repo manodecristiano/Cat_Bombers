@@ -62,10 +62,11 @@ class Homepage extends StatelessWidget {
                 Divider(),
                 OutlinedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/select_number_quiz');
+                    Navigator.pushNamed(
+                        context, '/ruta-para-select_number_test');
                   },
                   child: const AutoSizeText(
-                    'TEST RÁPIDO',
+                    'TEST RÁPID',
                     style: TextStyle(
                       color: Color.fromRGBO(239, 71, 111, 1.0),
                       fontWeight: FontWeight.bold,
@@ -85,7 +86,7 @@ class Homepage extends StatelessWidget {
                 Divider(),
                 OutlinedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/menu-test');
+                    Navigator.pushNamed(context, '/ruta-para-menu_test');
                   },
                   child: const AutoSizeText(
                     'MENÚ TEST',
@@ -108,7 +109,7 @@ class Homepage extends StatelessWidget {
                 Divider(),
                 OutlinedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/perfil-user');
+                    Navigator.pushNamed(context, '/ruta-para-perfil');
                   },
                   child: const AutoSizeText(
                     'PERFIL',
@@ -131,10 +132,10 @@ class Homepage extends StatelessWidget {
                 Divider(),
                 OutlinedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/progress-user');
+                    Navigator.pushNamed(context, '/ruta-para-opciones');
                   },
                   child: const AutoSizeText(
-                    'OPCIONES',
+                    'OPCIONS',
                     style: TextStyle(
                       color: Colors.black87,
                       fontWeight: FontWeight.bold,

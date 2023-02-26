@@ -2,7 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:cat_bombers/pages/faster_quiz.dart';
+import 'package:cat_bombers/pages/test_rapido.dart';
 
 class MenuTest extends StatelessWidget {
   const MenuTest({super.key});
@@ -63,11 +63,11 @@ class MenuTest extends StatelessWidget {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: ((context) => FasterQuiz(10)),
+                          builder: ((context) => FasterQuiz(35)),
                         ));
                   },
                   child: const AutoSizeText(
-                    'SIMULACRO',
+                    'SIMULACRE',
                     style: TextStyle(
                       color: Color.fromRGBO(249, 240, 229, 1.0),
                       fontWeight: FontWeight.bold,
@@ -87,7 +87,7 @@ class MenuTest extends StatelessWidget {
                 Divider(),
                 OutlinedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/type_quiz');
+                    Navigator.pushNamed(context, '/ruta-para-crear_test');
                   },
                   child: const AutoSizeText(
                     'CREAR TEST',
@@ -110,10 +110,11 @@ class MenuTest extends StatelessWidget {
                 Divider(),
                 OutlinedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/select-theme');
+                    Navigator.pushNamed(
+                        context, '/ruta-para-seleccionar_temes');
                   },
                   child: const AutoSizeText(
-                    'POR TEMAS',
+                    'PER TEMES',
                     style: TextStyle(
                       color: Colors.black87,
                       fontWeight: FontWeight.bold,
@@ -133,10 +134,10 @@ class MenuTest extends StatelessWidget {
                 Divider(),
                 OutlinedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/progress-user');
+                    Navigator.pushNamed(context, '/ruta-para-test_fallades');
                   },
                   child: const AutoSizeText(
-                    'TEST de FALLADAS',
+                    'TEST FALLADES',
                     style: TextStyle(
                       color: Colors.black87,
                       fontWeight: FontWeight.bold,

@@ -1,10 +1,11 @@
-import 'package:cat_bombers/pages/faster_quiz.dart';
+import 'package:cat_bombers/pages/test_rapido.dart';
 import 'package:cat_bombers/pages/home_page.dart';
 import 'package:cat_bombers/pages/menu_test.dart';
-import 'package:cat_bombers/pages/perfil_user.dart';
-import 'package:cat_bombers/pages/number_questions.dart';
+import 'package:cat_bombers/pages/perfil.dart';
+import 'package:cat_bombers/pages/select_number_test.dart';
+import 'package:cat_bombers/pages/test_fallades.dart';
 import 'package:cat_bombers/pages/base.dart';
-import 'package:cat_bombers/pages/select_theme.dart';
+import 'package:cat_bombers/pages/seleccionar_temas.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -30,12 +31,14 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => const Homepage(),
-          '/quiz-page': (context) => const FasterQuiz(0),
-          '/menu-test': (context) => const MenuTest(),
-          '/statistics-user': (context) => const ReviewQuiz(),
-          '/perfil-user': (context) => const Perfil_user(),
-          '/select_number_quiz': (context) => const Number_questions(),
-          '/select-theme': (context) => const SelectTheme(),
+          '/ruta-para-test_rapido': (context) => const FasterQuiz(0),
+          '/ruta-para-menu_test': (context) => const MenuTest(),
+          '/ruta-para-stats_usuario': (context) => const ReviewQuiz(),
+          '/ruta-para-perfil': (context) => const Perfil_user(),
+          '/ruta-para-select_number_test': (context) =>
+              const Number_questions(),
+          '/ruta-para-seleccionar_temes': (context) => const SelectTheme(),
+          '/ruta-para-test_fallades': (context) => const Test_Fallades(),
         });
   }
 }

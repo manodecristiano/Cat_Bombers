@@ -1,8 +1,9 @@
+import 'package:cat_bombers/pages/menu_test.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cat_bombers/classes/question.dart';
 import 'package:cat_bombers/classes/quiz.dart';
 import 'package:cat_bombers/pages/home_page.dart';
-import 'package:cat_bombers/pages/result_quiz.dart';
+import 'package:cat_bombers/pages/resultado_test.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
@@ -10,19 +11,20 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class FasterQuiz extends StatefulWidget {
+class FailedsQuiz extends StatefulWidget {
   final int totalQuestions;
-  const FasterQuiz(this.totalQuestions, {super.key});
+  const FailedsQuiz(this.totalQuestions, {super.key});
 
   @override
-  State<FasterQuiz> createState() => _FasterQuizState();
+  State<FailedsQuiz> createState() => _FailedsQuizState();
 }
 
-class _FasterQuizState extends State<FasterQuiz> {
+class _FailedsQuizState extends State<FailedsQuiz> {
   int totalOptions = 4;
   int questionIndex = 0;
   int progressBar = 1;
-  Quiz quiz = Quiz(name: 'Test Rápido', questions: []);
+  //hay que recoger la lista de erroneas de test_rapido y tenerla aqui
+  quizFails;
 
   Future<void> readJson() async {
     final String response = await rootBundle.loadString('assets/paises.json');
@@ -43,8 +45,8 @@ class _FasterQuizState extends State<FasterQuiz> {
 
       Question question = Question.fromJson(data[correctAnswer]);
       question.addOptions(otherOptions);
-      quiz.questions.add(question);
-      if (quiz.questions.length >= widget.totalQuestions) break;
+      quizFails.questions.add(question);
+      if (quizFails.questions.length >= widget.totalQuestions) break;
     }
     setState(() {});
   }
@@ -57,14 +59,16 @@ class _FasterQuizState extends State<FasterQuiz> {
 
   void _optionSelected(String userSelected) {
 //Marcar como opción correcta si es la recogida en el Json
-    quiz.questions[questionIndex].selected = userSelected;
-    if (userSelected == quiz.questions[questionIndex].correctAnswer) {
+    quizFails.questions[questionIndex].selected = userSelected;
+    if (userSelected == quizFails.questions[questionIndex].correctAnswer) {
       print('correct');
-      quiz.questions[questionIndex].correct = true;
+      quizFails.questions[questionIndex].correct = true;
 //Aumentamnos el valor total de correctas
-      quiz.right += 1;
+      quizFails.right += 1;
     } else {
       print('NO correct');
+//añadimos a la lista de fallos
+      quizFails.questions.add(quizFails.questions[questionIndex]);
     }
 
 //Siguiente pregunta y recarga la pantalla
@@ -91,13 +95,13 @@ class _FasterQuizState extends State<FasterQuiz> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Preguntas  :  ' '${widget.totalQuestions}'),
-          Text('Correctas   :  ' '${quiz.right}',
+          Text('Correctas   :  ' '${quizFails.right}',
               style: TextStyle(
                   color: Colors.greenAccent, fontWeight: FontWeight.bold)),
-          Text('Incorrectas:  ' '${(widget.totalQuestions - quiz.right)}',
+          Text('Incorrectas:  ' '${(widget.totalQuestions - quizFails.right)}',
               style: TextStyle(
                   color: Colors.redAccent, fontWeight: FontWeight.bold)),
-          Text('Porcentaje :  ' '${quiz.percent}%'),
+          Text('Porcentaje :  ' '${quizFails.percent}%'),
         ],
       ),
       actions: [
@@ -108,7 +112,7 @@ class _FasterQuizState extends State<FasterQuiz> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: ((context) => ResultQuiz(quiz: quiz)),
+                  builder: ((context) => ResultQuiz(quiz: quizFails)),
                 ),
               );
             },
@@ -144,7 +148,7 @@ class _FasterQuizState extends State<FasterQuiz> {
           color: Colors.black87,
         ),
         title: AutoSizeText(
-          quiz.name,
+          quizFails.name,
           style: TextStyle(
             color: Colors.black54,
             fontWeight: FontWeight.bold,
@@ -159,7 +163,7 @@ class _FasterQuizState extends State<FasterQuiz> {
           constraints: const BoxConstraints(maxHeight: 450),
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
-            child: quiz.questions.isNotEmpty
+            child: quizFails.questions.isNotEmpty
                 ? Card(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -167,7 +171,7 @@ class _FasterQuizState extends State<FasterQuiz> {
                         Container(
                           margin: const EdgeInsets.all(20),
                           child: AutoSizeText(
-                            quiz.questions[questionIndex].question,
+                            quizFails.questions[questionIndex].question,
                             minFontSize: 16,
                             maxFontSize: 35,
                             style: TextStyle(
@@ -202,10 +206,10 @@ class _FasterQuizState extends State<FasterQuiz> {
                   ),
                   leading: AutoSizeText('${index + 1}'),
                   title: AutoSizeText(
-                      quiz.questions[questionIndex].options[index]),
+                      quizFails.questions[questionIndex].options[index]),
                   onTap: () {
                     _optionSelected(
-                        quiz.questions[questionIndex].options[index]);
+                        quizFails.questions[questionIndex].options[index]);
                   },
                 ),
               );
