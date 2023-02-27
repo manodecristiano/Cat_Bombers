@@ -4,6 +4,7 @@ import 'package:cat_bombers/classes/question.dart';
 import 'package:cat_bombers/classes/quiz.dart';
 import 'package:cat_bombers/pages/home_page.dart';
 import 'package:cat_bombers/pages/resultado_test.dart';
+import 'package:cat_bombers/pages/test_rapido.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
@@ -13,7 +14,8 @@ import 'package:flutter/services.dart';
 
 class FailedsQuiz extends StatefulWidget {
   final int totalQuestions;
-  const FailedsQuiz(this.totalQuestions, {super.key});
+  final Quiz quizFails;
+  const FailedsQuiz(this.totalQuestions, this.quizFails, {super.key});
 
   @override
   State<FailedsQuiz> createState() => _FailedsQuizState();
@@ -24,51 +26,25 @@ class _FailedsQuizState extends State<FailedsQuiz> {
   int questionIndex = 0;
   int progressBar = 1;
   //hay que recoger la lista de erroneas de test_rapido y tenerla aqui
-  quizFails;
-
-  Future<void> readJson() async {
-    final String response = await rootBundle.loadString('assets/paises.json');
-    final List<dynamic> data = await json.decode(response);
-    List<int> optionList = List<int>.generate(data.length, (i) => i);
-    List<int> questionAdded = [];
-
-    while (true) {
-      optionList.shuffle();
-      int correctAnswer = optionList[0];
-      if (questionAdded.contains(correctAnswer)) continue;
-      questionAdded.add(correctAnswer);
-
-      List<String> otherOptions = [];
-      for (var option in optionList.sublist(1, totalOptions)) {
-        otherOptions.add(data[option]['capital']);
-      }
-
-      Question question = Question.fromJson(data[correctAnswer]);
-      question.addOptions(otherOptions);
-      quizFails.questions.add(question);
-      if (quizFails.questions.length >= widget.totalQuestions) break;
-    }
-    setState(() {});
-  }
 
   @override
   void initState() {
     super.initState();
-    readJson();
   }
 
   void _optionSelected(String userSelected) {
 //Marcar como opción correcta si es la recogida en el Json
-    quizFails.questions[questionIndex].selected = userSelected;
-    if (userSelected == quizFails.questions[questionIndex].correctAnswer) {
+    widget.quizFails.questions[questionIndex].selected = userSelected;
+    if (userSelected ==
+        widget.quizFails.questions[questionIndex].correctAnswer) {
       print('correct');
-      quizFails.questions[questionIndex].correct = true;
+      widget.quizFails.questions[questionIndex].correct = true;
 //Aumentamnos el valor total de correctas
-      quizFails.right += 1;
+      widget.quizFails.right += 1;
     } else {
       print('NO correct');
 //añadimos a la lista de fallos
-      quizFails.questions.add(quizFails.questions[questionIndex]);
+      widget.quizFails.questions.add(widget.quizFails.questions[questionIndex]);
     }
 
 //Siguiente pregunta y recarga la pantalla
@@ -95,13 +71,15 @@ class _FailedsQuizState extends State<FailedsQuiz> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Preguntas  :  ' '${widget.totalQuestions}'),
-          Text('Correctas   :  ' '${quizFails.right}',
+          Text('Correctas   :  ' '${widget.quizFails.right}',
               style: TextStyle(
                   color: Colors.greenAccent, fontWeight: FontWeight.bold)),
-          Text('Incorrectas:  ' '${(widget.totalQuestions - quizFails.right)}',
+          Text(
+              'Incorrectas:  '
+              '${(widget.totalQuestions - widget.quizFails.right)}',
               style: TextStyle(
                   color: Colors.redAccent, fontWeight: FontWeight.bold)),
-          Text('Porcentaje :  ' '${quizFails.percent}%'),
+          Text('Porcentaje :  ' '${widget.quizFails.percent}%'),
         ],
       ),
       actions: [
@@ -112,7 +90,7 @@ class _FailedsQuizState extends State<FailedsQuiz> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: ((context) => ResultQuiz(quiz: quizFails)),
+                  builder: ((context) => ResultQuiz(quiz: widget.quizFails)),
                 ),
               );
             },
@@ -148,7 +126,7 @@ class _FailedsQuizState extends State<FailedsQuiz> {
           color: Colors.black87,
         ),
         title: AutoSizeText(
-          quizFails.name,
+          widget.quizFails.name,
           style: TextStyle(
             color: Colors.black54,
             fontWeight: FontWeight.bold,
@@ -163,7 +141,7 @@ class _FailedsQuizState extends State<FailedsQuiz> {
           constraints: const BoxConstraints(maxHeight: 450),
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
-            child: quizFails.questions.isNotEmpty
+            child: widget.quizFails.questions.isNotEmpty
                 ? Card(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -171,7 +149,7 @@ class _FailedsQuizState extends State<FailedsQuiz> {
                         Container(
                           margin: const EdgeInsets.all(20),
                           child: AutoSizeText(
-                            quizFails.questions[questionIndex].question,
+                            widget.quizFails.questions[questionIndex].question,
                             minFontSize: 16,
                             maxFontSize: 35,
                             style: TextStyle(
@@ -206,10 +184,10 @@ class _FailedsQuizState extends State<FailedsQuiz> {
                   ),
                   leading: AutoSizeText('${index + 1}'),
                   title: AutoSizeText(
-                      quizFails.questions[questionIndex].options[index]),
+                      widget.quizFails.questions[questionIndex].options[index]),
                   onTap: () {
-                    _optionSelected(
-                        quizFails.questions[questionIndex].options[index]);
+                    _optionSelected(widget
+                        .quizFails.questions[questionIndex].options[index]);
                   },
                 ),
               );

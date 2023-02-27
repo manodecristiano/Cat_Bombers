@@ -22,10 +22,10 @@ class _FasterQuizState extends State<FasterQuiz> {
   int totalOptions = 4;
   int questionIndex = 0;
   int progressBar = 1;
-  //mejor a hacerlo aqui todo falladas y no segun la variable que le pases
-  Quiz quiz = Quiz(name: 'Test Rápido', questions: []);
 
-  Quiz quizFails = Quiz(name: 'Test de faillades', questions: []);
+  Quiz quiz = Quiz(name: 'Test Rápid', questions: []);
+
+  Quiz quizFails = Quiz(name: 'Test Rápid', questions: []);
 
   Future<void> readJson() async {
     final String response = await rootBundle.loadString('assets/paises.json');
@@ -49,6 +49,7 @@ class _FasterQuizState extends State<FasterQuiz> {
       quiz.questions.add(question);
       if (quiz.questions.length >= widget.totalQuestions) break;
     }
+
     setState(() {});
   }
 
@@ -69,6 +70,7 @@ class _FasterQuizState extends State<FasterQuiz> {
     } else {
       print('NO correct');
 //añadimos a la lista de fallos
+
       quizFails.questions.add(quiz.questions[questionIndex]);
     }
 
