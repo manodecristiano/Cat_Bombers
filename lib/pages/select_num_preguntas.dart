@@ -6,13 +6,15 @@ import 'package:cat_bombers/pages/home_page.dart';
 import 'package:cat_bombers/pages/resultado_test.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'Test_Fallades.dart';
+
 class Number_questions extends StatelessWidget {
-  const Number_questions({super.key});
+  final bool fallades;
+  const Number_questions(this.fallades, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -70,11 +72,20 @@ class Number_questions extends StatelessWidget {
                 Divider(),
                 OutlinedButton(
                   onPressed: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: ((context) => FasterQuiz(10)),
-                        ));
+                    if (fallades == false) {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: ((context) => FasterQuiz(10)),
+                          ));
+                    } else {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: ((context) => FailedsQuiz(10,
+                                Quiz(name: 'Test Fallades', questions: []))),
+                          ));
+                    }
                   },
                   child: const AutoSizeText(
                     '10',

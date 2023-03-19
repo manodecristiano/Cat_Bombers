@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cat_bombers/pages/select_num_preguntas.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -134,7 +135,11 @@ class MenuTest extends StatelessWidget {
                 Divider(),
                 OutlinedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/ruta-para-test_fallades');
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: ((context) => Number_questions(true)),
+                        ));
                   },
                   child: const AutoSizeText(
                     'TEST FALLADES',

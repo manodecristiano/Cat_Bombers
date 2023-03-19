@@ -3,7 +3,7 @@ import 'package:cat_bombers/pages/home_page.dart';
 import 'package:cat_bombers/pages/menu_test.dart';
 import 'package:cat_bombers/pages/perfil.dart';
 import 'package:cat_bombers/classes/quiz.dart';
-import 'package:cat_bombers/pages/select_number_test.dart';
+import 'package:cat_bombers/pages/select_num_preguntas.dart';
 import 'package:cat_bombers/pages/test_fallades.dart';
 import 'package:cat_bombers/pages/base.dart';
 import 'package:cat_bombers/pages/seleccionar_temas.dart';
@@ -35,12 +35,12 @@ class MyApp extends StatelessWidget {
           '/': (context) => const Homepage(),
           '/ruta-para-test_rapido': (context) => const FasterQuiz(0),
           '/ruta-para-test_fallades': (context) =>
-              const FailedsQuiz(0, FasterQuiz(quizFails)),
+              FailedsQuiz(0, Quiz(name: 'Test Fallades', questions: [])),
           '/ruta-para-menu_test': (context) => const MenuTest(),
           '/ruta-para-stats_usuario': (context) => const ReviewQuiz(),
           '/ruta-para-perfil': (context) => const Perfil_user(),
           '/ruta-para-select_number_test': (context) =>
-              const Number_questions(),
+              const Number_questions(false),
           '/ruta-para-seleccionar_temes': (context) => const SelectTheme(),
         });
   }

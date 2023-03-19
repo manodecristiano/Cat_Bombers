@@ -10,6 +10,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+Quiz quizFails = Quiz(name: 'Test Fallades', questions: []);
+
 class FasterQuiz extends StatefulWidget {
   final int totalQuestions;
   const FasterQuiz(this.totalQuestions, {super.key});
@@ -24,8 +26,6 @@ class _FasterQuizState extends State<FasterQuiz> {
   int progressBar = 1;
 
   Quiz quiz = Quiz(name: 'Test Rápid', questions: []);
-
-  Quiz quizFails = Quiz(name: 'Test Rápid', questions: []);
 
   Future<void> readJson() async {
     final String response = await rootBundle.loadString('assets/paises.json');
