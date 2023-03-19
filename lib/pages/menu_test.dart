@@ -133,6 +133,14 @@ class MenuTest extends StatelessWidget {
                   ),
                 ),
                 Divider(),
+
+                /* ESTO ES LO MISMO QUE LA PÂRTE DE ABAJO PERO CON 'ARGUMENTS'
+                 OutlinedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(
+                        context, '/ruta-para-select_number_preguntas',
+                        arguments: Number_questions(true));
+                  },*/
                 OutlinedButton(
                   onPressed: () {
                     Navigator.pushReplacement(

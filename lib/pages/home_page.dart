@@ -63,7 +63,7 @@ class Homepage extends StatelessWidget {
                 OutlinedButton(
                   onPressed: () {
                     Navigator.pushNamed(
-                        context, '/ruta-para-select_number_test');
+                        context, '/ruta-para-select_num_preguntas');
                   },
                   child: const AutoSizeText(
                     'TEST RÁPID',

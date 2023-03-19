@@ -70,8 +70,8 @@ class _FasterQuizState extends State<FasterQuiz> {
     } else {
       print('NO correct');
 //añadimos a la lista de fallos
-
       quizFails.questions.add(quiz.questions[questionIndex]);
+      print('añadida a quizFails=${quiz.questions[questionIndex].question}');
     }
 
 //Siguiente pregunta y recarga la pantalla

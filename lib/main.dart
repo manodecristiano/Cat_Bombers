@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           '/ruta-para-menu_test': (context) => const MenuTest(),
           '/ruta-para-stats_usuario': (context) => const ReviewQuiz(),
           '/ruta-para-perfil': (context) => const Perfil_user(),
-          '/ruta-para-select_number_test': (context) =>
+          '/ruta-para-select_num_preguntas': (context) =>
               const Number_questions(false),
           '/ruta-para-seleccionar_temes': (context) => const SelectTheme(),
         });

@@ -73,17 +73,18 @@ class Number_questions extends StatelessWidget {
                 OutlinedButton(
                   onPressed: () {
                     if (fallades == false) {
+                      print('fallades=false');
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: ((context) => FasterQuiz(10)),
                           ));
                     } else {
+                      print('fallades=true');
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: ((context) => FailedsQuiz(10,
-                                Quiz(name: 'Test Fallades', questions: []))),
+                            builder: ((context) => FailedsQuiz(10, quizFails)),
                           ));
                     }
                   },

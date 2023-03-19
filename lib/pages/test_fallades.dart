@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cat_bombers/pages/menu_test.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cat_bombers/classes/question.dart';
@@ -25,6 +27,7 @@ class _FailedsQuizState extends State<FailedsQuiz> {
   int totalOptions = 4;
   int questionIndex = 0;
   int progressBar = 1;
+
   //hay que recoger la lista de erroneas de test_rapido y tenerla aqui
 
   @override
@@ -37,14 +40,16 @@ class _FailedsQuizState extends State<FailedsQuiz> {
     widget.quizFails.questions[questionIndex].selected = userSelected;
     if (userSelected ==
         widget.quizFails.questions[questionIndex].correctAnswer) {
+      widget.quizFails.questions
+          .remove(widget.quizFails.questions[questionIndex]);
       print('correct');
       widget.quizFails.questions[questionIndex].correct = true;
+      print(
+          'quitamos de la quizFails=${quizFails.questions[questionIndex].question}');
 //Aumentamnos el valor total de correctas
       widget.quizFails.right += 1;
     } else {
       print('NO correct');
-//añadimos a la lista de fallos
-      widget.quizFails.questions.add(widget.quizFails.questions[questionIndex]);
     }
 
 //Siguiente pregunta y recarga la pantalla
