@@ -104,7 +104,7 @@ class _FasterQuizState extends State<FasterQuiz> {
           Text('Incorrectas:  ' '${(widget.totalQuestions - quiz.right)}',
               style: TextStyle(
                   color: Colors.redAccent, fontWeight: FontWeight.bold)),
-          Text('Porcentaje :  ' '${quiz.percent}%'),
+          Text('Porcentaje :  ' '${quiz.percent.toStringAsFixed(2)}%'),
         ],
       ),
       actions: [

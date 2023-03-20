@@ -16,6 +16,35 @@ class Number_questions extends StatelessWidget {
   final bool fallades;
   const Number_questions(this.fallades, {super.key});
 
+  Widget _buildErrorDialog(BuildContext context) {
+    for (int i = 0; i <= quizFails.questions.length - 1; i++) {
+      print('for de quizFails=>${quizFails.questions[i].country}');
+    }
+    return AlertDialog(
+      title: Text('Hurra!',
+          style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold)),
+      backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
+      content: Text('No tens suficients preguntes fallades  '),
+      actions: [
+        TextButton(
+            child: Text('Tancar'),
+            onPressed: () {
+              //NAVEGAR HACIA ATRáS
+              Navigator.of(context).pop();
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: ((context) => Homepage()),
+                  ));
+            },
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.amber),
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.black87),
+            )),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,12 +109,21 @@ class Number_questions extends StatelessWidget {
                             builder: ((context) => FasterQuiz(10)),
                           ));
                     } else {
-                      print('fallades=true');
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: ((context) => FailedsQuiz(10, quizFails)),
-                          ));
+                      if (quizFails.questions.length < 10) {
+                        showDialog(
+                            barrierDismissible: false,
+                            context: context,
+                            builder: (BuildContext context) =>
+                                _buildErrorDialog(context));
+                      } else {
+                        print('fallades=true');
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) =>
+                                  FailedsQuiz(10, quizFails)),
+                            ));
+                      }
                     }
                   },
                   child: const AutoSizeText(

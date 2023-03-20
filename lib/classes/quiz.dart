@@ -8,4 +8,6 @@ class Quiz {
   Quiz({required this.name, required this.questions});
 
   double get percent => (right / questions.length) * 100;
+
+  map(String Function(dynamic user) param0) {}
 }
