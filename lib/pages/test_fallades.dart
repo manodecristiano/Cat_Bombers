@@ -69,12 +69,13 @@ class _FailedsQuizState extends State<FailedsQuiz> {
     if (questionIndex < widget.totalQuestions - 1) {
       questionIndex += 1;
     } else {
+      print('ELIMINAMOS DUPLICADOS');
       //Eliminamos DUPLICADOS
-      for (Quiz pregunta in quizFailsCorrects) {
-        if (quizFails.contains(pregunta)) {
-          quizFails.remove(pregunta);
-        }
-      }
+      // for (Quiz pregunta in widget.quizFailsCorrects) {
+      //   if (quizFails.contains(pregunta)) {
+      //   quizFails.remove(pregunta);
+      //  }
+      //  }
 
       for (int i = 0; i <= quizFailsCorrects.questions.length - 1; i++) {
         print(
