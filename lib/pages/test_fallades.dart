@@ -30,27 +30,46 @@ class _FailedsQuizState extends State<FailedsQuiz> {
 
   Quiz quizFailsCorrects = Quiz(name: 'Test Fallades', questions: []);
 
+  List<Map<String, dynamic>> questionData = [
+    {
+      'country': 'España',
+      'capital': 'Madrid',
+      'options': ['Barcelona', 'Sevilla', 'Valencia']
+    },
+    {
+      'country': 'Francia',
+      'capital': 'París',
+      'options': ['Lyon', 'Marsella', 'Toulouse']
+    },
+    {
+      'country': 'Italia',
+      'capital': 'Roma',
+      'options': ['Milán', 'Florencia', 'Venecia']
+    }
+  ];
+
   @override
   void initState() {
     super.initState();
   }
 
   void _optionSelected(String userSelected) {
-    quizFailsCorrects = quizFails;
+    //  quizFailsCorrects = quizFails;
+    // widget.quizFails.questions[questionIndex].selected = userSelected;
+
 //Marcar como opción correcta si es la recogida en el Json
-    widget.quizFails.questions[questionIndex].selected = userSelected;
     if (userSelected ==
         widget.quizFails.questions[questionIndex].correctAnswer) {
       print('correct');
-      print(
-          'Acertaste la de -->${quizFails.questions[questionIndex].question}');
-      widget.quizFails.questions[questionIndex].correct = true;
+      print('Acertaste-->${quizFails.questions[questionIndex].question}');
+
+//    widget.quizFails.questions[questionIndex].correct = true;
 //Aumentamnos el valor total de correctas
-      widget.quizFails.right += 1;
+      //widget.quizFails.right += 1;
 //Quitamos del array de Fails
       print(
-          'quitamos de quizFails ANTES-->${questionIndex}--${quizFails.questions[questionIndex].question}');
-      quizFailsCorrects.questions.removeAt(questionIndex);
+          'quitamos de quizFails el INDEX-->${questionIndex} -- ${quizFails.questions[questionIndex].question}');
+      quizFails.questions.removeAt(questionIndex);
       // widget.quizFails.questions
       // .remove(quizFails.questions[questionIndex].question);
 
