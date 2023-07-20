@@ -27,6 +27,7 @@ class _FasterQuizState extends State<FasterQuiz> {
 
   Quiz quiz = Quiz(name: 'Test Rápid', questions: []);
 
+//Creamos el listado de preguntas aleatorias
   Future<void> readJson() async {
     final String response = await rootBundle.loadString('assets/paises.json');
     final List<dynamic> data = await json.decode(response);

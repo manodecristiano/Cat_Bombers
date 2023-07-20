@@ -17,9 +17,6 @@ class Number_questions extends StatelessWidget {
   const Number_questions(this.fallades, {super.key});
 
   Widget _buildErrorDialog(BuildContext context) {
-    for (int i = 0; i <= quizFails.questions.length - 1; i++) {
-      print('for de quizFails=>${quizFails.questions[i].country}');
-    }
     return AlertDialog(
       title: Text('Hurra!',
           style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold)),
@@ -101,6 +98,9 @@ class Number_questions extends StatelessWidget {
                 Divider(),
                 OutlinedButton(
                   onPressed: () {
+                    print('-------DENTRO DE select_num_preguntas------');
+                    print(
+                        'Numero de preguntas falladas=> ${quizFails.questions.length}');
                     if (fallades == false) {
                       print('fallades=false');
                       Navigator.pushReplacement(

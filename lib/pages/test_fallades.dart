@@ -1,5 +1,4 @@
 import 'dart:ffi';
-
 import 'package:cat_bombers/pages/menu_test.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cat_bombers/classes/question.dart';
@@ -9,7 +8,6 @@ import 'package:cat_bombers/pages/resultado_test.dart';
 import 'package:cat_bombers/pages/test_rapido.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -27,78 +25,58 @@ class _FailedsQuizState extends State<FailedsQuiz> {
   int totalOptions = 4;
   int questionIndex = 0;
   int progressBar = 1;
+  int cuantasquedan = 0;
+  String country = '';
 
-  Quiz quizFailsCorrects = Quiz(name: 'Test Fallades', questions: []);
-
-  List<Map<String, dynamic>> questionData = [
-    {
-      'country': 'España',
-      'capital': 'Madrid',
-      'options': ['Barcelona', 'Sevilla', 'Valencia']
-    },
-    {
-      'country': 'Francia',
-      'capital': 'París',
-      'options': ['Lyon', 'Marsella', 'Toulouse']
-    },
-    {
-      'country': 'Italia',
-      'capital': 'Roma',
-      'options': ['Milán', 'Florencia', 'Venecia']
-    }
-  ];
+  Quiz ListCorrects = Quiz(name: 'Test Fallades', questions: []);
 
   @override
   void initState() {
     super.initState();
+    cuantasquedan = widget.totalQuestions;
   }
 
   void _optionSelected(String userSelected) {
-    //  quizFailsCorrects = quizFails;
-    // widget.quizFails.questions[questionIndex].selected = userSelected;
-
 //Marcar como opción correcta si es la recogida en el Json
-    if (userSelected ==
-        widget.quizFails.questions[questionIndex].correctAnswer) {
+    quizFails.questions[questionIndex].selected = userSelected;
+    if (userSelected == quizFails.questions[questionIndex].correctAnswer) {
       print('correct');
-      print('Acertaste-->${quizFails.questions[questionIndex].question}');
-
-//    widget.quizFails.questions[questionIndex].correct = true;
+      quizFails.questions[questionIndex].correct = true;
 //Aumentamnos el valor total de correctas
-      //widget.quizFails.right += 1;
-//Quitamos del array de Fails
-      print(
-          'quitamos de quizFails el INDEX-->${questionIndex} -- ${quizFails.questions[questionIndex].question}');
-      quizFails.questions.removeAt(questionIndex);
-      // widget.quizFails.questions
-      // .remove(quizFails.questions[questionIndex].question);
-
-      for (int i = 0; i <= widget.quizFails.questions.length - 1; i++) {
-        print(
-            'for de quizFails=>${questionIndex} -->${quizFails.questions[i].country}-->${quizFails.questions[i].correctAnswer}');
-      }
-      print('QuestionIndex=>${questionIndex}');
-      print(
-          'quitamos de quizFails DESPUES-->${questionIndex}--${quizFails.questions[questionIndex - 1].question}');
+      quizFails.right += 1;
+      ListCorrects.questions.add(quizFails.questions[questionIndex]);
+      // quizFails.questions.removeAt(questionIndex);
+//       // widget.quizFails.questions
+//       // .remove(quizFails.questions[questionIndex].question);
+      // for (int i = 0; i <= widget.quizFails.questions.length - 1; i++) {
+      //   print(
+      //       'for de quizFails=>${questionIndex++} -->${quizFails.questions[i].country}-->${quizFails.questions[i].correctAnswer}');
+      // }
     } else {
       print('NO correct');
     }
 
+    print('questionIndex=> ${questionIndex}');
+    print('totalQuestions=> ${widget.totalQuestions}');
+
 //Siguiente pregunta y recarga la pantalla
     if (questionIndex < widget.totalQuestions - 1) {
       questionIndex += 1;
+      cuantasquedan -= 1;
     } else {
       print('ELIMINAMOS DUPLICADOS');
-      //Eliminamos DUPLICADOS
-      // for (Quiz pregunta in widget.quizFailsCorrects) {
-      //   if (quizFails.contains(pregunta)) {
-      //   quizFails.remove(pregunta);
-      //  }
-      //  }
+      for (int i = 0; i <= widget.quizFails.questions.length - 1; i++) {
+        country = quizFails.questions[i].country;
 
-      for (int i = 0; i <= quizFailsCorrects.questions.length - 1; i++) {
-        print(
-            'for de quizREFails=>${questionIndex} -->${quizFails.questions[i].country}-->${quizFails.questions[i].correctAnswer}');
+        for (int i = 0; i <= ListCorrects.questions.length - 1; i++) {
+          print('country=>${country}');
+          print(
+              'country de ListCorrects[i]=>${ListCorrects.questions[i].country}');
+
+          if (country == ListCorrects.questions[i].country) {
+            quizFails.questions.removeAt(questionIndex);
+          }
+        }
       }
       showDialog(
           barrierDismissible: false,
@@ -108,8 +86,77 @@ class _FailedsQuizState extends State<FailedsQuiz> {
     progressBar += 1;
 
     setState(() {});
+    print('cuantasquedan=> ${cuantasquedan}');
   }
 
+//   void _optionSelected(String userSelected) {
+
+//     //quizFailsCorrects = quizFails;
+//     // widget.quizFails.questions[questionIndex].selected = userSelected;
+
+// //Marcar como opción correcta si es la recogida en el Json
+//     if (userSelected ==
+//         widget.quizFails.questions[questionIndex].correctAnswer) {
+//       print('correct');
+//       print('Acertaste-->${quizFails.questions[questionIndex].question}');
+
+//       widget.quizFails.questions[questionIndex].correct = true;
+// //Aumentamnos el valor total de correctas
+//       widget.quizFails.right += 1;
+// //Quitamos del array de Fails
+//       print(
+//           'quitamos de quizFails el INDEX-->${questionIndex} -- ${quizFails.questions[questionIndex].question}');
+//       quizFails.questions.removeAt(questionIndex);
+//       // widget.quizFails.questions
+//       // .remove(quizFails.questions[questionIndex].question);
+
+//       for (int i = 0; i <= widget.quizFails.questions.length - 1; i++) {
+//         print(
+//             'for de quizFails=>${questionIndex++} -->${quizFails.questions[i].country}-->${quizFails.questions[i].correctAnswer}');
+//       }
+
+//       print(
+//           'quitamos de quizFails DESPUES-->${questionIndex}--${quizFails.questions[questionIndex - 1].question}');
+//     } else {
+//       print('NO correct');
+//     }
+
+// //Siguiente pregunta y recarga la pantalla
+//     if (questionIndex < widget.totalQuestions - 1) {
+//       questionIndex += 1;
+//     } else {
+//       print('ELIMINAMOS DUPLICADOS');
+//       //Eliminamos DUPLICADOS
+//       // for (Quiz pregunta in widget.quizFailsCorrects) {
+//       //   if (quizFails.contains(pregunta)) {
+//       //   quizFails.remove(pregunta);
+//       //  }
+//       //  }
+
+//       for (int i = 0; i <= quizFailsCorrects.questions.length - 1; i++) {
+//         print(
+//             'for de quizREFails=>${questionIndex} -->${quizFails.questions[i].country}-->${quizFails.questions[i].correctAnswer}');
+//       }
+//       showDialog(
+//           barrierDismissible: false,
+//           context: context,
+//           builder: (BuildContext context) => _buildResultDialog(context));
+//     }
+//     progressBar += 1;
+
+//     setState(() {});
+//   }
+
+//
+//
+//
+////
+//
+//
+////
+//
+//
+//
   Widget _buildResultDialog(BuildContext context) {
     return AlertDialog(
       title: Text('Resultado',
