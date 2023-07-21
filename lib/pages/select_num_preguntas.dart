@@ -109,7 +109,7 @@ class Number_questions extends StatelessWidget {
                             builder: ((context) => FasterQuiz(10)),
                           ));
                     } else {
-                      if (quizFails.questions.length == 100) {
+                      if (quizFails.questions.length < 10) {
                         showDialog(
                             barrierDismissible: false,
                             context: context,
@@ -147,11 +147,28 @@ class Number_questions extends StatelessWidget {
                 Divider(),
                 OutlinedButton(
                   onPressed: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: ((context) => FasterQuiz(20)),
-                        ));
+                    if (fallades == false) {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: ((context) => FasterQuiz(20)),
+                          ));
+                    } else {
+                      if (quizFails.questions.length < 20) {
+                        showDialog(
+                            barrierDismissible: false,
+                            context: context,
+                            builder: (BuildContext context) =>
+                                _buildErrorDialog(context));
+                      } else {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) =>
+                                  FailedsQuiz(10, quizFails)),
+                            ));
+                      }
+                    }
                   },
                   child: const AutoSizeText(
                     '20',
@@ -174,11 +191,28 @@ class Number_questions extends StatelessWidget {
                 Divider(),
                 OutlinedButton(
                   onPressed: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: ((context) => FasterQuiz(30)),
-                        ));
+                    if (fallades == false) {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: ((context) => FasterQuiz(30)),
+                          ));
+                    } else {
+                      if (quizFails.questions.length < 30) {
+                        showDialog(
+                            barrierDismissible: false,
+                            context: context,
+                            builder: (BuildContext context) =>
+                                _buildErrorDialog(context));
+                      } else {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) =>
+                                  FailedsQuiz(10, quizFails)),
+                            ));
+                      }
+                    }
                   },
                   child: const AutoSizeText(
                     '30',

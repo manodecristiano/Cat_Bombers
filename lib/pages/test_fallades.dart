@@ -28,93 +28,15 @@ class _FailedsQuizState extends State<FailedsQuiz> {
   int cuantasquedan = 0;
   String country = '';
 
-  Quiz ListCorrects = Quiz(name: 'Test Fallades', questions: []);
+  Quiz ListREFails = Quiz(name: 'Lista de Re-Fallades', questions: []);
+
+  Quiz ListCorrects = Quiz(name: 'Lista de Salvades', questions: []);
 
   @override
   void initState() {
-    crearfalsoQuiz();
     super.initState();
 
     cuantasquedan = widget.totalQuestions;
-  }
-
-  void crearfalsoQuiz() {
-    Question question1 = Question.fromJson({
-      'country': 'pais 1',
-      'capital': 'Correcta',
-    });
-    question1.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    quizFails.questions.add(question1);
-
-    Question question2 = Question.fromJson({
-      'country': 'pais 2',
-      'capital': 'Correcta',
-    });
-    question2.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    quizFails.questions.add(question2);
-
-    Question question3 = Question.fromJson({
-      'country': 'pais 3',
-      'capital': 'Correcta',
-    });
-    question3.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    quizFails.questions.add(question3);
-
-    Question question4 = Question.fromJson({
-      'country': 'pais 4',
-      'capital': 'Correcta',
-    });
-    question4.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    quizFails.questions.add(question4);
-
-    Question question5 = Question.fromJson({
-      'country': 'pais 5',
-      'capital': 'Correcta',
-    });
-    question5.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    quizFails.questions.add(question5);
-
-    Question question6 = Question.fromJson({
-      'country': 'pais 6',
-      'capital': 'Correcta',
-    });
-    question6.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    quizFails.questions.add(question6);
-
-    Question question7 = Question.fromJson({
-      'country': 'pais 7',
-      'capital': 'Correcta',
-    });
-    question7.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    quizFails.questions.add(question7);
-
-    Question question8 = Question.fromJson({
-      'country': 'pais 8',
-      'capital': 'Correcta',
-    });
-    question8.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    quizFails.questions.add(question8);
-
-    Question question9 = Question.fromJson({
-      'country': 'pais 9',
-      'capital': 'Correcta',
-    });
-    question9.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    quizFails.questions.add(question9);
-
-    Question question11 = Question.fromJson({
-      'country': 'pais 11',
-      'capital': 'Correcta',
-    });
-    question11.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    quizFails.questions.add(question11);
-
-    Question question10 = Question.fromJson({
-      'country': 'pais 10',
-      'capital': 'Correcta',
-    });
-    question10.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    quizFails.questions.add(question10);
   }
 
   void _optionSelected(String userSelected) {
@@ -126,14 +48,8 @@ class _FailedsQuizState extends State<FailedsQuiz> {
 //Aumentamnos el valor total de correctas
       quizFails.right += 1;
       ListCorrects.questions.add(quizFails.questions[questionIndex]);
-      // quizFails.questions.removeAt(questionIndex);
-//       // widget.quizFails.questions
-//       // .remove(quizFails.questions[questionIndex].question);
-      // for (int i = 0; i <= widget.quizFails.questions.length - 1; i++) {
-      //   print(
-      //       'for de quizFails=>${questionIndex++} -->${quizFails.questions[i].country}-->${quizFails.questions[i].correctAnswer}');
-      // }
     } else {
+      ListREFails.questions.add(quizFails.questions[questionIndex]);
       print('NO correct');
     }
 
@@ -145,84 +61,29 @@ class _FailedsQuizState extends State<FailedsQuiz> {
       questionIndex += 1;
       cuantasquedan -= 1;
     } else {
-      for (int i = 0; i <= widget.quizFails.questions.length - 1; i++) {
-        country = quizFails.questions[i].country;
-
-        for (int j = 0; j <= ListCorrects.questions.length - 1; j++) {
-          if (country == ListCorrects.questions[i].country) {
-            print('ELIMINAMOS DUPLICADO');
-            quizFails.questions.removeAt(i);
-          }
-        }
-      }
       showDialog(
           barrierDismissible: false,
           context: context,
           builder: (BuildContext context) => _buildResultDialog(context));
+      for (int i = 0; i <= widget.quizFails.questions.length - 1; i++) {
+        country = quizFails.questions[i].country;
+
+        for (int j = 0; j <= ListCorrects.questions.length - 1; j++) {
+          if (country == ListCorrects.questions[j].country) {
+            print('ELIMINAMOS DUPLICADO');
+            quizFails.questions.removeAt(i);
+            questionIndex--;
+          }
+        }
+      }
+
+      // quizFails = ListREFails;
     }
     progressBar += 1;
 
     setState(() {});
     print('cuantasquedan=> ${cuantasquedan}');
   }
-
-//   void _optionSelected(String userSelected) {
-
-//     //quizFailsCorrects = quizFails;
-//     // widget.quizFails.questions[questionIndex].selected = userSelected;
-
-// //Marcar como opción correcta si es la recogida en el Json
-//     if (userSelected ==
-//         widget.quizFails.questions[questionIndex].correctAnswer) {
-//       print('correct');
-//       print('Acertaste-->${quizFails.questions[questionIndex].question}');
-
-//       widget.quizFails.questions[questionIndex].correct = true;
-// //Aumentamnos el valor total de correctas
-//       widget.quizFails.right += 1;
-// //Quitamos del array de Fails
-//       print(
-//           'quitamos de quizFails el INDEX-->${questionIndex} -- ${quizFails.questions[questionIndex].question}');
-//       quizFails.questions.removeAt(questionIndex);
-//       // widget.quizFails.questions
-//       // .remove(quizFails.questions[questionIndex].question);
-
-//       for (int i = 0; i <= widget.quizFails.questions.length - 1; i++) {
-//         print(
-//             'for de quizFails=>${questionIndex++} -->${quizFails.questions[i].country}-->${quizFails.questions[i].correctAnswer}');
-//       }
-
-//       print(
-//           'quitamos de quizFails DESPUES-->${questionIndex}--${quizFails.questions[questionIndex - 1].question}');
-//     } else {
-//       print('NO correct');
-//     }
-
-// //Siguiente pregunta y recarga la pantalla
-//     if (questionIndex < widget.totalQuestions - 1) {
-//       questionIndex += 1;
-//     } else {
-//       print('ELIMINAMOS DUPLICADOS');
-//       //Eliminamos DUPLICADOS
-//       // for (Quiz pregunta in widget.quizFailsCorrects) {
-//       //   if (quizFails.contains(pregunta)) {
-//       //   quizFails.remove(pregunta);
-//       //  }
-//       //  }
-
-//       for (int i = 0; i <= quizFailsCorrects.questions.length - 1; i++) {
-//         print(
-//             'for de quizREFails=>${questionIndex} -->${quizFails.questions[i].country}-->${quizFails.questions[i].correctAnswer}');
-//       }
-//       showDialog(
-//           barrierDismissible: false,
-//           context: context,
-//           builder: (BuildContext context) => _buildResultDialog(context));
-//     }
-//     progressBar += 1;
-
-//     setState(() {});
-//   }
 
 //
 //
@@ -328,7 +189,7 @@ class _FailedsQuizState extends State<FailedsQuiz> {
                             minFontSize: 16,
                             maxFontSize: 35,
                             style: TextStyle(
-                              color: Colors.black54,
+                              color: Colors.redAccent,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Roboto',
                             ),
