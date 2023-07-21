@@ -109,7 +109,7 @@ class Number_questions extends StatelessWidget {
                             builder: ((context) => FasterQuiz(10)),
                           ));
                     } else {
-                      if (quizFails.questions.length < 10) {
+                      if (quizFails.questions.length == 100) {
                         showDialog(
                             barrierDismissible: false,
                             context: context,

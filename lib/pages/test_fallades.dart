@@ -32,8 +32,89 @@ class _FailedsQuizState extends State<FailedsQuiz> {
 
   @override
   void initState() {
+    crearfalsoQuiz();
     super.initState();
+
     cuantasquedan = widget.totalQuestions;
+  }
+
+  void crearfalsoQuiz() {
+    Question question1 = Question.fromJson({
+      'country': 'pais 1',
+      'capital': 'Correcta',
+    });
+    question1.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    quizFails.questions.add(question1);
+
+    Question question2 = Question.fromJson({
+      'country': 'pais 2',
+      'capital': 'Correcta',
+    });
+    question2.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    quizFails.questions.add(question2);
+
+    Question question3 = Question.fromJson({
+      'country': 'pais 3',
+      'capital': 'Correcta',
+    });
+    question3.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    quizFails.questions.add(question3);
+
+    Question question4 = Question.fromJson({
+      'country': 'pais 4',
+      'capital': 'Correcta',
+    });
+    question4.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    quizFails.questions.add(question4);
+
+    Question question5 = Question.fromJson({
+      'country': 'pais 5',
+      'capital': 'Correcta',
+    });
+    question5.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    quizFails.questions.add(question5);
+
+    Question question6 = Question.fromJson({
+      'country': 'pais 6',
+      'capital': 'Correcta',
+    });
+    question6.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    quizFails.questions.add(question6);
+
+    Question question7 = Question.fromJson({
+      'country': 'pais 7',
+      'capital': 'Correcta',
+    });
+    question7.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    quizFails.questions.add(question7);
+
+    Question question8 = Question.fromJson({
+      'country': 'pais 8',
+      'capital': 'Correcta',
+    });
+    question8.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    quizFails.questions.add(question8);
+
+    Question question9 = Question.fromJson({
+      'country': 'pais 9',
+      'capital': 'Correcta',
+    });
+    question9.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    quizFails.questions.add(question9);
+
+    Question question11 = Question.fromJson({
+      'country': 'pais 11',
+      'capital': 'Correcta',
+    });
+    question11.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    quizFails.questions.add(question11);
+
+    Question question10 = Question.fromJson({
+      'country': 'pais 10',
+      'capital': 'Correcta',
+    });
+    question10.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    quizFails.questions.add(question10);
   }
 
   void _optionSelected(String userSelected) {
@@ -64,17 +145,13 @@ class _FailedsQuizState extends State<FailedsQuiz> {
       questionIndex += 1;
       cuantasquedan -= 1;
     } else {
-      print('ELIMINAMOS DUPLICADOS');
       for (int i = 0; i <= widget.quizFails.questions.length - 1; i++) {
         country = quizFails.questions[i].country;
 
-        for (int i = 0; i <= ListCorrects.questions.length - 1; i++) {
-          print('country=>${country}');
-          print(
-              'country de ListCorrects[i]=>${ListCorrects.questions[i].country}');
-
+        for (int j = 0; j <= ListCorrects.questions.length - 1; j++) {
           if (country == ListCorrects.questions[i].country) {
-            quizFails.questions.removeAt(questionIndex);
+            print('ELIMINAMOS DUPLICADO');
+            quizFails.questions.removeAt(i);
           }
         }
       }
@@ -246,6 +323,7 @@ class _FailedsQuizState extends State<FailedsQuiz> {
                         Container(
                           margin: const EdgeInsets.all(20),
                           child: AutoSizeText(
+                            //PETA AQUI
                             widget.quizFails.questions[questionIndex].question,
                             minFontSize: 16,
                             maxFontSize: 35,
