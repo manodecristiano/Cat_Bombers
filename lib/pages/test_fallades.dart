@@ -65,6 +65,15 @@ class _FailedsQuizState extends State<FailedsQuiz> {
           barrierDismissible: false,
           context: context,
           builder: (BuildContext context) => _buildResultDialog(context));
+    }
+    progressBar += 1;
+
+    setState(() {});
+    print('cuantasquedan=> ${cuantasquedan}');
+  }
+
+  void eliminarDuplicados(quizFails, ListCorrects, ListREFails) {
+    if (ListCorrects.questions.length == 0)
       for (int i = 0; i <= widget.quizFails.questions.length - 1; i++) {
         country = quizFails.questions[i].country;
 
@@ -76,13 +85,6 @@ class _FailedsQuizState extends State<FailedsQuiz> {
           }
         }
       }
-
-      // quizFails = ListREFails;
-    }
-    progressBar += 1;
-
-    setState(() {});
-    print('cuantasquedan=> ${cuantasquedan}');
   }
 
 //
@@ -136,6 +138,7 @@ class _FailedsQuizState extends State<FailedsQuiz> {
         TextButton(
             child: Text('Cerrar'),
             onPressed: () {
+              eliminarDuplicados(quizFails, ListCorrects, ListREFails);
               //NAVEGAR HACIA ATRáS
               Navigator.of(context).pop();
               Navigator.pushReplacement(
