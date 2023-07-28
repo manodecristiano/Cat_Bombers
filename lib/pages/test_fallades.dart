@@ -73,18 +73,23 @@ class _FailedsQuizState extends State<FailedsQuiz> {
   }
 
   void eliminarDuplicados(quizFails, ListCorrects, ListREFails) {
-    if (ListCorrects.questions.length == 0)
+    if (widget.quizFails.questions.length == 0) {
+      print('TODAS ACERTADAS');
+    } else {
       for (int i = 0; i <= widget.quizFails.questions.length - 1; i++) {
         country = quizFails.questions[i].country;
-
+        print('la i num:${i}');
         for (int j = 0; j <= ListCorrects.questions.length - 1; j++) {
+          print('la i num:${i}');
+          print('la j num:${j}');
           if (country == ListCorrects.questions[j].country) {
-            print('ELIMINAMOS DUPLICADO');
+            print('ELIMINAMOS DUPLICADO==>${country}');
             quizFails.questions.removeAt(i);
             questionIndex--;
           }
         }
       }
+    }
   }
 
 //
