@@ -9,8 +9,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-import 'Test_Fallades.dart';
+import 'FailedsQuiz.dart';
 
 class Number_questions extends StatelessWidget {
   final bool fallades;

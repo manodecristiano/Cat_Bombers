@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cat_bombers/pages/ranking.dart';
 import 'package:cat_bombers/pages/select_num_preguntas.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -39,7 +40,6 @@ class MenuTest extends StatelessWidget {
             color: Color.fromRGBO(249, 240, 229, 1.0),
             child: ListView(
               shrinkWrap: true,
-              padding: const EdgeInsets.all(10),
               children: [
                 Container(
                   height: 50,
@@ -91,7 +91,7 @@ class MenuTest extends StatelessWidget {
                     Navigator.pushNamed(context, '/ruta-para-crear_test');
                   },
                   child: const AutoSizeText(
-                    'CREAR TEST',
+                    'LLUITA',
                     style: TextStyle(
                       color: Colors.black87,
                       fontWeight: FontWeight.bold,
@@ -165,6 +165,30 @@ class MenuTest extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
                     elevation: 8,
                     side: const BorderSide(width: 0.2),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Card(
+            margin: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Text(
+                    'Ranking',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Divider(),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: RankingListWidget(), // Aquí se muestra la lista
                   ),
                 ),
               ],

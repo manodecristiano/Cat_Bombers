@@ -55,6 +55,13 @@ class _FasterQuizState extends State<FasterQuiz> {
   // }
 
   Future<void> crearfalsoQuiz() async {
+    Question question0 = Question.fromJson({
+      'country': 'pais 0',
+      'capital': 'Correcta',
+    });
+    question0.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    quiz.questions.add(question0);
+
     Question question1 = Question.fromJson({
       'country': 'pais 1',
       'capital': 'Correcta',
@@ -118,6 +125,12 @@ class _FasterQuizState extends State<FasterQuiz> {
     question9.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
     quiz.questions.add(question9);
 
+    Question question10 = Question.fromJson({
+      'country': 'pais 10',
+      'capital': 'Correcta',
+    });
+    question10.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    quiz.questions.add(question10);
     Question question11 = Question.fromJson({
       'country': 'pais 11',
       'capital': 'Correcta',
@@ -125,12 +138,75 @@ class _FasterQuizState extends State<FasterQuiz> {
     question11.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
     quiz.questions.add(question11);
 
-    Question question10 = Question.fromJson({
-      'country': 'pais 10',
+    Question question12 = Question.fromJson({
+      'country': 'pais 12',
       'capital': 'Correcta',
     });
-    question10.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    quiz.questions.add(question10);
+    question12.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    quiz.questions.add(question12);
+
+    Question question13 = Question.fromJson({
+      'country': 'pais 13',
+      'capital': 'Correcta',
+    });
+    question13.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    quiz.questions.add(question13);
+
+    Question question14 = Question.fromJson({
+      'country': 'pais 14',
+      'capital': 'Correcta',
+    });
+    question14.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    quiz.questions.add(question14);
+
+    Question question15 = Question.fromJson({
+      'country': 'pais 15',
+      'capital': 'Correcta',
+    });
+    question15.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    quiz.questions.add(question15);
+
+    Question question16 = Question.fromJson({
+      'country': 'pais 16',
+      'capital': 'Correcta',
+    });
+    question16.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    quiz.questions.add(question16);
+
+    Question question17 = Question.fromJson({
+      'country': 'pais 17',
+      'capital': 'Correcta',
+    });
+    question17.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    quiz.questions.add(question17);
+
+    Question question18 = Question.fromJson({
+      'country': 'pais 18',
+      'capital': 'Correcta',
+    });
+    question18.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    quiz.questions.add(question18);
+
+    Question question19 = Question.fromJson({
+      'country': 'pais 19',
+      'capital': 'Correcta',
+    });
+    question19.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    quiz.questions.add(question19);
+
+    Question question20 = Question.fromJson({
+      'country': 'pais 20',
+      'capital': 'Correcta',
+    });
+    question20.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    quiz.questions.add(question20);
+
+    Question question21 = Question.fromJson({
+      'country': 'pais 21',
+      'capital': 'Correcta',
+    });
+    question21.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    quiz.questions.add(question21);
 
     setState(() {});
   }
@@ -146,7 +222,7 @@ class _FasterQuizState extends State<FasterQuiz> {
 //Marcar como opción correcta si es la recogida en el Json
     quiz.questions[questionIndex].selected = userSelected;
     if (userSelected == quiz.questions[questionIndex].correctAnswer) {
-      print('correct');
+      print('SI CORRECTA');
       quiz.questions[questionIndex].correct = true;
 //Aumentamnos el valor total de correctas
       quiz.right += 1;

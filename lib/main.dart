@@ -4,7 +4,7 @@ import 'package:cat_bombers/pages/menu_test.dart';
 import 'package:cat_bombers/pages/perfil.dart';
 import 'package:cat_bombers/classes/quiz.dart';
 import 'package:cat_bombers/pages/select_num_preguntas.dart';
-import 'package:cat_bombers/pages/test_fallades.dart';
+import 'package:cat_bombers/pages/FailedsQuiz.dart';
 import 'package:cat_bombers/pages/base.dart';
 import 'package:cat_bombers/pages/seleccionar_temas.dart';
 import 'package:flutter/material.dart';

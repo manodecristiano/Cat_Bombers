@@ -43,7 +43,7 @@ class _FailedsQuizState extends State<FailedsQuiz> {
 //Marcar como opción correcta si es la recogida en el Json
     quizFails.questions[questionIndex].selected = userSelected;
     if (userSelected == quizFails.questions[questionIndex].correctAnswer) {
-      print('correct');
+      print('SI CORRECTA');
       quizFails.questions[questionIndex].correct = true;
 //Aumentamnos el valor total de correctas
       quizFails.right += 1;
@@ -79,17 +79,20 @@ class _FailedsQuizState extends State<FailedsQuiz> {
       List<Question> preguntasNoDuplicadas = [];
 
       for (int i = 0; i < widget.quizFails.questions.length; i++) {
-        bool esDuplicado = false;
         country = quizFails.questions[i].country;
-
+        print('COUNTRY quizFails-->${country}');
+        bool esDuplicado = false;
         for (int j = 0; j < ListCorrects.questions.length; j++) {
           if (country == ListCorrects.questions[j].country) {
+            print(
+                'COUNTRY ListCorrects es DUPLICADO-->${ListCorrects.questions[j].country}');
             esDuplicado = true;
             break;
           }
         }
 
         if (!esDuplicado) {
+          print('AÑADIMOS-->${country}');
           preguntasNoDuplicadas.add(widget.quizFails.questions[i]);
         }
       }
@@ -98,6 +101,7 @@ class _FailedsQuizState extends State<FailedsQuiz> {
       quizFails.questions = preguntasNoDuplicadas;
     }
   }
+
   // void eliminarDuplicados(quizFails, ListCorrects, ListREFails) {
   //   if (widget.quizFails.questions.length == 0) {
   //     print('TODAS ACERTADAS');
