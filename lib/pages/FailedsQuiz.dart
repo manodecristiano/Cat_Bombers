@@ -102,37 +102,6 @@ class _FailedsQuizState extends State<FailedsQuiz> {
     }
   }
 
-  // void eliminarDuplicados(quizFails, ListCorrects, ListREFails) {
-  //   if (widget.quizFails.questions.length == 0) {
-  //     print('TODAS ACERTADAS');
-  //   } else {
-  //     for (int i = widget.quizFails.questions.length - 1; i >= 0; i--) {
-  //       country = quizFails.questions[i].country;
-  //       print('la i num:${i}');
-  //       for (int j = ListCorrects.questions.length - 1; j >= 0; j--) {
-  //         print('la i num:${i}');
-  //         print('la j num:${j}');
-  //         if (country == ListCorrects.questions[j].country) {
-  //           print('ELIMINAMOS DUPLICADO==>${country}');
-  //           quizFails.questions.removeAt(i);
-  //           questionIndex--;
-  //           break; // Salimos del bucle interior para evitar eliminar duplicados adicionales.
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
-
-//
-//
-//
-////
-//
-//
-////
-//
-//
-//
   Widget _buildResultDialog(BuildContext context) {
     return AlertDialog(
       title: Text('Resultado',
