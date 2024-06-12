@@ -134,21 +134,22 @@ class MenuTest extends StatelessWidget {
                 ),
                 Divider(),
 
-                /* ESTO ES LO MISMO QUE LA PÂRTE DE ABAJO PERO CON 'ARGUMENTS'
-                 OutlinedButton(
+                /* ESTO ES LO MISMO QUE LA PÂRTE DE ABAJO PERO CON 'ARGUMENTS'*/
+
+                OutlinedButton(
                   onPressed: () {
                     Navigator.pushNamed(
                         context, '/ruta-para-select_number_preguntas',
                         arguments: Number_questions(true));
-                  },*/
-                OutlinedButton(
+                  },
+                  /*   OutlinedButton(
                   onPressed: () {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: ((context) => Number_questions(true)),
                         ));
-                  },
+                  }, */
                   child: const AutoSizeText(
                     'TEST FALLADES',
                     style: TextStyle(

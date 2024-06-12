@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cat_bombers/classes/question.dart';
-import 'package:cat_bombers/classes/quiz.dart';
+import 'package:cat_bombers/classes/Pregunta.dart';
+import 'package:cat_bombers/classes/Questionario.dart';
 import 'package:cat_bombers/pages/test_rapido.dart';
 import 'package:cat_bombers/pages/home_page.dart';
 import 'package:cat_bombers/pages/resultado_test.dart';
@@ -9,7 +9,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'FailedsQuiz.dart';
+import 'Fallos_Questionario.dart';
 
 class Number_questions extends StatelessWidget {
   final bool fallades;
@@ -99,7 +99,7 @@ class Number_questions extends StatelessWidget {
                   onPressed: () {
                     print('-------DENTRO DE select_num_preguntas------');
                     print(
-                        'Numero de preguntas falladas=> ${quizFails.questions.length}');
+                        'Numero de preguntas falladas=> ${questionariodeFalladas.preguntas.length}');
                     if (fallades == false) {
                       print('fallades=false');
                       Navigator.pushReplacement(
@@ -108,7 +108,7 @@ class Number_questions extends StatelessWidget {
                             builder: ((context) => FasterQuiz(10)),
                           ));
                     } else {
-                      if (quizFails.questions.length < 10) {
+                      if (questionariodeFalladas.preguntas.length < 10) {
                         showDialog(
                             barrierDismissible: false,
                             context: context,
@@ -119,8 +119,8 @@ class Number_questions extends StatelessWidget {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: ((context) =>
-                                  FailedsQuiz(10, quizFails)),
+                              builder: ((context) => Fallos_Questionario(
+                                  10, questionariodeFalladas)),
                             ));
                       }
                     }
@@ -153,7 +153,7 @@ class Number_questions extends StatelessWidget {
                             builder: ((context) => FasterQuiz(20)),
                           ));
                     } else {
-                      if (quizFails.questions.length < 20) {
+                      if (questionariodeFalladas.preguntas.length < 20) {
                         showDialog(
                             barrierDismissible: false,
                             context: context,
@@ -163,8 +163,8 @@ class Number_questions extends StatelessWidget {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: ((context) =>
-                                  FailedsQuiz(10, quizFails)),
+                              builder: ((context) => Fallos_Questionario(
+                                  10, questionariodeFalladas)),
                             ));
                       }
                     }
@@ -197,7 +197,7 @@ class Number_questions extends StatelessWidget {
                             builder: ((context) => FasterQuiz(30)),
                           ));
                     } else {
-                      if (quizFails.questions.length < 30) {
+                      if (questionariodeFalladas.preguntas.length < 30) {
                         showDialog(
                             barrierDismissible: false,
                             context: context,
@@ -207,8 +207,8 @@ class Number_questions extends StatelessWidget {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: ((context) =>
-                                  FailedsQuiz(10, quizFails)),
+                              builder: ((context) => Fallos_Questionario(
+                                  10, questionariodeFalladas)),
                             ));
                       }
                     }

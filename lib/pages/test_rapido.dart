@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cat_bombers/classes/question.dart';
-import 'package:cat_bombers/classes/quiz.dart';
+import 'package:cat_bombers/classes/Pregunta.dart';
+import 'package:cat_bombers/classes/Questionario.dart';
 import 'package:cat_bombers/pages/home_page.dart';
 import 'package:cat_bombers/pages/resultado_test.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -10,11 +10,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-Quiz quizFails = Quiz(name: 'Test Fallades', questions: []);
+Questionario questionariodeFalladas =
+    Questionario(name: 'Test Fallades', preguntas: []);
 
 class FasterQuiz extends StatefulWidget {
-  final int totalQuestions;
-  const FasterQuiz(this.totalQuestions, {super.key});
+  final int totaldePreguntas;
+  const FasterQuiz(this.totaldePreguntas, {super.key});
 
   @override
   State<FasterQuiz> createState() => _FasterQuizState();
@@ -25,7 +26,7 @@ class _FasterQuizState extends State<FasterQuiz> {
   int questionIndex = 0;
   int progressBar = 1;
 
-  Quiz quiz = Quiz(name: 'Test Rápid', questions: []);
+  Questionario questionario = Questionario(name: 'Test Rápid', preguntas: []);
 
 //Creamos el listado de preguntas aleatorias
   // Future<void> readJson() async {
@@ -55,82 +56,83 @@ class _FasterQuizState extends State<FasterQuiz> {
   // }
 
   Future<void> crearfalsoQuiz() async {
-    Question question0 = Question.fromJson({
+    Pregunta pregunta0 = Pregunta.fromJson({
       'country': 'pais 0',
       'capital': 'Correcta',
     });
-    question0.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    quiz.questions.add(question0);
+    pregunta0.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    questionario.preguntas.add(pregunta0);
 
-    Question question1 = Question.fromJson({
+    Pregunta question1 = Pregunta.fromJson({
       'country': 'pais 1',
       'capital': 'Correcta',
     });
     question1.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    quiz.questions.add(question1);
+    questionario.preguntas.add(question1);
 
-    Question question2 = Question.fromJson({
+    Pregunta question2 = Pregunta.fromJson({
       'country': 'pais 2',
       'capital': 'Correcta',
     });
     question2.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    quiz.questions.add(question2);
+    questionario.preguntas.add(question2);
 
-    Question question3 = Question.fromJson({
+    Pregunta question3 = Pregunta.fromJson({
       'country': 'pais 3',
       'capital': 'Correcta',
     });
     question3.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    quiz.questions.add(question3);
+    questionario.preguntas.add(question3);
 
-    Question question4 = Question.fromJson({
+    Pregunta question4 = Pregunta.fromJson({
       'country': 'pais 4',
       'capital': 'Correcta',
     });
     question4.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    quiz.questions.add(question4);
+    questionario.preguntas.add(question4);
 
-    Question question5 = Question.fromJson({
+    Pregunta question5 = Pregunta.fromJson({
       'country': 'pais 5',
       'capital': 'Correcta',
     });
     question5.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    quiz.questions.add(question5);
+    questionario.preguntas.add(question5);
 
-    Question question6 = Question.fromJson({
+    Pregunta question6 = Pregunta.fromJson({
       'country': 'pais 6',
       'capital': 'Correcta',
     });
     question6.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    quiz.questions.add(question6);
+    questionario.preguntas.add(question6);
 
-    Question question7 = Question.fromJson({
+    Pregunta question7 = Pregunta.fromJson({
       'country': 'pais 7',
       'capital': 'Correcta',
     });
     question7.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    quiz.questions.add(question7);
+    questionario.preguntas.add(question7);
 
-    Question question8 = Question.fromJson({
+    Pregunta question8 = Pregunta.fromJson({
       'country': 'pais 8',
       'capital': 'Correcta',
     });
     question8.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    quiz.questions.add(question8);
+    questionario.preguntas.add(question8);
 
-    Question question9 = Question.fromJson({
+    Pregunta question9 = Pregunta.fromJson({
       'country': 'pais 9',
       'capital': 'Correcta',
     });
     question9.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    quiz.questions.add(question9);
+    questionario.preguntas.add(question9);
 
-    Question question10 = Question.fromJson({
+    Pregunta question10 = Pregunta.fromJson({
       'country': 'pais 10',
       'capital': 'Correcta',
     });
     question10.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    quiz.questions.add(question10);
+    questionario.preguntas.add(question10);
+/*
     Question question11 = Question.fromJson({
       'country': 'pais 11',
       'capital': 'Correcta',
@@ -206,7 +208,7 @@ class _FasterQuizState extends State<FasterQuiz> {
       'capital': 'Correcta',
     });
     question21.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    quiz.questions.add(question21);
+    quiz.questions.add(question21); */
 
     setState(() {});
   }
@@ -220,21 +222,23 @@ class _FasterQuizState extends State<FasterQuiz> {
 
   void _optionSelected(String userSelected) {
 //Marcar como opción correcta si es la recogida en el Json
-    quiz.questions[questionIndex].selected = userSelected;
-    if (userSelected == quiz.questions[questionIndex].correctAnswer) {
+    questionario.preguntas[questionIndex].selected = userSelected;
+    if (userSelected == questionario.preguntas[questionIndex].correctAnswer) {
       print('SI CORRECTA');
-      quiz.questions[questionIndex].correct = true;
+      questionario.preguntas[questionIndex].correct = true;
 //Aumentamnos el valor total de correctas
-      quiz.right += 1;
+      questionario.right += 1;
     } else {
       print('NO correct');
 //añadimos a la lista de fallos
-      quizFails.questions.add(quiz.questions[questionIndex]);
-      print('añadida a quizFails=${quiz.questions[questionIndex].question}');
+      questionariodeFalladas.preguntas
+          .add(questionario.preguntas[questionIndex]);
+      print(
+          'añadida a quizFails=${questionario.preguntas[questionIndex].pregunta}');
     }
 
 //Siguiente pregunta y recarga la pantalla
-    if (questionIndex < widget.totalQuestions - 1) {
+    if (questionIndex < widget.totaldePreguntas - 1) {
       questionIndex += 1;
     } else {
       showDialog(
@@ -256,14 +260,16 @@ class _FasterQuizState extends State<FasterQuiz> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Preguntas  :  ' '${widget.totalQuestions}'),
-          Text('Correctas   :  ' '${quiz.right}',
+          Text('Preguntas  :  ' '${widget.totaldePreguntas}'),
+          Text('Correctas   :  ' '${questionario.right}',
               style: TextStyle(
                   color: Colors.greenAccent, fontWeight: FontWeight.bold)),
-          Text('Incorrectas:  ' '${(widget.totalQuestions - quiz.right)}',
+          Text(
+              'Incorrectas:  '
+              '${(widget.totaldePreguntas - questionario.right)}',
               style: TextStyle(
                   color: Colors.redAccent, fontWeight: FontWeight.bold)),
-          Text('Porcentaje :  ' '${quiz.percent.toStringAsFixed(2)}%'),
+          Text('Porcentaje :  ' '${questionario.percent.toInt()}%'),
         ],
       ),
       actions: [
@@ -274,7 +280,8 @@ class _FasterQuizState extends State<FasterQuiz> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: ((context) => ResultQuiz(quiz: quiz)),
+                  builder: ((context) =>
+                      ResultQuiz(questionario: questionario)),
                 ),
               );
             },
@@ -310,7 +317,7 @@ class _FasterQuizState extends State<FasterQuiz> {
           color: Colors.black87,
         ),
         title: AutoSizeText(
-          quiz.name,
+          questionario.name,
           style: TextStyle(
             color: Colors.black54,
             fontWeight: FontWeight.bold,
@@ -325,7 +332,7 @@ class _FasterQuizState extends State<FasterQuiz> {
           constraints: const BoxConstraints(maxHeight: 450),
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
-            child: quiz.questions.isNotEmpty
+            child: questionario.preguntas.isNotEmpty
                 ? Card(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -333,7 +340,7 @@ class _FasterQuizState extends State<FasterQuiz> {
                         Container(
                           margin: const EdgeInsets.all(20),
                           child: AutoSizeText(
-                            quiz.questions[questionIndex].question,
+                            questionario.preguntas[questionIndex].pregunta,
                             minFontSize: 16,
                             maxFontSize: 35,
                             style: TextStyle(
@@ -368,10 +375,10 @@ class _FasterQuizState extends State<FasterQuiz> {
                   ),
                   leading: AutoSizeText('${index + 1}'),
                   title: AutoSizeText(
-                      quiz.questions[questionIndex].options[index]),
+                      questionario.preguntas[questionIndex].options[index]),
                   onTap: () {
                     _optionSelected(
-                        quiz.questions[questionIndex].options[index]);
+                        questionario.preguntas[questionIndex].options[index]);
                   },
                 ),
               );
@@ -395,7 +402,7 @@ class _FasterQuizState extends State<FasterQuiz> {
             child: LinearProgressIndicator(
               color: Colors.amber[700],
               backgroundColor: const Color(0xFFD9D9D9),
-              value: progressBar / widget.totalQuestions,
+              value: progressBar / widget.totaldePreguntas,
               minHeight: 20,
             ),
           ),

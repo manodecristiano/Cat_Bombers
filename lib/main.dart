@@ -2,9 +2,9 @@ import 'package:cat_bombers/pages/test_rapido.dart';
 import 'package:cat_bombers/pages/home_page.dart';
 import 'package:cat_bombers/pages/menu_test.dart';
 import 'package:cat_bombers/pages/perfil.dart';
-import 'package:cat_bombers/classes/quiz.dart';
+import 'package:cat_bombers/classes/Questionario.dart';
 import 'package:cat_bombers/pages/select_num_preguntas.dart';
-import 'package:cat_bombers/pages/FailedsQuiz.dart';
+import 'package:cat_bombers/pages/Fallos_Questionario.dart';
 import 'package:cat_bombers/pages/base.dart';
 import 'package:cat_bombers/pages/seleccionar_temas.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final Quiz quizFails;
+    final Questionario quizFails;
     return MaterialApp(
         title: 'Cat-Bombers',
         theme: ThemeData(
@@ -34,8 +34,8 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => const Homepage(),
           '/ruta-para-test_rapido': (context) => const FasterQuiz(0),
-          '/ruta-para-test_fallades': (context) =>
-              FailedsQuiz(0, Quiz(name: 'Test Fallades', questions: [])),
+          '/ruta-para-test_fallades': (context) => Fallos_Questionario(
+              0, Questionario(name: 'Test Fallades', preguntas: [])),
           '/ruta-para-menu_test': (context) => const MenuTest(),
           '/ruta-para-stats_usuario': (context) => const ReviewQuiz(),
           '/ruta-para-perfil': (context) => const Perfil_user(),

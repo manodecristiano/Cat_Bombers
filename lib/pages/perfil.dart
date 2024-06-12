@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cat_bombers/classes/question.dart';
-import 'package:cat_bombers/classes/quiz.dart';
+import 'package:cat_bombers/classes/Pregunta.dart';
+import 'package:cat_bombers/classes/Questionario.dart';
 import 'package:cat_bombers/pages/home_page.dart';
 import 'package:cat_bombers/pages/resultado_test.dart';
 //import 'package:fl_chart/fl_chart.dart';
@@ -78,7 +78,7 @@ class ImageFire extends StatelessWidget {
 }
 
 class _Perfil_user extends State<Perfil_user> {
-  Quiz quiz = Quiz(name: 'Perfil', questions: []);
+  Questionario quiz = Questionario(name: 'Perfil', preguntas: []);
 
   MaterialButton ButtonchangeLista(String nombreBoton) {
     return MaterialButton(

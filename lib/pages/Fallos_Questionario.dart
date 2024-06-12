@@ -1,8 +1,8 @@
 import 'dart:ffi';
 import 'package:cat_bombers/pages/menu_test.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cat_bombers/classes/question.dart';
-import 'package:cat_bombers/classes/quiz.dart';
+import 'package:cat_bombers/classes/Pregunta.dart';
+import 'package:cat_bombers/classes/Questionario.dart';
 import 'package:cat_bombers/pages/home_page.dart';
 import 'package:cat_bombers/pages/resultado_test.dart';
 import 'package:cat_bombers/pages/test_rapido.dart';
@@ -12,52 +12,58 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class FailedsQuiz extends StatefulWidget {
-  final int totalQuestions;
-  final Quiz quizFails;
-  const FailedsQuiz(this.totalQuestions, this.quizFails, {super.key});
+class Fallos_Questionario extends StatefulWidget {
+  final int totalPreguntas;
+  final Questionario questionariodeFallos;
+  const Fallos_Questionario(this.totalPreguntas, this.questionariodeFallos,
+      {super.key});
 
   @override
-  State<FailedsQuiz> createState() => _FailedsQuizState();
+  State<Fallos_Questionario> createState() => _Fallos_QuestionarioState();
 }
 
-class _FailedsQuizState extends State<FailedsQuiz> {
+class _Fallos_QuestionarioState extends State<Fallos_Questionario> {
   int totalOptions = 4;
   int questionIndex = 0;
   int progressBar = 1;
   int cuantasquedan = 0;
   String country = '';
 
-  Quiz ListREFails = Quiz(name: 'Lista de Re-Fallades', questions: []);
+  Questionario ListREFails =
+      Questionario(name: 'Lista de Re-Fallades', preguntas: []);
 
-  Quiz ListCorrects = Quiz(name: 'Lista de Salvades', questions: []);
+  Questionario ListCorrects =
+      Questionario(name: 'Lista de Salvades', preguntas: []);
 
   @override
   void initState() {
     super.initState();
 
-    cuantasquedan = widget.totalQuestions;
+    cuantasquedan = widget.totalPreguntas;
   }
 
   void _optionSelected(String userSelected) {
 //Marcar como opción correcta si es la recogida en el Json
-    quizFails.questions[questionIndex].selected = userSelected;
-    if (userSelected == quizFails.questions[questionIndex].correctAnswer) {
+    questionariodeFalladas.preguntas[questionIndex].selected = userSelected;
+    if (userSelected ==
+        questionariodeFalladas.preguntas[questionIndex].correctAnswer) {
       print('SI CORRECTA');
-      quizFails.questions[questionIndex].correct = true;
+      questionariodeFalladas.preguntas[questionIndex].correct = true;
 //Aumentamnos el valor total de correctas
-      quizFails.right += 1;
-      ListCorrects.questions.add(quizFails.questions[questionIndex]);
+      questionariodeFalladas.right += 1;
+      ListCorrects.preguntas
+          .add(questionariodeFalladas.preguntas[questionIndex]);
     } else {
-      ListREFails.questions.add(quizFails.questions[questionIndex]);
+      ListREFails.preguntas
+          .add(questionariodeFalladas.preguntas[questionIndex]);
       print('NO correct');
     }
 
     print('questionIndex=> ${questionIndex}');
-    print('totalQuestions=> ${widget.totalQuestions}');
+    print('totalQuestions=> ${widget.totalPreguntas}');
 
 //Siguiente pregunta y recarga la pantalla
-    if (questionIndex < widget.totalQuestions - 1) {
+    if (questionIndex < widget.totalPreguntas - 1) {
       questionIndex += 1;
       cuantasquedan -= 1;
     } else {
@@ -73,19 +79,19 @@ class _FailedsQuizState extends State<FailedsQuiz> {
   }
 
   void eliminarDuplicados(quizFails, ListCorrects, ListREFails) {
-    if (widget.quizFails.questions.length == 0) {
+    if (widget.questionariodeFallos.preguntas.length == 0) {
       print('TODAS ACERTADAS');
     } else {
-      List<Question> preguntasNoDuplicadas = [];
+      List<Pregunta> preguntasNoDuplicadas = [];
 
-      for (int i = 0; i < widget.quizFails.questions.length; i++) {
-        country = quizFails.questions[i].country;
+      for (int i = 0; i < widget.questionariodeFallos.preguntas.length; i++) {
+        country = quizFails.preguntas[i].country;
         print('COUNTRY quizFails-->${country}');
         bool esDuplicado = false;
-        for (int j = 0; j < ListCorrects.questions.length; j++) {
-          if (country == ListCorrects.questions[j].country) {
+        for (int j = 0; j < ListCorrects.preguntas.length; j++) {
+          if (country == ListCorrects.preguntas[j].country) {
             print(
-                'COUNTRY ListCorrects es DUPLICADO-->${ListCorrects.questions[j].country}');
+                'COUNTRY ListCorrects es DUPLICADO-->${ListCorrects.preguntas[j].country}');
             esDuplicado = true;
             break;
           }
@@ -93,12 +99,12 @@ class _FailedsQuizState extends State<FailedsQuiz> {
 
         if (!esDuplicado) {
           print('AÑADIMOS-->${country}');
-          preguntasNoDuplicadas.add(widget.quizFails.questions[i]);
+          preguntasNoDuplicadas.add(widget.questionariodeFallos.preguntas[i]);
         }
       }
 
-      // Ahora reemplaza la lista quizFails.questions con las preguntas no duplicadas.
-      quizFails.questions = preguntasNoDuplicadas;
+      // Ahora reemplaza la lista quizFails.preguntas con las preguntas no duplicadas.
+      quizFails.preguntas = preguntasNoDuplicadas;
     }
   }
 
@@ -111,17 +117,17 @@ class _FailedsQuizState extends State<FailedsQuiz> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Preguntas  :  ' '${widget.totalQuestions}'),
-          Text('Correctas   :  ' '${widget.quizFails.right}',
+          Text('Preguntas  :  ' '${widget.totalPreguntas}'),
+          Text('Correctas   :  ' '${widget.questionariodeFallos.right}',
               style: TextStyle(
                   color: Colors.greenAccent, fontWeight: FontWeight.bold)),
           Text(
               'Incorrectas:  '
-              '${(widget.totalQuestions - widget.quizFails.right)}',
+              '${(widget.totalPreguntas - widget.questionariodeFallos.right)}',
               style: TextStyle(
                   color: Colors.redAccent, fontWeight: FontWeight.bold)),
           Text('Porcentaje :  '
-              '${widget.quizFails.percent.toStringAsFixed(2)}%'),
+              '${widget.questionariodeFallos.percent.toStringAsFixed(2)}%'),
         ],
       ),
       actions: [
@@ -132,7 +138,8 @@ class _FailedsQuizState extends State<FailedsQuiz> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: ((context) => ResultQuiz(quiz: widget.quizFails)),
+                  builder: ((context) =>
+                      ResultQuiz(questionario: widget.questionariodeFallos)),
                 ),
               );
             },
@@ -143,7 +150,8 @@ class _FailedsQuizState extends State<FailedsQuiz> {
         TextButton(
             child: Text('Cerrar'),
             onPressed: () {
-              eliminarDuplicados(quizFails, ListCorrects, ListREFails);
+              eliminarDuplicados(
+                  questionariodeFalladas, ListCorrects, ListREFails);
               //NAVEGAR HACIA ATRáS
               Navigator.of(context).pop();
               Navigator.pushReplacement(
@@ -169,7 +177,7 @@ class _FailedsQuizState extends State<FailedsQuiz> {
           color: Colors.black87,
         ),
         title: AutoSizeText(
-          widget.quizFails.name,
+          widget.questionariodeFallos.name,
           style: TextStyle(
             color: Colors.black54,
             fontWeight: FontWeight.bold,
@@ -184,7 +192,7 @@ class _FailedsQuizState extends State<FailedsQuiz> {
           constraints: const BoxConstraints(maxHeight: 450),
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
-            child: widget.quizFails.questions.isNotEmpty
+            child: widget.questionariodeFallos.preguntas.isNotEmpty
                 ? Card(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -193,7 +201,8 @@ class _FailedsQuizState extends State<FailedsQuiz> {
                           margin: const EdgeInsets.all(20),
                           child: AutoSizeText(
                             //PETA AQUI
-                            widget.quizFails.questions[questionIndex].question,
+                            widget.questionariodeFallos.preguntas[questionIndex]
+                                .pregunta,
                             minFontSize: 16,
                             maxFontSize: 35,
                             style: TextStyle(
@@ -227,11 +236,11 @@ class _FailedsQuizState extends State<FailedsQuiz> {
                     ),
                   ),
                   leading: AutoSizeText('${index + 1}'),
-                  title: AutoSizeText(
-                      widget.quizFails.questions[questionIndex].options[index]),
+                  title: AutoSizeText(widget.questionariodeFallos
+                      .preguntas[questionIndex].options[index]),
                   onTap: () {
-                    _optionSelected(widget
-                        .quizFails.questions[questionIndex].options[index]);
+                    _optionSelected(widget.questionariodeFallos
+                        .preguntas[questionIndex].options[index]);
                   },
                 ),
               );
@@ -255,7 +264,7 @@ class _FailedsQuizState extends State<FailedsQuiz> {
             child: LinearProgressIndicator(
               color: Colors.amber[700],
               backgroundColor: const Color(0xFFD9D9D9),
-              value: progressBar / widget.totalQuestions,
+              value: progressBar / widget.totalPreguntas,
               minHeight: 20,
             ),
           ),

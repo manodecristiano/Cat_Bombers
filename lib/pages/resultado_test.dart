@@ -1,11 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import '../classes/quiz.dart';
+import '../classes/Questionario.dart';
 
 class ResultQuiz extends StatelessWidget {
-  const ResultQuiz({Key? key, required this.quiz}) : super(key: key);
+  const ResultQuiz({Key? key, required this.questionario}) : super(key: key);
 
-  final Quiz quiz;
+  final Questionario questionario;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +15,7 @@ class ResultQuiz extends StatelessWidget {
           color: Colors.black87,
         ),
         title: AutoSizeText(
-          quiz.name,
+          questionario.name,
           style: TextStyle(
             color: Colors.black54,
             fontWeight: FontWeight.bold,
@@ -38,30 +38,31 @@ class ResultQuiz extends StatelessWidget {
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text('Preguntas : ${quiz.questions.length}',
+                    Text('Preguntas : ${questionario.preguntas.length}',
                         style: TextStyle(color: Colors.brown)),
-                    Text('Correctas : ${quiz.percent}%'),
+                    Text('Correctas : ${questionario.percent.toInt()}%'),
                   ]),
             ),
             Expanded(
               child: ListView.builder(
                 shrinkWrap: true, //para que no se expanda tanto
-                itemCount: quiz.questions.length,
+                itemCount: questionario.preguntas.length,
                 itemBuilder: (_, index) {
                   return Card(
-                    color: quiz.questions[index].correct
+                    color: questionario.preguntas[index].correct
                         ? Colors.greenAccent.shade200
                         : Colors.redAccent.shade200,
                     child: ListTile(
-                      leading: quiz.questions[index].correct
+                      leading: questionario.preguntas[index].correct
                           ? Icon(Icons.fire_truck, color: Colors.green.shade900)
                           : Icon(Icons.fire_hydrant_alt,
                               color: Colors.red.shade900),
-                      title: AutoSizeText(quiz.questions[index].question),
+                      title:
+                          AutoSizeText(questionario.preguntas[index].pregunta),
                       subtitle: AutoSizeText(
-                        quiz.questions[index].selected,
+                        questionario.preguntas[index].selected,
                         style: TextStyle(
-                          decoration: quiz.questions[index].correct
+                          decoration: questionario.preguntas[index].correct
                               ? TextDecoration.none
                               : TextDecoration.lineThrough,
                         ),
