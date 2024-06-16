@@ -139,7 +139,7 @@ class MenuTest extends StatelessWidget {
                 OutlinedButton(
                   onPressed: () {
                     Navigator.pushNamed(
-                        context, '/ruta-para-select_number_preguntas',
+                        context, '/ruta-para-select_num_preguntas',
                         arguments: Number_questions(true));
                   },
                   /*   OutlinedButton(
@@ -166,30 +166,6 @@ class MenuTest extends StatelessWidget {
                     padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
                     elevation: 8,
                     side: const BorderSide(width: 0.2),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Card(
-            margin: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Text(
-                    'Ranking',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                Divider(),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: RankingListWidget(), // Aquí se muestra la lista
                   ),
                 ),
               ],
