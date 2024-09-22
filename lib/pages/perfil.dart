@@ -15,14 +15,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pie_chart/pie_chart.dart';
 
-class Perfil_user extends StatefulWidget {
-  const Perfil_user({super.key});
+class PerfilUser extends StatefulWidget {
+  const PerfilUser({super.key});
 
   @override
-  State<Perfil_user> createState() => _Perfil_user();
+  State<PerfilUser> createState() => _PerfilUser();
 }
 
 class PanelUser extends StatelessWidget {
+  const PanelUser({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -60,6 +61,7 @@ class PanelUser extends StatelessWidget {
 }
 
 class ImageUser extends StatelessWidget {
+  const ImageUser({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -69,6 +71,8 @@ class ImageUser extends StatelessWidget {
 }
 
 class ImageFire extends StatelessWidget {
+  const ImageFire({Key? key})
+      : super(key: key); // Añadido el key al constructor
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -77,10 +81,10 @@ class ImageFire extends StatelessWidget {
   }
 }
 
-class _Perfil_user extends State<Perfil_user> {
+class _PerfilUser extends State<PerfilUser> {
   Questionario quiz = Questionario(name: 'Perfil', preguntas: []);
 
-  MaterialButton ButtonchangeLista(String nombreBoton) {
+  MaterialButton buttonChangeLista(String nombreBoton) {
     return MaterialButton(
       onPressed: () {
         if (nombreBoton == 'Legislatius') {
@@ -116,7 +120,6 @@ class _Perfil_user extends State<Perfil_user> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
       appBar: AppBar(
-        // ignore: prefer_const_constructors
         iconTheme: IconThemeData(
           color: Colors.black87,
         ),
@@ -155,7 +158,7 @@ class _Perfil_user extends State<Perfil_user> {
                     width: 2, color: Color.fromARGB(255, 247, 176, 110)),
                 // ignore: prefer_const_literals_to_create_immutables
                 boxShadow: [
-                  // ignore: prefer_const_constructors
+    
                   BoxShadow(
                     color: Color.fromARGB(255, 250, 146, 27),
                     blurRadius: 15.0,
@@ -163,7 +166,7 @@ class _Perfil_user extends State<Perfil_user> {
                 ],
               ),
               child: Stack(
-                children: [
+                children: const [
                   Positioned(
                     height: 250,
                     width: 250,
@@ -190,7 +193,7 @@ class _Perfil_user extends State<Perfil_user> {
                 width: 20,
                 margin: EdgeInsets.only(left: 55, right: 55, bottom: 0),
                 decoration: BoxDecoration(
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       color: Color.fromARGB(255, 250, 146, 27),
                       blurRadius: 5.0,
@@ -199,7 +202,7 @@ class _Perfil_user extends State<Perfil_user> {
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: <Color>[
+                    colors: const <Color>[
                       Color.fromARGB(255, 66, 39, 7),
                       Color.fromARGB(255, 0, 0, 0),
                     ],
@@ -213,16 +216,16 @@ class _Perfil_user extends State<Perfil_user> {
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
-                    ButtonchangeLista('Altres'),
-                    ButtonchangeLista('Legislatius'),
-                    ButtonchangeLista('Naturals'),
+                    buttonChangeLista('Altres'),
+                    buttonChangeLista('Legislatius'),
+                    buttonChangeLista('Naturals'),
                   ],
                 )),
             Container(
               height: 250,
               margin: EdgeInsets.only(left: 10, right: 10, bottom: 0),
               decoration: BoxDecoration(
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     color: Color.fromARGB(255, 250, 146, 27),
                     blurRadius: 15.0,
@@ -231,7 +234,7 @@ class _Perfil_user extends State<Perfil_user> {
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: <Color>[
+                  colors: const <Color>[
                     Color.fromARGB(255, 66, 39, 7),
                     Color.fromARGB(255, 0, 0, 0),
                   ],
@@ -277,7 +280,7 @@ class _Perfil_user extends State<Perfil_user> {
               margin: EdgeInsets.only(left: 85, right: 85, bottom: 0, top: 25),
               padding: EdgeInsets.only(left: 0, right: 0, bottom: 0, top: 5),
               decoration: BoxDecoration(
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     color: Color.fromARGB(255, 250, 146, 27),
                     blurRadius: 5.0,
@@ -286,7 +289,7 @@ class _Perfil_user extends State<Perfil_user> {
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: <Color>[
+                  colors: const <Color>[
                     Color.fromARGB(255, 66, 39, 7),
                     Color.fromARGB(255, 0, 0, 0),
                   ],
@@ -312,7 +315,7 @@ class _Perfil_user extends State<Perfil_user> {
               height: 250,
               margin: EdgeInsets.only(left: 20, right: 20, bottom: 0, top: 0),
               decoration: BoxDecoration(
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     color: Color.fromARGB(255, 250, 146, 27),
                     blurRadius: 15.0,
@@ -321,7 +324,7 @@ class _Perfil_user extends State<Perfil_user> {
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: <Color>[
+                  colors: const <Color>[
                     Color.fromARGB(210, 221, 231, 192),
                     Color.fromARGB(255, 0, 0, 0),
                   ],

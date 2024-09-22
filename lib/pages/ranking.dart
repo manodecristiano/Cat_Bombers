@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class RankingListWidget extends StatelessWidget {
+  RankingListWidget({Key? key}) : super(key: key); 
   final Map<String, double> ranking = {
     "Cristian": 3679,
     "Adría": 3356,

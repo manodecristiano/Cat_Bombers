@@ -17,12 +17,12 @@ class _ReviewQuizState extends State<ReviewQuiz> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
+      backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),
       appBar: AppBar(
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black87,
         ),
-        title: AutoSizeText(
+        title: const AutoSizeText(
           'Estadísticas',
           style: TextStyle(
             color: Colors.black54,
@@ -33,7 +33,7 @@ class _ReviewQuizState extends State<ReviewQuiz> {
         elevation: 5,
         backgroundColor: Colors.amber[200],
       ),
-      body: Center(child: Text('Review Page')),
+      body: const Center(child: Text('Review Page')),
     );
   }
 }

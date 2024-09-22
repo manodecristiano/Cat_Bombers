@@ -9,14 +9,14 @@ class ResultQuiz extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
+      backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),
       appBar: AppBar(
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black87,
         ),
         title: AutoSizeText(
           questionario.name,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.black54,
             fontWeight: FontWeight.bold,
             fontFamily: 'Roboto',
@@ -39,7 +39,7 @@ class ResultQuiz extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text('Preguntas : ${questionario.preguntas.length}',
-                        style: TextStyle(color: Colors.brown)),
+                        style: const TextStyle(color: Colors.brown)),
                     Text('Correctas : ${questionario.percent.toInt()}%'),
                   ]),
             ),

@@ -12,27 +12,27 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class Fallos_Questionario extends StatefulWidget {
+class FallosQuestionario extends StatefulWidget {
   final int totalPreguntas;
   final Questionario questionariodeFallos;
-  const Fallos_Questionario(this.totalPreguntas, this.questionariodeFallos,
+  const FallosQuestionario(this.totalPreguntas, this.questionariodeFallos,
       {super.key});
 
   @override
-  State<Fallos_Questionario> createState() => _Fallos_QuestionarioState();
+  State<FallosQuestionario> createState() => _FallosQuestionarioState();
 }
 
-class _Fallos_QuestionarioState extends State<Fallos_Questionario> {
+class _FallosQuestionarioState extends State<FallosQuestionario> {
   int totalOptions = 4;
   int questionIndex = 0;
   int progressBar = 1;
   int cuantasquedan = 0;
   String country = '';
 
-  Questionario ListREFails =
+  Questionario listREFails =
       Questionario(name: 'Lista de Re-Fallades', preguntas: []);
 
-  Questionario ListCorrects =
+  Questionario listCorrects =
       Questionario(name: 'Lista de Salvades', preguntas: []);
 
   @override
@@ -47,20 +47,20 @@ class _Fallos_QuestionarioState extends State<Fallos_Questionario> {
     questionariodeFalladas.preguntas[questionIndex].selected = userSelected;
     if (userSelected ==
         questionariodeFalladas.preguntas[questionIndex].correctAnswer) {
-      print('SI CORRECTA');
+      debugPrint('SI CORRECTA');
       questionariodeFalladas.preguntas[questionIndex].correct = true;
 //Aumentamnos el valor total de correctas
       questionariodeFalladas.right += 1;
-      ListCorrects.preguntas
+      listCorrects.preguntas
           .add(questionariodeFalladas.preguntas[questionIndex]);
     } else {
-      ListREFails.preguntas
+      listREFails.preguntas
           .add(questionariodeFalladas.preguntas[questionIndex]);
-      print('NO correct');
+      debugPrint('NO correct');
     }
 
-    print('questionIndex=> ${questionIndex}');
-    print('totalQuestions=> ${widget.totalPreguntas}');
+    debugPrint('questionIndex=> $questionIndex');
+    debugPrint('totalQuestions=> ${widget.totalPreguntas}');
 
 //Siguiente pregunta y recarga la pantalla
     if (questionIndex < widget.totalPreguntas - 1) {
@@ -75,30 +75,33 @@ class _Fallos_QuestionarioState extends State<Fallos_Questionario> {
     progressBar += 1;
 
     setState(() {});
-    print('cuantasquedan=> ${cuantasquedan}');
+  
+    debugPrint('cuantasquedan => $cuantasquedan');
+
   }
 
-  void eliminarDuplicados(quizFails, ListCorrects, ListREFails) {
-    if (widget.questionariodeFallos.preguntas.length == 0) {
-      print('TODAS ACERTADAS');
+  void eliminarDuplicados(quizFails, listCorrects, listREFails) {
+    if (widget.questionariodeFallos.preguntas.isEmpty) {
+      debugPrint('TODAS ACERTADAS');
     } else {
       List<Pregunta> preguntasNoDuplicadas = [];
 
       for (int i = 0; i < widget.questionariodeFallos.preguntas.length; i++) {
         country = quizFails.preguntas[i].country;
-        print('COUNTRY quizFails-->${country}');
+        debugPrint('COUNTRY quizFails-->$country');
+        
         bool esDuplicado = false;
-        for (int j = 0; j < ListCorrects.preguntas.length; j++) {
-          if (country == ListCorrects.preguntas[j].country) {
-            print(
-                'COUNTRY ListCorrects es DUPLICADO-->${ListCorrects.preguntas[j].country}');
+        for (int j = 0; j < listCorrects.preguntas.length; j++) {
+          if (country == listCorrects.preguntas[j].country) {
+            debugPrint(
+                'COUNTRY ListCorrects es DUPLICADO-->${listCorrects.preguntas[j].country}');
             esDuplicado = true;
             break;
           }
         }
 
         if (!esDuplicado) {
-          print('AÑADIMOS-->${country}');
+          debugPrint('AÑADIMOS-->$country');
           preguntasNoDuplicadas.add(widget.questionariodeFallos.preguntas[i]);
         }
       }
@@ -110,21 +113,21 @@ class _Fallos_QuestionarioState extends State<Fallos_Questionario> {
 
   Widget _buildResultDialog(BuildContext context) {
     return AlertDialog(
-      title: Text('Resultado',
+      title: const Text('Resultado',
           style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold)),
-      backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
+      backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Preguntas  :  ' '${widget.totalPreguntas}'),
           Text('Correctas   :  ' '${widget.questionariodeFallos.right}',
-              style: TextStyle(
+              style: const TextStyle(
                   color: Colors.greenAccent, fontWeight: FontWeight.bold)),
           Text(
               'Incorrectas:  '
               '${(widget.totalPreguntas - widget.questionariodeFallos.right)}',
-              style: TextStyle(
+              style: const TextStyle(
                   color: Colors.redAccent, fontWeight: FontWeight.bold)),
           Text('Porcentaje :  '
               '${widget.questionariodeFallos.percent.toStringAsFixed(2)}%'),
@@ -132,38 +135,41 @@ class _Fallos_QuestionarioState extends State<Fallos_Questionario> {
       ),
       actions: [
         TextButton(
-            child: Text('Ver respuestas'),
-            onPressed: () {
-              Navigator.of(context).pop();
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: ((context) =>
-                      ResultQuiz(questionario: widget.questionariodeFallos)),
+          onPressed: () {
+            Navigator.of(context).pop();
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ResultQuiz(
+                  questionario: widget.questionariodeFallos,
                 ),
-              );
-            },
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.amber),
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.black87),
-            )),
+              ),
+            );
+          },
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.amber),
+            foregroundColor: MaterialStateProperty.all<Color>(Colors.black87),
+          ),
+          child: const Text('Ver respuestas'), // ButtonStyle
+        ),
+
         TextButton(
-            child: Text('Cerrar'),
             onPressed: () {
               eliminarDuplicados(
-                  questionariodeFalladas, ListCorrects, ListREFails);
+                  questionariodeFalladas, listCorrects, listREFails);
               //NAVEGAR HACIA ATRáS
               Navigator.of(context).pop();
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: ((context) => Homepage()),
+                    builder: ((context) => const Homepage()),
                   ));
             },
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(Colors.amber),
               foregroundColor: MaterialStateProperty.all<Color>(Colors.black87),
-            )),
+            ),
+            child: const Text('Cerrar')),
       ],
     );
   }
@@ -171,14 +177,14 @@ class _Fallos_QuestionarioState extends State<Fallos_Questionario> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
+      backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),
       appBar: AppBar(
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black87,
         ),
         title: AutoSizeText(
           widget.questionariodeFallos.name,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.black54,
             fontWeight: FontWeight.bold,
             fontFamily: 'Roboto',
@@ -205,7 +211,7 @@ class _Fallos_QuestionarioState extends State<Fallos_Questionario> {
                                 .pregunta,
                             minFontSize: 16,
                             maxFontSize: 35,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.redAccent,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Roboto',
@@ -251,11 +257,11 @@ class _Fallos_QuestionarioState extends State<Fallos_Questionario> {
           onPressed: () {
             _optionSelected('No contestada');
           },
-          child: const Text('Pasar'),
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(Colors.white70),
             foregroundColor: MaterialStateProperty.all<Color>(Colors.black45),
           ),
+          child: const Text('Pasar'),
         ),
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),

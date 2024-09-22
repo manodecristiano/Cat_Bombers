@@ -23,8 +23,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Cat-Bombers',
         theme: ThemeData(
-          primaryColor: Color.fromRGBO(249, 245, 229, 1.0),
-          textTheme: TextTheme(
+          primaryColor: const Color.fromRGBO(249, 245, 229, 1.0),
+          textTheme: const TextTheme(
             headline1: TextStyle(
               color: Colors.black87,
             ),
@@ -34,13 +34,13 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => const Homepage(),
           '/ruta-para-test_rapido': (context) => const FasterQuiz(0),
-          '/ruta-para-test_fallades': (context) => Fallos_Questionario(
+          '/ruta-para-test_fallades': (context) => FallosQuestionario(
               0, Questionario(name: 'Test Fallades', preguntas: [])),
           '/ruta-para-menu_test': (context) => const MenuTest(),
           '/ruta-para-stats_usuario': (context) => const ReviewQuiz(),
-          '/ruta-para-perfil': (context) => const Perfil_user(),
+          '/ruta-para-perfil': (context) => const PerfilUser(),
           '/ruta-para-select_num_preguntas': (context) =>
-              const Number_questions(false),
+              const NumberQuestions(false),
           '/ruta-para-seleccionar_temes': (context) => const SelectTheme(),
         });
   }

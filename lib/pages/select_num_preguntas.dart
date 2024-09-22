@@ -4,39 +4,40 @@ import 'package:cat_bombers/classes/Questionario.dart';
 import 'package:cat_bombers/pages/test_rapido.dart';
 import 'package:cat_bombers/pages/home_page.dart';
 import 'package:cat_bombers/pages/resultado_test.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+//import 'package:flutter/src/widgets/container.dart';
+//import 'package:flutter/src/widgets/framework.dart';
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+//import 'package:flutter/services.dart';
 import 'Fallos_Questionario.dart';
 
-class Number_questions extends StatelessWidget {
+class NumberQuestions extends StatelessWidget {
   final bool fallades;
-  const Number_questions(this.fallades, {super.key});
+  const NumberQuestions(this.fallades, {super.key});
 
   Widget _buildErrorDialog(BuildContext context) {
     return AlertDialog(
-      title: Text('Hurra!',
+      title: const Text('Hurra!',
           style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold)),
-      backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
-      content: Text('No tens suficients preguntes fallades  '),
+      backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),
+      content: const Text('No tens suficients preguntes fallades  '),
       actions: [
         TextButton(
-            child: Text('Tancar'),
             onPressed: () {
-              //NAVEGAR HACIA ATRáS
+            //^-----NAVEGAR HACIA ATRáS
               Navigator.of(context).pop();
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: ((context) => Homepage()),
+                  builder: ((context) => const Homepage()),
                   ));
             },
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(Colors.amber),
               foregroundColor: MaterialStateProperty.all<Color>(Colors.black87),
-            )),
+          ),
+          child: const Text('Tancar'),
+        ),
       ],
     );
   }
@@ -44,7 +45,7 @@ class Number_questions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
+      backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),
       // appBar: AppBar(
       //   elevation: 5,
       //   backgroundColor: Colors.amber[200],
@@ -58,7 +59,7 @@ class Number_questions extends StatelessWidget {
             // ignore: prefer_const_constructors
             child: AutoSizeText(
               'Cat-BOMBERS',
-              style: TextStyle(
+              style: const TextStyle(
                 color: Color.fromRGBO(236, 194, 44, 1.0),
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Roboto',
@@ -72,7 +73,7 @@ class Number_questions extends StatelessWidget {
             margin: const EdgeInsets.all(30),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-            color: Color.fromRGBO(249, 240, 229, 1.0),
+            color: const Color.fromRGBO(249, 240, 229, 1.0),
             child: ListView(
               shrinkWrap: true,
               padding: const EdgeInsets.all(10),
@@ -94,18 +95,18 @@ class Number_questions extends StatelessWidget {
                     ),
                   ),
                 ),
-                Divider(),
+                const Divider(),
                 OutlinedButton(
                   onPressed: () {
-                    print('-------DENTRO DE select_num_preguntas------');
-                    print(
+                    debugPrint('-------DENTRO DE select_num_preguntas------');
+                    debugPrint(
                         'Numero de preguntas falladas=> ${questionariodeFalladas.preguntas.length}');
                     if (fallades == false) {
-                      print('fallades=false');
+                      debugPrint('fallades=false');
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: ((context) => FasterQuiz(10)),
+                            builder: ((context) => const FasterQuiz(10)),
                           ));
                     } else {
                       if (questionariodeFalladas.preguntas.length < 10) {
@@ -115,16 +116,23 @@ class Number_questions extends StatelessWidget {
                             builder: (BuildContext context) =>
                                 _buildErrorDialog(context));
                       } else {
-                        print('fallades=true');
+                        debugPrint('fallades=true');
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: ((context) => Fallos_Questionario(
+                              builder: ((context) => FallosQuestionario(
                                   10, questionariodeFalladas)),
                             ));
                       }
                     }
                   },
+                 
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),
+                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                    elevation: 5,
+                    side: const BorderSide(width: 0.2),
+                  ),
                   child: const AutoSizeText(
                     '10',
                     style: TextStyle(
@@ -136,21 +144,15 @@ class Number_questions extends StatelessWidget {
                     minFontSize: 20,
                     maxFontSize: 100,
                   ),
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
-                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                    elevation: 5,
-                    side: const BorderSide(width: 0.2),
-                  ),
                 ),
-                Divider(),
+                const Divider(),
                 OutlinedButton(
                   onPressed: () {
                     if (fallades == false) {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: ((context) => FasterQuiz(20)),
+                            builder: ((context) => const FasterQuiz(20)),
                           ));
                     } else {
                       if (questionariodeFalladas.preguntas.length < 20) {
@@ -163,12 +165,19 @@ class Number_questions extends StatelessWidget {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: ((context) => Fallos_Questionario(
+                              builder: ((context) => FallosQuestionario(
                                   10, questionariodeFalladas)),
                             ));
                       }
                     }
                   },
+               
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),
+                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                    elevation: 5,
+                    side: const BorderSide(width: 0.2),
+                  ),
                   child: const AutoSizeText(
                     '20',
                     style: TextStyle(
@@ -180,21 +189,15 @@ class Number_questions extends StatelessWidget {
                     minFontSize: 20,
                     maxFontSize: 100,
                   ),
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
-                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                    elevation: 5,
-                    side: const BorderSide(width: 0.2),
-                  ),
                 ),
-                Divider(),
+                const Divider(),
                 OutlinedButton(
                   onPressed: () {
                     if (fallades == false) {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: ((context) => FasterQuiz(30)),
+                            builder: ((context) => const FasterQuiz(30)),
                           ));
                     } else {
                       if (questionariodeFalladas.preguntas.length < 30) {
@@ -207,12 +210,19 @@ class Number_questions extends StatelessWidget {
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: ((context) => Fallos_Questionario(
+                              builder: ((context) => FallosQuestionario(
                                   10, questionariodeFalladas)),
                             ));
                       }
                     }
                   },
+               
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),
+                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                    elevation: 5,
+                    side: const BorderSide(width: 0.2),
+                  ),
                   child: const AutoSizeText(
                     '30',
                     style: TextStyle(
@@ -223,12 +233,6 @@ class Number_questions extends StatelessWidget {
                     maxLines: 1,
                     minFontSize: 20,
                     maxFontSize: 100,
-                  ),
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
-                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                    elevation: 5,
-                    side: const BorderSide(width: 0.2),
                   ),
                 ),
               ],

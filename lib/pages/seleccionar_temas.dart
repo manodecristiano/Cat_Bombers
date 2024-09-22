@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+//import 'package:flutter/src/widgets/container.dart';
+//import 'package:flutter/src/widgets/framework.dart';
 
 class SelectTheme extends StatelessWidget {
   const SelectTheme({super.key});
@@ -9,14 +9,14 @@ class SelectTheme extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
+      backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),
       appBar: AppBar(
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black87,
         ),
         elevation: 0,
-        backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
-        title: AutoSizeText(
+        backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),
+        title: const AutoSizeText(
           'Cat-BOMBERS',
           style: TextStyle(
             color: Color.fromRGBO(236, 194, 44, 1.0),
@@ -34,7 +34,7 @@ class SelectTheme extends StatelessWidget {
             margin: const EdgeInsets.all(30),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-            color: Color.fromRGBO(249, 240, 229, 1.0),
+            color: const Color.fromRGBO(249, 240, 229, 1.0),
             child: ListView(
               shrinkWrap: true,
               padding: const EdgeInsets.all(10),
@@ -56,11 +56,17 @@ class SelectTheme extends StatelessWidget {
                     ),
                   ),
                 ),
-                Divider(),
+                const Divider(),
                 OutlinedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/hidraulica');
                   },
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),
+                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                    elevation: 8,
+                    side: const BorderSide(width: 0.2),
+                  ),
                   child: const AutoSizeText(
                     'Hidráulica',
                     style: TextStyle(
@@ -72,18 +78,18 @@ class SelectTheme extends StatelessWidget {
                     minFontSize: 20,
                     maxFontSize: 100,
                   ),
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
-                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                    elevation: 8,
-                    side: const BorderSide(width: 0.2),
-                  ),
                 ),
-                Divider(),
+                const Divider(),
                 OutlinedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/electricidad');
                   },
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),
+                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                    elevation: 8,
+                    side: const BorderSide(width: 0.2),
+                  ),
                   child: const AutoSizeText(
                     'Electricitat',
                     style: TextStyle(
@@ -95,18 +101,18 @@ class SelectTheme extends StatelessWidget {
                     minFontSize: 20,
                     maxFontSize: 100,
                   ),
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
-                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                    elevation: 8,
-                    side: const BorderSide(width: 0.2),
-                  ),
                 ),
-                Divider(),
+                const Divider(),
                 OutlinedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/constitucion');
                   },
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),
+                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                    elevation: 8,
+                    side: const BorderSide(width: 0.2),
+                  ),
                   child: const AutoSizeText(
                     'Constitució',
                     style: TextStyle(
@@ -118,18 +124,18 @@ class SelectTheme extends StatelessWidget {
                     minFontSize: 20,
                     maxFontSize: 100,
                   ),
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
-                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                    elevation: 8,
-                    side: const BorderSide(width: 0.2),
-                  ),
                 ),
-                Divider(),
+                const Divider(),
                 OutlinedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/contruccion');
                   },
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),
+                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                    elevation: 8,
+                    side: const BorderSide(width: 0.2),
+                  ),
                   child: const AutoSizeText(
                     'Construcció',
                     style: TextStyle(
@@ -140,12 +146,6 @@ class SelectTheme extends StatelessWidget {
                     maxLines: 1,
                     minFontSize: 20,
                     maxFontSize: 100,
-                  ),
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
-                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                    elevation: 8,
-                    side: const BorderSide(width: 0.2),
                   ),
                 ),
               ],

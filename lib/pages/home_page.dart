@@ -9,7 +9,7 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
+      backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),
       // appBar: AppBar(
       //   elevation: 5,
       //   backgroundColor: Colors.amber[200],
@@ -23,7 +23,7 @@ class Homepage extends StatelessWidget {
             // ignore: prefer_const_constructors
             child: AutoSizeText(
               'Cat-BOMBERS',
-              style: TextStyle(
+              style: const TextStyle(
                 color: Color.fromRGBO(236, 194, 44, 1.0),
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Roboto',
@@ -37,7 +37,7 @@ class Homepage extends StatelessWidget {
             margin: const EdgeInsets.all(30),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-            color: Color.fromRGBO(249, 240, 229, 1.0),
+            color: const Color.fromRGBO(249, 240, 229, 1.0),
             child: ListView(
               shrinkWrap: true,
               padding: const EdgeInsets.all(10),
@@ -59,12 +59,24 @@ class Homepage extends StatelessWidget {
                     ),
                   ),
                 ),
-                Divider(),
+
+
+
+                const Divider(),
+
+
+
                 OutlinedButton(
                   onPressed: () {
                     Navigator.pushNamed(
                         context, '/ruta-para-select_num_preguntas');
                   },
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: const Color.fromRGBO(239, 222, 150, 1.0),
+                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                    elevation: 8,
+                    side: const BorderSide(width: 0.2),
+                  ),
                   child: const AutoSizeText(
                     'TEST RÁPID',
                     style: TextStyle(
@@ -76,18 +88,25 @@ class Homepage extends StatelessWidget {
                     minFontSize: 20,
                     maxFontSize: 100,
                   ),
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(239, 222, 150, 1.0),
-                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                    elevation: 8,
-                    side: const BorderSide(width: 0.2),
-                  ),
                 ),
-                Divider(),
+
+
+
+                const Divider(),
+
+
+
                 OutlinedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/ruta-para-menu_test');
                   },
+                 
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),
+                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                    elevation: 8,
+                    side: const BorderSide(width: 0.2),
+                  ),
                   child: const AutoSizeText(
                     'MENÚ TEST',
                     style: TextStyle(
@@ -99,18 +118,18 @@ class Homepage extends StatelessWidget {
                     minFontSize: 20,
                     maxFontSize: 100,
                   ),
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
-                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                    elevation: 8,
-                    side: const BorderSide(width: 0.2),
-                  ),
                 ),
-                Divider(),
+                const Divider(),
                 OutlinedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/ruta-para-perfil');
                   },
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),
+                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                    elevation: 8,
+                    side: const BorderSide(width: 0.2),
+                  ),
                   child: const AutoSizeText(
                     'PERFIL',
                     style: TextStyle(
@@ -122,18 +141,18 @@ class Homepage extends StatelessWidget {
                     minFontSize: 20,
                     maxFontSize: 100,
                   ),
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
-                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                    elevation: 8,
-                    side: const BorderSide(width: 0.2),
-                  ),
                 ),
-                Divider(),
+                const Divider(),
                 OutlinedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/ruta-para-opciones');
                   },
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),
+                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                    elevation: 8,
+                    side: const BorderSide(width: 0.2),
+                  ),
                   child: const AutoSizeText(
                     'OPCIONS',
                     style: TextStyle(
@@ -144,12 +163,6 @@ class Homepage extends StatelessWidget {
                     maxLines: 1,
                     minFontSize: 20,
                     maxFontSize: 100,
-                  ),
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
-                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                    elevation: 8,
-                    side: const BorderSide(width: 0.2),
                   ),
                 ),
               ],

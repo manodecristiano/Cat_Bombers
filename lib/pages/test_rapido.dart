@@ -57,77 +57,77 @@ class _FasterQuizState extends State<FasterQuiz> {
 
   Future<void> crearfalsoQuiz() async {
     Pregunta pregunta0 = Pregunta.fromJson({
-      'country': 'pais 0',
+      'country': 'De que color es el caballo blanco?',
       'capital': 'Correcta',
     });
     pregunta0.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
     questionario.preguntas.add(pregunta0);
 
     Pregunta question1 = Pregunta.fromJson({
-      'country': 'pais 1',
+      'country': 'Capital de España?',
       'capital': 'Correcta',
     });
     question1.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
     questionario.preguntas.add(question1);
 
     Pregunta question2 = Pregunta.fromJson({
-      'country': 'pais 2',
+      'country': 'Donde vives?',
       'capital': 'Correcta',
     });
     question2.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
     questionario.preguntas.add(question2);
 
     Pregunta question3 = Pregunta.fromJson({
-      'country': 'pais 3',
+      'country': 'Cuantas estrellas existen?',
       'capital': 'Correcta',
     });
     question3.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
     questionario.preguntas.add(question3);
 
     Pregunta question4 = Pregunta.fromJson({
-      'country': 'pais 4',
+      'country': 'Después del 4 viene el...?',
       'capital': 'Correcta',
     });
     question4.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
     questionario.preguntas.add(question4);
 
     Pregunta question5 = Pregunta.fromJson({
-      'country': 'pais 5',
+      'country': '5 por el culo...',
       'capital': 'Correcta',
     });
     question5.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
     questionario.preguntas.add(question5);
 
     Pregunta question6 = Pregunta.fromJson({
-      'country': 'pais 6',
+      'country': 'Helicoptero lleva H ?',
       'capital': 'Correcta',
     });
     question6.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
     questionario.preguntas.add(question6);
 
     Pregunta question7 = Pregunta.fromJson({
-      'country': 'pais 7',
+      'country': 'mil, tres ,uno que cosas tienen en común?',
       'capital': 'Correcta',
     });
     question7.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
     questionario.preguntas.add(question7);
 
     Pregunta question8 = Pregunta.fromJson({
-      'country': 'pais 8',
+      'country': 'Tailandia es un país?',
       'capital': 'Correcta',
     });
     question8.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
     questionario.preguntas.add(question8);
 
     Pregunta question9 = Pregunta.fromJson({
-      'country': 'pais 9',
+      'country': '1988 el mejor año?',
       'capital': 'Correcta',
     });
     question9.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
     questionario.preguntas.add(question9);
 
     Pregunta question10 = Pregunta.fromJson({
-      'country': 'pais 10',
+      'country': 'Acabarás la app?',
       'capital': 'Correcta',
     });
     question10.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
@@ -224,16 +224,16 @@ class _FasterQuizState extends State<FasterQuiz> {
 //Marcar como opción correcta si es la recogida en el Json
     questionario.preguntas[questionIndex].selected = userSelected;
     if (userSelected == questionario.preguntas[questionIndex].correctAnswer) {
-      print('SI CORRECTA');
+      debugPrint('SI CORRECTA');
       questionario.preguntas[questionIndex].correct = true;
 //Aumentamnos el valor total de correctas
       questionario.right += 1;
     } else {
-      print('NO correct');
+      debugPrint('NO correct');
 //añadimos a la lista de fallos
       questionariodeFalladas.preguntas
           .add(questionario.preguntas[questionIndex]);
-      print(
+      debugPrint(
           'añadida a quizFails=${questionario.preguntas[questionIndex].pregunta}');
     }
 
@@ -253,28 +253,28 @@ class _FasterQuizState extends State<FasterQuiz> {
 
   Widget _buildResultDialog(BuildContext context) {
     return AlertDialog(
-      title: Text('Resultado',
+      title: const Text('Resultado',
           style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold)),
-      backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
+      backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Preguntas  :  ' '${widget.totaldePreguntas}'),
           Text('Correctas   :  ' '${questionario.right}',
-              style: TextStyle(
+              style: const TextStyle(
                   color: Colors.greenAccent, fontWeight: FontWeight.bold)),
           Text(
               'Incorrectas:  '
               '${(widget.totaldePreguntas - questionario.right)}',
-              style: TextStyle(
+              style: const TextStyle(
                   color: Colors.redAccent, fontWeight: FontWeight.bold)),
           Text('Porcentaje :  ' '${questionario.percent.toInt()}%'),
         ],
       ),
       actions: [
         TextButton(
-            child: Text('Ver respuestas'),
+         
             onPressed: () {
               Navigator.of(context).pop();
               Navigator.pushReplacement(
@@ -288,22 +288,25 @@ class _FasterQuizState extends State<FasterQuiz> {
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(Colors.amber),
               foregroundColor: MaterialStateProperty.all<Color>(Colors.black87),
-            )),
+            ),
+            child: const Text('Ver respuestas')),
         TextButton(
-            child: Text('Cerrar'),
+           
             onPressed: () {
               //NAVEGAR HACIA ATRáS
               Navigator.of(context).pop();
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: ((context) => Homepage()),
+                  builder: ((context) => const Homepage()),
                   ));
             },
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(Colors.amber),
               foregroundColor: MaterialStateProperty.all<Color>(Colors.black87),
-            )),
+          ),
+          child: const Text('Cerrar'),
+        ),
       ],
     );
   }
@@ -311,14 +314,14 @@ class _FasterQuizState extends State<FasterQuiz> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(249, 245, 229, 1.0),
+      backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),
       appBar: AppBar(
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.black87,
         ),
         title: AutoSizeText(
           questionario.name,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.black54,
             fontWeight: FontWeight.bold,
             fontFamily: 'Roboto',
@@ -343,7 +346,7 @@ class _FasterQuizState extends State<FasterQuiz> {
                             questionario.preguntas[questionIndex].pregunta,
                             minFontSize: 16,
                             maxFontSize: 35,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Colors.black54,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Roboto',
@@ -389,11 +392,12 @@ class _FasterQuizState extends State<FasterQuiz> {
           onPressed: () {
             _optionSelected('No contestada');
           },
-          child: const Text('Pasar'),
+         
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(Colors.white70),
             foregroundColor: MaterialStateProperty.all<Color>(Colors.black45),
           ),
+          child: const Text('Pasar'),
         ),
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
