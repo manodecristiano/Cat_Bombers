@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primaryColor: const Color.fromRGBO(249, 245, 229, 1.0),
           textTheme: const TextTheme(
-            headline1: TextStyle(
+            displayLarge: TextStyle(
               color: Colors.black87,
             ),
           ),

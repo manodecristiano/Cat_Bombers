@@ -1,18 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cat_bombers/classes/Pregunta.dart';
 import 'package:cat_bombers/classes/Questionario.dart';
-import 'package:cat_bombers/pages/home_page.dart';
-import 'package:cat_bombers/pages/resultado_test.dart';
 //import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:pie_chart/pie_chart.dart';
 
 class PerfilUser extends StatefulWidget {

@@ -286,8 +286,8 @@ class _FasterQuizState extends State<FasterQuiz> {
               );
             },
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.amber),
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.black87),
+              backgroundColor: WidgetStateProperty.all<Color>(Colors.amber),
+              foregroundColor: WidgetStateProperty.all<Color>(Colors.black87),
             ),
             child: const Text('Ver respuestas')),
         TextButton(
@@ -302,8 +302,8 @@ class _FasterQuizState extends State<FasterQuiz> {
                   ));
             },
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.amber),
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.black87),
+            backgroundColor: WidgetStateProperty.all<Color>(Colors.amber),
+            foregroundColor: WidgetStateProperty.all<Color>(Colors.black87),
           ),
           child: const Text('Cerrar'),
         ),
@@ -394,8 +394,8 @@ class _FasterQuizState extends State<FasterQuiz> {
           },
          
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.white70),
-            foregroundColor: MaterialStateProperty.all<Color>(Colors.black45),
+            backgroundColor: WidgetStateProperty.all<Color>(Colors.white70),
+            foregroundColor: WidgetStateProperty.all<Color>(Colors.black45),
           ),
           child: const Text('Pasar'),
         ),

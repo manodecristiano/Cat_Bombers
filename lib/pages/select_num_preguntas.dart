@@ -33,8 +33,8 @@ class NumberQuestions extends StatelessWidget {
                   ));
             },
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.amber),
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.black87),
+            backgroundColor: WidgetStateProperty.all<Color>(Colors.amber),
+            foregroundColor: WidgetStateProperty.all<Color>(Colors.black87),
           ),
           child: const Text('Tancar'),
         ),

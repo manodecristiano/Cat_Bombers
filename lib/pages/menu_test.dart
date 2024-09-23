@@ -1,5 +1,4 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cat_bombers/pages/ranking.dart';
 import 'package:cat_bombers/pages/select_num_preguntas.dart';
 import 'package:flutter/material.dart';
 import 'package:cat_bombers/pages/test_rapido.dart';
