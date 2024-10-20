@@ -80,21 +80,30 @@ class SelectNumPreguntas extends StatelessWidget {
 **/
 
                 const Divider(),
-
+                if (boolentroaFallades == true) ...[
 /**
- ** -----------------BOTOn 10 PREGUNTAS-----------------------------------------------------
+ ** -----------------ALERT de -10 PREGUNTAS-----------------------------------------------------
 **/
-                if (!boolentroaFallades || falladas >= 10) contructordeBotones(context, 10, boolentroaFallades),
-                const Divider(),
+                  if (falladas < 10) mensajeDeNOtenerFalladas(context),
 /**
- ** -----------------BOTOn 20 PREGUNTAS-----------------------------------------------------
+ ** -----------------BOTON 10 PREGUNTAS-----------------------------------------------------
 **/
-                if (!boolentroaFallades || falladas >= 20) contructordeBotones(context, 20, boolentroaFallades),
-                const Divider(),
+                  if (falladas >= 10) ...[contructordeBotones(context, 10, boolentroaFallades), const Divider()],
 /**
- ** -----------------BOTOn 30 PREGUNTAS-----------------------------------------------------
+ ** -----------------BOTON 20 PREGUNTAS-----------------------------------------------------
 **/
-                if (!boolentroaFallades || falladas >= 30) contructordeBotones(context, 30, boolentroaFallades),
+                  if (falladas >= 20) ...[contructordeBotones(context, 20, boolentroaFallades), const Divider()],
+/**
+ ** -----------------BOTON 30 PREGUNTAS-----------------------------------------------------
+**/
+                  if (falladas >= 30) contructordeBotones(context, 30, boolentroaFallades),
+                ] else ...[
+                  contructordeBotones(context, 10, boolentroaFallades),
+                  const Divider(),
+                  contructordeBotones(context, 20, boolentroaFallades),
+                  const Divider(),
+                  contructordeBotones(context, 30, boolentroaFallades),
+                ],
               ],
             ),
           ),
