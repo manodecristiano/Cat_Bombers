@@ -1,37 +1,142 @@
 [
-  { "country": "Canadá", "capital": "Ottawa" },
-  { "country": "Estados Unidos", "capital": "Washington DC" },
-  { "country": "México", "capital": "México DF" },
-  { "country": "Belice", "capital": "Belmopán" },
-  { "country": "Costa rica", "capital": "San José" },
-  { "country": "El Salvador", "capital": "San Salvador" },
-  { "country": "Guatemala", "capital": "Ciudad de Guatemala" },
-  { "country": "Honduras", "capital": "Tegucigalpa" },
-  { "country": "Nicaragua", "capital": "Managua" },
-  { "country": "Panamá", "capital": "Panamá" },
-  { "country": "Argentina", "capital": "Buenos Aires" },
-  { "country": "Bolivia", "capital": "Sucre" },
-  { "country": "Brasil", "capital": "Brasilia" },
-  { "country": "Chile", "capital": "Santiago de Chile" },
-  { "country": "Colombia", "capital": "Bogotá" },
-  { "country": "Ecuador", "capital": "Quito" },
-  { "country": "Paraguay", "capital": "Asunción" },
-  { "country": "Perú", "capital": "Lima" },
-  { "country": "Surinam", "capital": "Parabarimo" },
-  { "country": "Trinidad y Tobago", "capital": "Puerto España" },
-  { "country": "Uruguay", "capital": "Montevideo" },
-  { "country": "Venezuela", "capital": "Caracas" },
-  { "country": "Antigua y Barbuda", "capital": "Saint John" },
-  { "country": "Bahamas", "capital": "Nasáu" },
-  { "country": "Barbados", "capital": "Bridgetown" },
-  { "country": "Cuba", "capital": "La Habana" },
-  { "country": "Dominica", "capital": "Roseau" },
-  { "country": "Granada", "capital": "Saint George" },
-  { "country": "Guyana", "capital": "Georgetown" },
-  { "country": "Haití", "capital": "Puerto Príncipe" },
-  { "country": "Jamaica", "capital": "Kingston" },
-  { "country": "República Dominicana", "capital": "Santo Domingo" },
-  { "country": "San Cristóbal y Nieves", "capital": "Basseterre" },
-  { "country": "San Vicente y las Granadinas", "capital": "Kingstown" },
-  { "country": "Santa Lucía", "capital": "Castries" }
+  {
+    "pregunta": "Canadá",
+    "respuesta": "Ottawa"
+  },
+  {
+    "pregunta": "Estados Unidos",
+    "respuesta": "Washington DC"
+  },
+  {
+    "pregunta": "México",
+    "respuesta": "México DF"
+  },
+  {
+    "pregunta": "Belice",
+    "respuesta": "Belmopán"
+  },
+  {
+    "pregunta": "Costa rica",
+    "respuesta": "San José"
+  },
+  {
+    "pregunta": "El Salvador",
+    "respuesta": "San Salvador"
+  },
+  {
+    "pregunta": "Guatemala",
+    "respuesta": "Ciudad de Guatemala"
+  },
+  {
+    "pregunta": "Honduras",
+    "respuesta": "Tegucigalpa"
+  },
+  {
+    "pregunta": "Nicaragua",
+    "respuesta": "Managua"
+  },
+  {
+    "pregunta": "Panamá",
+    "respuesta": "Panamá"
+  },
+  {
+    "pregunta": "Argentina",
+    "respuesta": "Buenos Aires"
+  },
+  {
+    "pregunta": "Bolivia",
+    "respuesta": "Sucre"
+  },
+  {
+    "pregunta": "Brasil",
+    "respuesta": "Brasilia"
+  },
+  {
+    "pregunta": "Chile",
+    "respuesta": "Santiago de Chile"
+  },
+  {
+    "pregunta": "Colombia",
+    "respuesta": "Bogotá"
+  },
+  {
+    "pregunta": "Ecuador",
+    "respuesta": "Quito"
+  },
+  {
+    "pregunta": "Paraguay",
+    "respuesta": "Asunción"
+  },
+  {
+    "pregunta": "Perú",
+    "respuesta": "Lima"
+  },
+  {
+    "pregunta": "Surinam",
+    "respuesta": "Parabarimo"
+  },
+  {
+    "pregunta": "Trinidad y Tobago",
+    "respuesta": "Puerto España"
+  },
+  {
+    "pregunta": "Uruguay",
+    "respuesta": "Montevideo"
+  },
+  {
+    "pregunta": "Venezuela",
+    "respuesta": "Caracas"
+  },
+  {
+    "pregunta": "Antigua y Barbuda",
+    "respuesta": "Saint John"
+  },
+  {
+    "pregunta": "Bahamas",
+    "respuesta": "Nasáu"
+  },
+  {
+    "pregunta": "Barbados",
+    "respuesta": "Bridgetown"
+  },
+  {
+    "pregunta": "Cuba",
+    "respuesta": "La Habana"
+  },
+  {
+    "pregunta": "Dominica",
+    "respuesta": "Roseau"
+  },
+  {
+    "pregunta": "Granada",
+    "respuesta": "Saint George"
+  },
+  {
+    "pregunta": "Guyana",
+    "respuesta": "Georgetown"
+  },
+  {
+    "pregunta": "Haití",
+    "respuesta": "Puerto Príncipe"
+  },
+  {
+    "pregunta": "Jamaica",
+    "respuesta": "Kingston"
+  },
+  {
+    "pregunta": "República Dominicana",
+    "respuesta": "Santo Domingo"
+  },
+  {
+    "pregunta": "San Cristóbal y Nieves",
+    "respuesta": "Basseterre"
+  },
+  {
+    "pregunta": "San Vicente y las Granadinas",
+    "respuesta": "Kingstown"
+  },
+  {
+    "pregunta": "Santa Lucía",
+    "respuesta": "Castries"
+  }
 ]

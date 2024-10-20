@@ -1,5 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:cat_bombers/pages/test_rapido.dart';
+import 'dart:math'; // Importa la clase Random
 /* import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart'; */
 
@@ -16,6 +18,9 @@ class Homepage extends StatelessWidget {
       // ),
       body: Center(
         child: Column(children: [
+/**
+ *todo -----------------------TITULO APP----------------------------------
+**/
           Container(
             margin: const EdgeInsets.only(
               top: 30,
@@ -33,6 +38,13 @@ class Homepage extends StatelessWidget {
               maxFontSize: 100,
             ),
           ),
+/**
+ *todo------------------------------------------------------------
+**/
+
+/**
+ *?-----------------------DIV QUE ENGLOBA TODOS LOS BOTONES----------------------------------
+**/
           Card(
             margin: const EdgeInsets.all(30),
             shape:
@@ -42,6 +54,9 @@ class Homepage extends StatelessWidget {
               shrinkWrap: true,
               padding: const EdgeInsets.all(10),
               children: [
+/**
+ ** -----------------------TITULO PÁGINA------------------------------------
+**/
                 Container(
                   height: 50,
                   margin: const EdgeInsets.only(top: 10),
@@ -59,17 +74,29 @@ class Homepage extends StatelessWidget {
                     ),
                   ),
                 ),
-
+/**
+ ** -------------------------------------------------------------------------
+**/
 
 
                 const Divider(),
 
-
+/**
+ ** -----------------------BOTON TEST RAPIDO----------------------------------
+**/
 
                 OutlinedButton(
                   onPressed: () {
-                    Navigator.pushNamed(
-                        context, '/ruta-para-select_num_preguntas');
+                    // Genera un número aleatorio entre 10, 15 y 20
+                    final List<int> posiblesPreguntas = [10, 15, 20];
+                    final random = Random();
+                    final numeroPreguntas = posiblesPreguntas[random.nextInt(posiblesPreguntas.length)];
+
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: ((context) => TestRapido(numeroPreguntas)),
+                        ));
                   },
                   style: OutlinedButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(239, 222, 150, 1.0),
@@ -90,11 +117,16 @@ class Homepage extends StatelessWidget {
                   ),
                 ),
 
+/**
+ ** -----------------------------------------------------------------------
+**/
 
 
                 const Divider(),
 
-
+/**
+ ** -----------------------BOTON MENU TEST----------------------------------
+**/
 
                 OutlinedButton(
                   onPressed: () {
@@ -119,7 +151,20 @@ class Homepage extends StatelessWidget {
                     maxFontSize: 100,
                   ),
                 ),
+
+/**
+ ** ----------------------------------------------------------------------
+**/
+
+
+
                 const Divider(),
+
+
+
+/**
+ ** -----------------------BOTON PERFIL----------------------------------
+**/
                 OutlinedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/ruta-para-perfil');
@@ -142,7 +187,19 @@ class Homepage extends StatelessWidget {
                     maxFontSize: 100,
                   ),
                 ),
+/**
+ ** -----------------------------------------------------------------------
+**/
+
+
                 const Divider(),
+
+
+
+/**
+ ** -----------------------BOTON OPCIONESS----------------------------------
+**/
+
                 OutlinedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/ruta-para-opciones');
@@ -165,20 +222,37 @@ class Homepage extends StatelessWidget {
                     maxFontSize: 100,
                   ),
                 ),
+
+/**
+ ** -----------------------------------------------------------------------
+**/
               ],
             ),
           ),
+/**
+ *? -----------------------------------------------------------------------
+**/
+
+/**
+ ** -----------------------IMAGEN PORTADA----------------------------------
+**/
           Card(
             child: Column(children: [
               SizedBox(
-                height: 250.0,
+                height: 230.0,
                 width: 340,
                 child: Image.asset('assets/img/bombers.png'),
               )
             ]),
           ),
+/**
+ ** ----------------------------------------------------------------------
+**/
+
+
         ]),
       ),
     );
   }
 }
+

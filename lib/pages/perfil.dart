@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cat_bombers/classes/Questionario.dart';
 //import 'package:fl_chart/fl_chart.dart';
 
 import 'package:flutter/material.dart';
@@ -24,7 +23,6 @@ class PanelUser extends StatelessWidget {
       // ignore: prefer_const_literals_to_create_immutables
       children: [
         AutoSizeText('NIVELL: 57',
-            minFontSize: 25,
             maxFontSize: 35,
             style: TextStyle(
                 color: Color.fromARGB(255, 248, 242, 163),
@@ -74,7 +72,7 @@ class ImageFire extends StatelessWidget {
 }
 
 class _PerfilUser extends State<PerfilUser> {
-  Questionario quiz = Questionario(name: 'Perfil', preguntas: []);
+
 
   MaterialButton buttonChangeLista(String nombreBoton) {
     return MaterialButton(
@@ -116,7 +114,7 @@ class _PerfilUser extends State<PerfilUser> {
           color: Colors.black87,
         ),
         title: AutoSizeText(
-          quiz.name,
+          'Perfil',
           style: TextStyle(
             color: Colors.black54,
             fontWeight: FontWeight.bold,

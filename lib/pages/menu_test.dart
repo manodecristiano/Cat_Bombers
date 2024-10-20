@@ -1,18 +1,18 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cat_bombers/pages/select_num_preguntas.dart';
 import 'package:flutter/material.dart';
 import 'package:cat_bombers/pages/test_rapido.dart';
 
 class MenuTest extends StatelessWidget {
   const MenuTest({super.key});
-
+ 
   @override
   Widget build(BuildContext context) {
+ 
     return Scaffold(
       backgroundColor: const Color(0xFFF9F5E5),
 
 /**
- *! ---------------------NAVBAR---------------------------------------
+ *todo ---------------------NAVBAR con TITULO APP---------------------------------------
 **/
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.black87),
@@ -31,12 +31,16 @@ class MenuTest extends StatelessWidget {
         ),
       ),
 /**
- *! ------------------------------------------------------------
+ *todo ----------------------------------------------------------------------------------
 **/
 
 
       body: Center(
         child: Column(children: [
+
+/**
+ *?-----------------------DIV QUE ENGLOBA TODOS LOS BOTONES------------------------------
+**/
           Card(
             margin: const EdgeInsets.all(30),
             shape:
@@ -47,7 +51,7 @@ class MenuTest extends StatelessWidget {
               children: [
 
 /**
- ** -----------------TITULO-------------------------------------------
+ ** -----------------TITULO-----------------------------------------------------
 **/
                 Container(
                   height: 50,
@@ -67,6 +71,10 @@ class MenuTest extends StatelessWidget {
                   ),
                 ),
 
+/**
+ **-----------------------------------------------------------------------------
+**/               
+
                 const Divider(),
 /**
  ** ----------------------BOTON 1 SIMULACRE--------------------------------------
@@ -76,7 +84,7 @@ class MenuTest extends StatelessWidget {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: ((context) => const FasterQuiz(35)),
+                        builder: ((context) => const TestRapido(35)),
                       ),
                     );
                   },
@@ -90,7 +98,7 @@ class MenuTest extends StatelessWidget {
                     'SIMULACRE',
                     style: TextStyle(
                       color:
-                          Colors.redAccent, // Use a more descriptive color name
+                          Color.fromARGB(255, 226, 209, 209), // Use a more descriptive color name
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Roboto',
                     ),
@@ -99,8 +107,13 @@ class MenuTest extends StatelessWidget {
                     maxFontSize: 100,
                   ),
                 ),
+/**
+ **---------------------------------------------------------------------------
+**/
 
                 const Divider(),
+
+
 /**
  ** -----------------------BOTON 2 LLUITA-------------------------------------
 **/
@@ -127,7 +140,13 @@ class MenuTest extends StatelessWidget {
                   ),
                 ),
 
+/**
+ **-----------------------------------------------------------------------------
+**/
+
                 const Divider(),
+
+
 /**
  ** ------------------------BOTON 3 PER TEMES------------------------------------
 **/
@@ -154,8 +173,14 @@ class MenuTest extends StatelessWidget {
                     maxFontSize: 100,
                   ),
                 ),
+/**
+ **----------------------------------------------------------------------------
+**/
+
 
                 const Divider(),
+
+
 /**
  ** -----------------------BOTON 4 TEST FALLADES----------------------------------
 **/
@@ -165,7 +190,7 @@ class MenuTest extends StatelessWidget {
                     Navigator.pushNamed(
                       context,
                       '/ruta-para-select_num_preguntas',
-                      arguments: const NumberQuestions(true),
+                      arguments: true,
                     );
                   },
                   style: OutlinedButton.styleFrom(
@@ -187,11 +212,15 @@ class MenuTest extends StatelessWidget {
                   ),
                 ),
 /**
- ** ------------------------------------------------------------
+ ** --------------------------------------------------------------------
 **/
               ],
             ),
           ),
+/**
+ *?----------------------------------------------------------------------
+**/
+
         ]),
       ),
     );

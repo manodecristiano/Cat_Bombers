@@ -1,22 +1,17 @@
-import 'dart:ffi';
-import 'package:cat_bombers/pages/menu_test.dart';
-import 'package:auto_size_text/auto_size_text.dart';
+
+
+/* import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cat_bombers/classes/Pregunta.dart';
 import 'package:cat_bombers/classes/Questionario.dart';
-import 'package:cat_bombers/pages/home_page.dart';
+import 'package:cat_bombers/pages/menu_home.dart';
 import 'package:cat_bombers/pages/resultado_test.dart';
 import 'package:cat_bombers/pages/test_rapido.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class FallosQuestionario extends StatefulWidget {
   final int totalPreguntas;
   final Questionario questionariodeFallos;
-  const FallosQuestionario(this.totalPreguntas, this.questionariodeFallos,
-      {super.key});
+  const FallosQuestionario(this.totalPreguntas, this.questionariodeFallos, {super.key});
 
   @override
   State<FallosQuestionario> createState() => _FallosQuestionarioState();
@@ -29,11 +24,9 @@ class _FallosQuestionarioState extends State<FallosQuestionario> {
   int cuantasquedan = 0;
   String country = '';
 
-  Questionario listREFails =
-      Questionario(name: 'Lista de Re-Fallades', preguntas: []);
+  Questionario listREFails = Questionario(name: 'Lista de Re-Fallades', preguntas: []);
 
-  Questionario listCorrects =
-      Questionario(name: 'Lista de Salvades', preguntas: []);
+  Questionario listCorrects = Questionario(name: 'Lista de Salvades', preguntas: []);
 
   @override
   void initState() {
@@ -45,17 +38,14 @@ class _FallosQuestionarioState extends State<FallosQuestionario> {
   void _optionSelected(String userSelected) {
 //Marcar como opción correcta si es la recogida en el Json
     questionariodeFalladas.preguntas[questionIndex].selected = userSelected;
-    if (userSelected ==
-        questionariodeFalladas.preguntas[questionIndex].correctAnswer) {
+    if (userSelected == questionariodeFalladas.preguntas[questionIndex].respuesta) {
       debugPrint('SI CORRECTA');
       questionariodeFalladas.preguntas[questionIndex].correct = true;
 //Aumentamnos el valor total de correctas
       questionariodeFalladas.right += 1;
-      listCorrects.preguntas
-          .add(questionariodeFalladas.preguntas[questionIndex]);
+      listCorrects.preguntas.add(questionariodeFalladas.preguntas[questionIndex]);
     } else {
-      listREFails.preguntas
-          .add(questionariodeFalladas.preguntas[questionIndex]);
+      listREFails.preguntas.add(questionariodeFalladas.preguntas[questionIndex]);
       debugPrint('NO correct');
     }
 
@@ -68,16 +58,13 @@ class _FallosQuestionarioState extends State<FallosQuestionario> {
       cuantasquedan -= 1;
     } else {
       showDialog(
-          barrierDismissible: false,
-          context: context,
-          builder: (BuildContext context) => _buildResultDialog(context));
+          barrierDismissible: false, context: context, builder: (BuildContext context) => _buildResultDialog(context));
     }
     progressBar += 1;
 
     setState(() {});
-  
-    debugPrint('cuantasquedan => $cuantasquedan');
 
+    debugPrint('cuantasquedan => $cuantasquedan');
   }
 
   void eliminarDuplicados(quizFails, listCorrects, listREFails) {
@@ -89,12 +76,11 @@ class _FallosQuestionarioState extends State<FallosQuestionario> {
       for (int i = 0; i < widget.questionariodeFallos.preguntas.length; i++) {
         country = quizFails.preguntas[i].country;
         debugPrint('COUNTRY quizFails-->$country');
-        
+
         bool esDuplicado = false;
         for (int j = 0; j < listCorrects.preguntas.length; j++) {
           if (country == listCorrects.preguntas[j].country) {
-            debugPrint(
-                'COUNTRY ListCorrects es DUPLICADO-->${listCorrects.preguntas[j].country}');
+            debugPrint('COUNTRY ListCorrects es DUPLICADO-->${listCorrects.preguntas[j].country}');
             esDuplicado = true;
             break;
           }
@@ -113,8 +99,7 @@ class _FallosQuestionarioState extends State<FallosQuestionario> {
 
   Widget _buildResultDialog(BuildContext context) {
     return AlertDialog(
-      title: const Text('Resultado',
-          style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold)),
+      title: const Text('Resultado', style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold)),
       backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),
       content: Column(
         mainAxisSize: MainAxisSize.min,
@@ -122,13 +107,11 @@ class _FallosQuestionarioState extends State<FallosQuestionario> {
         children: [
           Text('Preguntas  :  ' '${widget.totalPreguntas}'),
           Text('Correctas   :  ' '${widget.questionariodeFallos.right}',
-              style: const TextStyle(
-                  color: Colors.greenAccent, fontWeight: FontWeight.bold)),
+              style: const TextStyle(color: Colors.greenAccent, fontWeight: FontWeight.bold)),
           Text(
               'Incorrectas:  '
               '${(widget.totalPreguntas - widget.questionariodeFallos.right)}',
-              style: const TextStyle(
-                  color: Colors.redAccent, fontWeight: FontWeight.bold)),
+              style: const TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold)),
           Text('Porcentaje :  '
               '${widget.questionariodeFallos.percent.toStringAsFixed(2)}%'),
         ],
@@ -142,6 +125,8 @@ class _FallosQuestionarioState extends State<FallosQuestionario> {
               MaterialPageRoute(
                 builder: (context) => ResultQuiz(
                   questionario: widget.questionariodeFallos,
+                  numPreguntas: 0,
+                  porcentaje: 0,
                 ),
               ),
             );
@@ -152,11 +137,9 @@ class _FallosQuestionarioState extends State<FallosQuestionario> {
           ),
           child: const Text('Ver respuestas'), // ButtonStyle
         ),
-
         TextButton(
             onPressed: () {
-              eliminarDuplicados(
-                  questionariodeFalladas, listCorrects, listREFails);
+              eliminarDuplicados(questionariodeFalladas, listCorrects, listREFails);
               //NAVEGAR HACIA ATRáS
               Navigator.of(context).pop();
               Navigator.pushReplacement(
@@ -207,8 +190,7 @@ class _FallosQuestionarioState extends State<FallosQuestionario> {
                           margin: const EdgeInsets.all(20),
                           child: AutoSizeText(
                             //PETA AQUI
-                            widget.questionariodeFallos.preguntas[questionIndex]
-                                .pregunta,
+                            widget.questionariodeFallos.preguntas[questionIndex].pregunta,
                             minFontSize: 16,
                             maxFontSize: 35,
                             style: const TextStyle(
@@ -221,8 +203,7 @@ class _FallosQuestionarioState extends State<FallosQuestionario> {
                       ],
                     ),
                   )
-                : const CircularProgressIndicator(
-                    color: Colors.amber, backgroundColor: Colors.transparent),
+                : const CircularProgressIndicator(color: Colors.amber, backgroundColor: Colors.transparent),
           ),
         ),
         Flexible(
@@ -242,11 +223,9 @@ class _FallosQuestionarioState extends State<FallosQuestionario> {
                     ),
                   ),
                   leading: AutoSizeText('${index + 1}'),
-                  title: AutoSizeText(widget.questionariodeFallos
-                      .preguntas[questionIndex].options[index]),
+                  title: AutoSizeText(widget.questionariodeFallos.preguntas[questionIndex].options[index]),
                   onTap: () {
-                    _optionSelected(widget.questionariodeFallos
-                        .preguntas[questionIndex].options[index]);
+                    _optionSelected(widget.questionariodeFallos.preguntas[questionIndex].options[index]);
                   },
                 ),
               );
@@ -279,3 +258,4 @@ class _FallosQuestionarioState extends State<FallosQuestionario> {
     );
   }
 }
+ */
