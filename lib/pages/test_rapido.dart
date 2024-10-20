@@ -50,222 +50,191 @@ class _TestRapido extends State<TestRapido> {
   // }
 
   Future<void> crearfalsoQuiz() async {
+    // Preguntas de la categoría Hidráulica
     Pregunta pregunta0 = Pregunta.fromJson({
-      'pregunta': '0; De que color es el caballo blanco?',
+      'id': 0,
+      'categoria': 'Hidráulica',
+      'pregunta': 'De qué color es el caballo blanco?',
       'respuesta': 'Correcta',
     });
     pregunta0.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
     questionario.preguntas.add(pregunta0);
 
-    Pregunta question1 = Pregunta.fromJson({
-      'pregunta': '1; respuesta de España?',
+    Pregunta pregunta1 = Pregunta.fromJson({
+      'id': 1,
+      'categoria': 'Electricitat',
+      'pregunta': 'España es el mejor país?',
       'respuesta': 'Correcta',
     });
-    question1.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question1);
+    pregunta1.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    questionario.preguntas.add(pregunta1);
 
-    Pregunta question2 = Pregunta.fromJson({
-      'pregunta': '2; Donde vives?',
+    Pregunta pregunta2 = Pregunta.fromJson({
+      'id': 2,
+      'categoria': 'Hidráulica',
+      'pregunta': 'Donde vives?',
       'respuesta': 'Correcta',
     });
-    question2.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question2);
+    pregunta2.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    questionario.preguntas.add(pregunta2);
 
-    Pregunta question3 = Pregunta.fromJson({
-      'pregunta': '3; Cuantas estrellas existen?',
+    Pregunta pregunta3 = Pregunta.fromJson({
+      'id': 3,
+      'categoria': 'Hidráulica',
+      'pregunta': 'Cuántas estrellas existen?',
       'respuesta': 'Correcta',
     });
-    question3.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question3);
+    pregunta3.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    questionario.preguntas.add(pregunta3);
 
-    Pregunta question4 = Pregunta.fromJson({
-      'pregunta': '4; Después del 4 viene el...?',
+    Pregunta pregunta4 = Pregunta.fromJson({
+      'id': 4,
+      'categoria': 'Hidráulica',
+      'pregunta': 'Después del 4 viene el...?',
       'respuesta': 'Correcta',
     });
-    question4.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question4);
+    pregunta4.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    questionario.preguntas.add(pregunta4);
 
-    Pregunta question5 = Pregunta.fromJson({
-      'pregunta': '5; 5 por el culo...',
+// Preguntas de la categoría Electricitat
+    Pregunta pregunta5 = Pregunta.fromJson({
+      'id': 5,
+      'categoria': 'Electricitat',
+      'pregunta': '5 por el culo...?',
       'respuesta': 'Correcta',
     });
-    question5.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question5);
+    pregunta5.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    questionario.preguntas.add(pregunta5);
 
-    Pregunta question6 = Pregunta.fromJson({
-      'pregunta': '6; Helicoptero lleva H ?',
+    Pregunta pregunta6 = Pregunta.fromJson({
+      'id': 6,
+      'categoria': 'Electricitat',
+      'pregunta': 'Helicóptero lleva H?',
       'respuesta': 'Correcta',
     });
-    question6.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question6);
+    pregunta6.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    questionario.preguntas.add(pregunta6);
 
-    Pregunta question7 = Pregunta.fromJson({
-      'pregunta': '7; Mil, tres ,uno que cosas tienen en común?',
+    Pregunta pregunta7 = Pregunta.fromJson({
+      'id': 7,
+      'categoria': 'Construcció',
+      'pregunta': 'Mil, tres, uno, qué tienen en común?',
       'respuesta': 'Correcta',
     });
-    question7.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question7);
+    pregunta7.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    questionario.preguntas.add(pregunta7);
 
-    Pregunta question8 = Pregunta.fromJson({
-      'pregunta': '8; Tailandia es un país?',
+    Pregunta pregunta8 = Pregunta.fromJson({
+      'id': 8,
+      'categoria': 'Hidráulica',
+      'pregunta': 'Tailandia es un país?',
       'respuesta': 'Correcta',
     });
-    question8.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question8);
+    pregunta8.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    questionario.preguntas.add(pregunta8);
 
-    Pregunta question9 = Pregunta.fromJson({
-      'pregunta': '9; 1988 el mejor año?',
+    Pregunta pregunta9 = Pregunta.fromJson({
+      'id': 9,
+      'categoria': 'Electricitat',
+      'pregunta': '1988 fue el mejor año?',
       'respuesta': 'Correcta',
     });
-    question9.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question9);
+    pregunta9.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    questionario.preguntas.add(pregunta9);
 
-    Pregunta question10 = Pregunta.fromJson({
-      'pregunta': '10; Acabarás la app?',
+// Preguntas de la categoría Constitució
+    Pregunta pregunta10 = Pregunta.fromJson({
+      'id': 10,
+      'categoria': 'Constitució',
+      'pregunta': 'Acabarás la app?',
       'respuesta': 'Correcta',
     });
-    question10.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question10);
+    pregunta10.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    questionario.preguntas.add(pregunta10);
 
-    Pregunta question11 = Pregunta.fromJson({
-      'pregunta': '11; respuesta de Puertorico?',
+    Pregunta pregunta11 = Pregunta.fromJson({
+      'id': 11,
+      'categoria': 'Constitució',
+      'pregunta': 'Puerto Rico está rico?',
       'respuesta': 'Correcta',
     });
-    question11.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question11);
+    pregunta11.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    questionario.preguntas.add(pregunta11);
 
-    Pregunta question12 = Pregunta.fromJson({
-      'pregunta': '12; Donde naciste?',
+    Pregunta pregunta12 = Pregunta.fromJson({
+      'id': 12,
+      'categoria': 'Constitució',
+      'pregunta': 'Dónde naciste?',
       'respuesta': 'Correcta',
     });
-    question12.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question12);
+    pregunta12.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    questionario.preguntas.add(pregunta12);
 
-    Pregunta question13 = Pregunta.fromJson({
-      'pregunta': '13; Cuantas pecas tienes?',
+    Pregunta pregunta13 = Pregunta.fromJson({
+      'id': 13,
+      'categoria': 'Construcció',
+      'pregunta': 'Cuántas pecas tienes?',
       'respuesta': 'Correcta',
     });
-    question13.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question13);
+    pregunta13.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    questionario.preguntas.add(pregunta13);
 
-    Pregunta question14 = Pregunta.fromJson({
-      'pregunta': '14; Provincias de España?',
+    Pregunta pregunta14 = Pregunta.fromJson({
+      'id': 14,
+      'categoria': 'Constitució',
+      'pregunta': 'Provincias de España?',
       'respuesta': 'Correcta',
     });
-    question14.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question14);
+    pregunta14.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    questionario.preguntas.add(pregunta14);
 
-    Pregunta question15 = Pregunta.fromJson({
-      'pregunta': '15; Tu número favorito',
+// Preguntas de la categoría Construcció
+    Pregunta pregunta15 = Pregunta.fromJson({
+      'id': 15,
+      'categoria': 'Construcció',
+      'pregunta': 'Tu número favorito?',
       'respuesta': 'Correcta',
     });
-    question15.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question15);
+    pregunta15.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    questionario.preguntas.add(pregunta15);
 
-    Pregunta question16 = Pregunta.fromJson({
-      'pregunta': '16; Cuantos son 2+2?',
+    Pregunta pregunta16 = Pregunta.fromJson({
+      'id': 16,
+      'categoria': 'Construcció',
+      'pregunta': 'Cuántos son 2+2?',
       'respuesta': 'Correcta',
     });
-    question16.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question16);
+    pregunta16.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    questionario.preguntas.add(pregunta16);
 
-    Pregunta question17 = Pregunta.fromJson({
-      'pregunta': '17; Error 500 significa...?',
+    Pregunta pregunta17 = Pregunta.fromJson({
+      'id': 17,
+      'categoria': 'Construcció',
+      'pregunta': 'Error 500 significa...?',
       'respuesta': 'Correcta',
     });
-    question17.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question17);
+    pregunta17.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    questionario.preguntas.add(pregunta17);
 
-    Pregunta question18 = Pregunta.fromJson({
-      'pregunta': '18; De color es el verde?',
+    Pregunta pregunta18 = Pregunta.fromJson({
+      'id': 18,
+      'categoria': 'Electricitat',
+      'pregunta': 'De qué color es el verde?',
       'respuesta': 'Correcta',
     });
-    question18.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question18);
+    pregunta18.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    questionario.preguntas.add(pregunta18);
 
-    Pregunta question19 = Pregunta.fromJson({
-      'pregunta': '19; Tu actor favorito?',
+    Pregunta pregunta19 = Pregunta.fromJson({
+      'id': 19,
+      'categoria': 'Constitució',
+      'pregunta': 'Tu actor favorito?',
       'respuesta': 'Correcta',
     });
-    question19.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question19);
+    pregunta19.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+    questionario.preguntas.add(pregunta19);
 
-    Pregunta question20 = Pregunta.fromJson({
-      'pregunta': '20; Te gusta la app?',
-      'respuesta': 'Correcta',
-    });
-    question20.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question20);
-
-    Pregunta question21 = Pregunta.fromJson({
-      'pregunta': '21; Nombre de tu mascota?',
-      'respuesta': 'Correcta',
-    });
-    question21.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question21);
-
-    Pregunta question22 = Pregunta.fromJson({
-      'pregunta': '22; Cuántos días tiene una semana?',
-      'respuesta': 'Correcta',
-    });
-    question22.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question22);
-
-    Pregunta question23 = Pregunta.fromJson({
-      'pregunta': '23; respuesta de Australia?',
-      'respuesta': 'Correcta',
-    });
-    question23.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question23);
-
-    Pregunta question24 = Pregunta.fromJson({
-      'pregunta': '24; Qué año estamos?',
-      'respuesta': 'Correcta',
-    });
-    question24.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question24);
-
-    Pregunta question25 = Pregunta.fromJson({
-      'pregunta': '25; Cuántos planetas hay en el sistema solar?',
-      'respuesta': 'Correcta',
-    });
-    question25.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question25);
-
-    Pregunta question26 = Pregunta.fromJson({
-      'pregunta': '26; Cuánto es 10 por 10?',
-      'respuesta': 'Correcta',
-    });
-    question26.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question26);
-
-    Pregunta question27 = Pregunta.fromJson({
-      'pregunta': '27; Cuántas patas tiene un perro?',
-      'respuesta': 'Correcta',
-    });
-    question27.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question27);
-
-    Pregunta question28 = Pregunta.fromJson({
-      'pregunta': '28; En qué continente está España?',
-      'respuesta': 'Correcta',
-    });
-    question28.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question28);
-
-    Pregunta question29 = Pregunta.fromJson({
-      'pregunta': '29; Cuántos huesos tiene un adulto?',
-      'respuesta': 'Correcta',
-    });
-    question29.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question29);
-
-    Pregunta question30 = Pregunta.fromJson({
-      'pregunta': '30; Cuál es tu comida favorita?',
-      'respuesta': 'Correcta',
-    });
-    question30.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(question30);
+// Ahora tienes 5 preguntas para cada categoría (Hidráulica, Electricitat, Constitució, Construcció)
 
     setState(() {});
   }
@@ -281,25 +250,25 @@ class _TestRapido extends State<TestRapido> {
 //Marcar como opción correcta si es la recogida en el Json
     questionario.preguntas[questionIndex].selected = userSelected;
     if (userSelected == questionario.preguntas[questionIndex].respuesta) {
-      debugPrint('SI CORRECTA');
+      debugPrint('------------SI CORRECTA-----------');
       questionario.preguntas[questionIndex].correct = true;
 //Aumentamnos el valor total de correctas
       questionario.right += 1;
     } else {
-      debugPrint('NO correct');
+      debugPrint('--------NO correct----------');
 //añadimos a la lista de fallos
+      debugPrint('----------Añadida a testFails===>[${questionario.preguntas[questionIndex].pregunta}]-----------');
       questionariodeFalladas.preguntas.add(questionario.preguntas[questionIndex]);
-      debugPrint('añadida a quizFails=${questionario.preguntas[questionIndex].pregunta}');
     }
 
 //Siguiente pregunta y recarga la pantalla
     if (questionIndex < widget.totaldePreguntas - 1) {
       questionIndex += 1;
+      progressBar += 1;
     } else {
       showDialog(
           barrierDismissible: false, context: context, builder: (BuildContext context) => resultadoALert(context));
     }
-    progressBar += 1;
 
     setState(() {});
   }
@@ -391,6 +360,32 @@ class _TestRapido extends State<TestRapido> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
+                        Container(
+                          margin: const EdgeInsets.all(2),
+                          child: AutoSizeText(
+                            questionario.preguntas[questionIndex].id.toString(),
+                            minFontSize: 16,
+                            maxFontSize: 35,
+                            style: const TextStyle(
+                              color: Colors.black54,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Roboto',
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.all(20),
+                          child: AutoSizeText(
+                            questionario.preguntas[questionIndex].categoria.toString(),
+                            minFontSize: 16,
+                            maxFontSize: 35,
+                            style: const TextStyle(
+                              color: Colors.black54,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Roboto',
+                            ),
+                          ),
+                        ),
                         Container(
                           margin: const EdgeInsets.all(20),
                           child: AutoSizeText(

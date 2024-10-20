@@ -10,7 +10,17 @@ class SelectTheme extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),
+
+/**
+ *todo ---------------------NAVBAR con TITULO APP---------------------------------------
+**/
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back), // Icono de flecha hacia atrás
+          onPressed: () {
+            Navigator.pop(context); // Navega hacia atrás
+          },
+        ),
         iconTheme: const IconThemeData(
           color: Colors.black87,
         ),
@@ -28,17 +38,26 @@ class SelectTheme extends StatelessWidget {
           maxFontSize: 38,
         ),
       ),
+/**
+ *todo ----------------------------------------------------------------------------------
+**/
+
       body: Center(
         child: Column(children: [
+/**
+ *?-----------------------DIV QUE ENGLOBA TODOS LOS BOTONES------------------------------
+**/
           Card(
             margin: const EdgeInsets.all(30),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             color: const Color.fromRGBO(249, 240, 229, 1.0),
             child: ListView(
               shrinkWrap: true,
               padding: const EdgeInsets.all(10),
               children: [
+/**
+ ** -----------------TITULO-----------------------------------------------------
+**/
                 Container(
                   height: 50,
                   margin: const EdgeInsets.only(top: 10),
@@ -56,10 +75,23 @@ class SelectTheme extends StatelessWidget {
                     ),
                   ),
                 ),
+/**
+ **-----------------------------------------------------------------------------
+**/
+
                 const Divider(),
+
+/**
+ ** ----------------------BOTON 1 HYDRAULICA--------------------------------------
+**/
+
                 OutlinedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/hidraulica');
+                    Navigator.pushNamed(
+                      context,
+                      '/ruta-para-select_num_preguntas',
+                      arguments: {'boolentroaFallades': false, 'tema': 'hidraulica'},
+                    );
                   },
                   style: OutlinedButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),

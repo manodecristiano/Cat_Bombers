@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final Questionario quizFails;
     return MaterialApp(
         title: 'Cat-Bombers',
         theme: ThemeData(
@@ -34,13 +33,11 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => const Homepage(),
           '/ruta-para-test_rapido': (context) => const TestRapido(0),
-          '/ruta-para-test_fallades': (context) => FallosQuestionario(
-              0, Questionario(name: 'Test Fallades', preguntas: [])),
+          '/ruta-para-test_fallades': (context) => TestFallos(0, Questionario(name: 'Test Fallades', preguntas: [])),
           '/ruta-para-menu_test': (context) => const MenuTest(),
           '/ruta-para-stats_usuario': (context) => const ReviewQuiz(),
           '/ruta-para-perfil': (context) => const PerfilUser(),
-          '/ruta-para-select_num_preguntas': (context) =>
-              const SelectNumPreguntas(),
+          '/ruta-para-select_num_preguntas': (context) => const SelectNumPreguntas(),
           '/ruta-para-seleccionar_temes': (context) => const SelectTheme(),
         });
   }

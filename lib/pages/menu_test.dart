@@ -4,10 +4,9 @@ import 'package:cat_bombers/pages/test_rapido.dart';
 
 class MenuTest extends StatelessWidget {
   const MenuTest({super.key});
- 
+
   @override
   Widget build(BuildContext context) {
- 
     return Scaffold(
       backgroundColor: const Color(0xFFF9F5E5),
 
@@ -34,22 +33,18 @@ class MenuTest extends StatelessWidget {
  *todo ----------------------------------------------------------------------------------
 **/
 
-
       body: Center(
         child: Column(children: [
-
 /**
  *?-----------------------DIV QUE ENGLOBA TODOS LOS BOTONES------------------------------
 **/
           Card(
             margin: const EdgeInsets.all(30),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             color: const Color.fromRGBO(249, 240, 229, 1.0),
             child: ListView(
               shrinkWrap: true,
               children: [
-
 /**
  ** -----------------TITULO-----------------------------------------------------
 **/
@@ -73,7 +68,7 @@ class MenuTest extends StatelessWidget {
 
 /**
  **-----------------------------------------------------------------------------
-**/               
+**/
 
                 const Divider(),
 /**
@@ -97,8 +92,7 @@ class MenuTest extends StatelessWidget {
                   child: const AutoSizeText(
                     'SIMULACRE',
                     style: TextStyle(
-                      color:
-                          Color.fromARGB(255, 226, 209, 209), // Use a more descriptive color name
+                      color: Color.fromARGB(255, 226, 209, 209), // Use a more descriptive color name
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Roboto',
                     ),
@@ -112,7 +106,6 @@ class MenuTest extends StatelessWidget {
 **/
 
                 const Divider(),
-
 
 /**
  ** -----------------------BOTON 2 LLUITA-------------------------------------
@@ -146,14 +139,12 @@ class MenuTest extends StatelessWidget {
 
                 const Divider(),
 
-
 /**
  ** ------------------------BOTON 3 PER TEMES------------------------------------
 **/
                 OutlinedButton(
                   onPressed: () {
-                    Navigator.pushNamed(
-                        context, '/ruta-para-seleccionar_temes');
+                    Navigator.pushNamed(context, '/ruta-para-seleccionar_temes');
                   },
                   style: OutlinedButton.styleFrom(
                     backgroundColor: const Color(0xFFF9F5E5),
@@ -177,9 +168,7 @@ class MenuTest extends StatelessWidget {
  **----------------------------------------------------------------------------
 **/
 
-
                 const Divider(),
-
 
 /**
  ** -----------------------BOTON 4 TEST FALLADES----------------------------------
@@ -190,7 +179,7 @@ class MenuTest extends StatelessWidget {
                     Navigator.pushNamed(
                       context,
                       '/ruta-para-select_num_preguntas',
-                      arguments: true,
+                      arguments: {'boolentroaFallades': true, 'tema': 'todos'},
                     );
                   },
                   style: OutlinedButton.styleFrom(
@@ -220,7 +209,6 @@ class MenuTest extends StatelessWidget {
 /**
  *?----------------------------------------------------------------------
 **/
-
         ]),
       ),
     );

@@ -5,76 +5,107 @@ import 'package:cat_bombers/pages/menu_home.dart';
 import 'package:cat_bombers/pages/resultado_test.dart';
 import 'package:flutter/material.dart';
 
-class FallosQuestionario extends StatefulWidget {
+class TestFallos extends StatefulWidget {
   final int totalPreguntas;
-  final Questionario questionariodeFallos;
+  final Questionario listadeFallos;
 
-  const FallosQuestionario(this.totalPreguntas, this.questionariodeFallos, {super.key});
+  const TestFallos(this.totalPreguntas, this.listadeFallos, {super.key});
 
   @override
-  State<FallosQuestionario> createState() => _FallosQuestionarioState();
+  State<TestFallos> createState() => _TestFallosState();
 }
 
-class _FallosQuestionarioState extends State<FallosQuestionario> {
+//? -----------------Todo lo que engloba la pantalla Test_fallos Logica y Visuak -------------
+
+class _TestFallosState extends State<TestFallos> {
   int questionIndex = 0;
   int progressBar = 1;
-  int totalOptions = 4; // Si todas las preguntas tienen siempre 4 opciones
-  late int preguntasRestantes;
-
-  Questionario listREFails = Questionario(name: 'Lista de Re-Fallades', preguntas: []);
+  int totalOptions = 4; //Todas las preguntas tienen siempre 4 opciones
+  Questionario copiaListaFallos = Questionario(name: 'Lista de Re-Fallades', preguntas: []);
   Questionario listCorrects = Questionario(name: 'Lista de Salvades', preguntas: []);
+
+//** -----------------Función que utlizamos para dar valor a variables -------------
 
   @override
   void initState() {
     super.initState();
-    preguntasRestantes = widget.totalPreguntas;
+
+    // Hacemos una copia de listadeFallos para trabajar con ella
+    copiaListaFallos = Questionario(
+      name: widget.listadeFallos.name,
+      preguntas: List.from(widget.listadeFallos.preguntas),
+    );
   }
 
-  void _optionSelected(String userSelected) {
-    Pregunta preguntaActual = widget.questionariodeFallos.preguntas[questionIndex];
-    preguntaActual.selected = userSelected;
+//** ----------------------------------------------------------------------------*
+
+//** -----------------LÓGICA DE LA INTERACCIÓN---------------------------------------
+
+  void opcionSeleccionada(String seleccionDelUSER) {
+    Pregunta preguntaActual = widget.listadeFallos.preguntas[questionIndex];
+    /*   preguntaActual.selected = seleccionDelUSER; */
 
     // Si la respuesta es correcta, marcamos la pregunta como correcta
-    if (userSelected == preguntaActual.respuesta) {
+    if (seleccionDelUSER == preguntaActual.respuesta) {
       preguntaActual.correct = true;
       listCorrects.preguntas.add(preguntaActual);
-    } else {
-      // Si es incorrecta, la añadimos a la lista de fallos
-      listREFails.preguntas.add(preguntaActual);
     }
 
     // Pasar a la siguiente pregunta o mostrar resultados si terminamos
     setState(() {
       if (questionIndex < widget.totalPreguntas - 1) {
         questionIndex++;
+        progressBar++;
       } else {
-        _mostrarDialogoResultados(context); // Mostrar el resultado al finalizar
+        finaldelTest(context);
       }
-
-      // Incrementar el progreso de la barra
-      progressBar++;
     });
   }
+//** ----------------------------------------------------------------*
 
-  void _mostrarDialogoResultados(BuildContext context) {
+//** ----------AL FINAL DEL TEST MOSTRAMOS UN RESULTADO-------------------------------
+
+  void finaldelTest(BuildContext context) {
     showDialog(
       barrierDismissible: false,
       context: context,
-      builder: (BuildContext context) => _buildResultDialog(context),
+      builder: (BuildContext context) => mostrarResultado(context),
     );
-  }
 
-  void eliminarDuplicados() {
-    listREFails.preguntas = listREFails.preguntas.toSet().toList();
-  }
+    setState(() {
+      for (var pregunta in widget.listadeFallos.preguntas) {
+        /*  for (int i = widget.listadeFallos.preguntas.length - 1; i >= 0; i--) {
+        var pregunta = widget.listadeFallos.preguntas[i]; */
+        for (var preguntaCorrect in listCorrects.preguntas) {
+          debugPrint('-----------ID-LISTA-->' + pregunta.id.toString() + '-----------');
+          debugPrint('-----------ID-CORRECT-->[' + preguntaCorrect.id.toString() + ']-----------');
+          if (pregunta.id == preguntaCorrect.id) {
+            copiaListaFallos.preguntas.remove(pregunta);
+            // Actualizar el índice si el tamaño de la lista cambia asi no hay range Error
+            questionIndex = copiaListaFallos.preguntas.length - 1;
+            debugPrint('-----------TAMAÑO-----------');
+            debugPrint(copiaListaFallos.preguntas.length.toString());
+            break;
+          }
+        }
+      }
 
-  Widget _buildResultDialog(BuildContext context) {
+      // Aquí igualamos las listas para iterar en la próxima ocasión sobre la nueva lista.
+      widget.listadeFallos.preguntas.clear();
+      widget.listadeFallos.preguntas.addAll(copiaListaFallos.preguntas);
+    });
+  }
+//** ---------------------------------------------------------------------------------*
+
+//* -----------------ALERT DEl RESULTADO---------------------
+
+  Widget mostrarResultado(BuildContext context) {
     // Filtramos las preguntas correctas e incorrectas
-    int correctas = listCorrects.preguntas.length;
-    int incorrectas = widget.totalPreguntas - correctas;
+    int numCorrectas = listCorrects.preguntas.length;
+    int numIncorrectas = widget.totalPreguntas - numCorrectas;
 
     // Calculamos el porcentaje
-    int porcentaje = ((correctas / widget.totalPreguntas) * 100).toInt();
+    int porcentaje = ((numCorrectas / widget.totalPreguntas) * 100).toInt();
 
     return AlertDialog(
       title: const Text('Resultado', style: TextStyle(color: Colors.black87, fontWeight: FontWeight.bold)),
@@ -84,8 +115,9 @@ class _FallosQuestionarioState extends State<FallosQuestionario> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Preguntas: ${widget.totalPreguntas}'),
-          Text('Correctas: $correctas', style: const TextStyle(color: Colors.greenAccent, fontWeight: FontWeight.bold)),
-          Text('Incorrectas: $incorrectas',
+          Text('Correctas: $numCorrectas',
+              style: const TextStyle(color: Colors.greenAccent, fontWeight: FontWeight.bold)),
+          Text('Incorrectas: $numIncorrectas',
               style: const TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold)),
           Text('Porcentaje: $porcentaje%'),
         ],
@@ -98,8 +130,8 @@ class _FallosQuestionarioState extends State<FallosQuestionario> {
               context,
               MaterialPageRoute(
                 builder: (context) => ResultadoTest(
-                  questionario: widget.questionariodeFallos,
-                  numPreguntas: correctas + incorrectas,
+                  questionario: widget.listadeFallos,
+                  numPreguntas: numCorrectas + numIncorrectas,
                   porcentaje: porcentaje,
                 ),
               ),
@@ -129,7 +161,9 @@ class _FallosQuestionarioState extends State<FallosQuestionario> {
       ],
     );
   }
+//** ---------------------------------------------------------------*
 
+//* -----------------CREACIÓN DE LA INTERFAZ---------------------
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -139,7 +173,7 @@ class _FallosQuestionarioState extends State<FallosQuestionario> {
           color: Colors.black87,
         ),
         title: AutoSizeText(
-          widget.questionariodeFallos.name,
+          widget.listadeFallos.name,
           style: const TextStyle(
             color: Colors.black54,
             fontWeight: FontWeight.bold,
@@ -154,7 +188,7 @@ class _FallosQuestionarioState extends State<FallosQuestionario> {
           constraints: const BoxConstraints(maxHeight: 450),
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
-            child: widget.questionariodeFallos.preguntas.isNotEmpty
+            child: widget.listadeFallos.preguntas.isNotEmpty
                 ? Card(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -162,7 +196,20 @@ class _FallosQuestionarioState extends State<FallosQuestionario> {
                         Container(
                           margin: const EdgeInsets.all(20),
                           child: AutoSizeText(
-                            widget.questionariodeFallos.preguntas[questionIndex].pregunta,
+                            widget.listadeFallos.preguntas[questionIndex].id.toString(),
+                            minFontSize: 16,
+                            maxFontSize: 35,
+                            style: const TextStyle(
+                              color: Colors.black54,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Roboto',
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.all(20),
+                          child: AutoSizeText(
+                            widget.listadeFallos.preguntas[questionIndex].pregunta,
                             minFontSize: 16,
                             maxFontSize: 35,
                             style: const TextStyle(
@@ -182,6 +229,11 @@ class _FallosQuestionarioState extends State<FallosQuestionario> {
           child: ListView.builder(
             itemCount: totalOptions,
             itemBuilder: (_, index) {
+              // Evitar mostrar preguntas cuando no hay más
+              if (questionIndex >= widget.listadeFallos.preguntas.length) {
+                return const Text('No more questions.');
+              }
+
               return Container(
                 margin: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
@@ -193,9 +245,9 @@ class _FallosQuestionarioState extends State<FallosQuestionario> {
                     borderRadius: BorderRadius.all(Radius.circular(15)),
                   ),
                   leading: AutoSizeText('${index + 1}'),
-                  title: AutoSizeText(widget.questionariodeFallos.preguntas[questionIndex].options[index]),
+                  title: AutoSizeText(widget.listadeFallos.preguntas[questionIndex].options[index]),
                   onTap: () {
-                    _optionSelected(widget.questionariodeFallos.preguntas[questionIndex].options[index]);
+                    opcionSeleccionada(widget.listadeFallos.preguntas[questionIndex].options[index]);
                   },
                 ),
               );
@@ -204,7 +256,7 @@ class _FallosQuestionarioState extends State<FallosQuestionario> {
         ),
         TextButton(
           onPressed: () {
-            _optionSelected('No contestada');
+            opcionSeleccionada('No contestada');
           },
           style: ButtonStyle(
             backgroundColor: WidgetStateProperty.all<Color>(Colors.white70),
@@ -227,4 +279,7 @@ class _FallosQuestionarioState extends State<FallosQuestionario> {
       ]),
     );
   }
+  //** --------------------------------------*
+
+//? --------------------------------------
 }

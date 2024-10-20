@@ -1,4 +1,3 @@
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cat_bombers/pages/test_rapido.dart';
 import 'package:cat_bombers/pages/menu_home.dart';
@@ -11,38 +10,44 @@ class SelectNumPreguntas extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Recupera el argumento pasado desde Navigator.pushNamed
-    final bool boolentroaFallades = ModalRoute.of(context)!.settings.arguments as bool;
-    int falladas = questionariodeFalladas.preguntas.length;
+    final Map<String, dynamic> args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final bool boolentroaFallades = args['boolentroaFallades'];
+    final String tema = args['tema'];
 
+    int falladas = questionariodeFalladas.preguntas.length;
     debugPrint('-------DENTRO DE select_num_preguntas------');
     debugPrint('Numero de preguntas falladas=> $falladas');
     debugPrint('boolentroaFallades==>$boolentroaFallades');
 
     return Scaffold(
       backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),
-      body: Center(
-        child: Column(children: [
+
 /**
  *todo ---------------------NAVBAR con TITULO APP---------------------------------------
 **/
-          Container(
-            margin: const EdgeInsets.only(top: 30),
-            child: const AutoSizeText(
-              'Cat-BOMBERS',
-              style: TextStyle(
-                color: Color.fromRGBO(236, 194, 44, 1.0),
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Roboto',
-              ),
-              maxLines: 1,
-              minFontSize: 48,
-              maxFontSize: 100,
-            ),
+      appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.black87),
+        elevation: 0,
+        backgroundColor: const Color(0xFFF9F5E5),
+        title: const AutoSizeText(
+          'Cat-BOMBERS',
+          style: TextStyle(
+            color: Colors.orangeAccent, // Use a more descriptive color name
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Roboto',
           ),
+          maxLines: 1,
+          minFontSize: 38,
+          maxFontSize: 38,
+        ),
+      ),
+
 /**
  *todo ----------------------------------------------------------------------------------
 **/
 
+      body: Center(
+        child: Column(children: [
 /**
  *?-----------------------DIV QUE ENGLOBA TODOS LOS BOTONES------------------------------
 **/
@@ -54,8 +59,7 @@ class SelectNumPreguntas extends StatelessWidget {
               shrinkWrap: true,
               padding: const EdgeInsets.all(10),
               children: [
-
-                /**
+/**
  ** -----------------TITULO-----------------------------------------------------
 **/
                 Container(
@@ -130,7 +134,7 @@ class SelectNumPreguntas extends StatelessWidget {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: ((context) => FallosQuestionario(numPreguntas, questionariodeFalladas)),
+              builder: ((context) => TestFallos(numPreguntas, questionariodeFalladas)),
             ),
           );
         }
@@ -156,10 +160,6 @@ class SelectNumPreguntas extends StatelessWidget {
   }
 }
 //^^-----------------------------------------------------------------------------------------------
-
-
-
-
 
 //^^Funcion que crea un Alert si NO hay suficientes preguntas falladas-----------------
 Widget mensajeDeNOtenerFalladas(BuildContext context) {
