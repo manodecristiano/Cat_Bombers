@@ -79,7 +79,7 @@ class MenuTest extends StatelessWidget {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: ((context) => const TestRapido(35)),
+                        builder: ((context) => const TestRapido(40)),
                       ),
                     );
                   },

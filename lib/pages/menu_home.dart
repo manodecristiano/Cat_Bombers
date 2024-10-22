@@ -241,7 +241,11 @@ class Homepage extends StatelessWidget {
               SizedBox(
                 height: 230.0,
                 width: 340,
-                child: Image.asset('assets/img/bombers.png'),
+                child: Image.asset(
+                  'assets/img/bombers.png',
+                  fit: BoxFit.cover,
+                ),
+                
               )
             ]),
           ),

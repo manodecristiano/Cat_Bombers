@@ -19,11 +19,13 @@ class TestFallos extends StatefulWidget {
 
 class _TestFallosState extends State<TestFallos> {
   int questionIndex = 0;
-  int progressBar = 1;
+  bool quizFinished = false;
+  
   int totalOptions = 4; //Todas las preguntas tienen siempre 4 opciones
   Questionario copiaListaFallos = Questionario(name: 'Lista de Re-Fallades', preguntas: []);
   Questionario listCorrects = Questionario(name: 'Lista de Salvades', preguntas: []);
-
+  // Una copia separada de la lista original de fallos para mostrar el resultado sin alterarla
+  late Questionario listadeFallosOriginal;
 //** -----------------Función que utlizamos para dar valor a variables -------------
 
   @override
@@ -35,6 +37,12 @@ class _TestFallosState extends State<TestFallos> {
       name: widget.listadeFallos.name,
       preguntas: List.from(widget.listadeFallos.preguntas),
     );
+
+    // Guardamos la lista original de fallos para mostrarla al usuario sin alteraciones
+    listadeFallosOriginal = Questionario(
+      name: widget.listadeFallos.name,
+      preguntas: List.from(widget.listadeFallos.preguntas),
+    );
   }
 
 //** ----------------------------------------------------------------------------*
@@ -42,6 +50,7 @@ class _TestFallosState extends State<TestFallos> {
 //** -----------------LÓGICA DE LA INTERACCIÓN---------------------------------------
 
   void opcionSeleccionada(String seleccionDelUSER) {
+    if (questionIndex >= widget.listadeFallos.preguntas.length) return;
     Pregunta preguntaActual = widget.listadeFallos.preguntas[questionIndex];
     /*   preguntaActual.selected = seleccionDelUSER; */
 
@@ -55,8 +64,8 @@ class _TestFallosState extends State<TestFallos> {
     setState(() {
       if (questionIndex < widget.totalPreguntas - 1) {
         questionIndex++;
-        progressBar++;
       } else {
+        quizFinished = true;
         finaldelTest(context);
       }
     });
@@ -73,23 +82,21 @@ class _TestFallosState extends State<TestFallos> {
     );
 
     setState(() {
-      for (var pregunta in widget.listadeFallos.preguntas) {
-        /*  for (int i = widget.listadeFallos.preguntas.length - 1; i >= 0; i--) {
-        var pregunta = widget.listadeFallos.preguntas[i]; */
+      for (var pregunta in widget.listadeFallos.preguntas.toList()) {
         for (var preguntaCorrect in listCorrects.preguntas) {
-          debugPrint('-----------ID-LISTA-->' + pregunta.id.toString() + '-----------');
-          debugPrint('-----------ID-CORRECT-->[' + preguntaCorrect.id.toString() + ']-----------');
           if (pregunta.id == preguntaCorrect.id) {
             copiaListaFallos.preguntas.remove(pregunta);
-            // Actualizar el índice si el tamaño de la lista cambia asi no hay range Error
-            questionIndex = copiaListaFallos.preguntas.length - 1;
-            debugPrint('-----------TAMAÑO-----------');
-            debugPrint(copiaListaFallos.preguntas.length.toString());
+
+            // Ajustamos el questionIndex para que esté dentro del rango de las preguntas restantes
+            if (copiaListaFallos.preguntas.isNotEmpty) {
+              questionIndex = copiaListaFallos.preguntas.length - 1;
+            } else {
+              questionIndex = 0; // Reiniciar si no hay más preguntas
+            }
             break;
           }
         }
       }
-
       // Aquí igualamos las listas para iterar en la próxima ocasión sobre la nueva lista.
       widget.listadeFallos.preguntas.clear();
       widget.listadeFallos.preguntas.addAll(copiaListaFallos.preguntas);
@@ -103,8 +110,6 @@ class _TestFallosState extends State<TestFallos> {
     // Filtramos las preguntas correctas e incorrectas
     int numCorrectas = listCorrects.preguntas.length;
     int numIncorrectas = widget.totalPreguntas - numCorrectas;
-
-    // Calculamos el porcentaje
     int porcentaje = ((numCorrectas / widget.totalPreguntas) * 100).toInt();
 
     return AlertDialog(
@@ -130,7 +135,7 @@ class _TestFallosState extends State<TestFallos> {
               context,
               MaterialPageRoute(
                 builder: (context) => ResultadoTest(
-                  questionario: widget.listadeFallos,
+                  questionario: listadeFallosOriginal,
                   numPreguntas: numCorrectas + numIncorrectas,
                   porcentaje: porcentaje,
                 ),
@@ -184,6 +189,7 @@ class _TestFallosState extends State<TestFallos> {
         backgroundColor: Colors.amber[200],
       ),
       body: Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+        if (!quizFinished) 
         ConstrainedBox(
           constraints: const BoxConstraints(maxHeight: 450),
           child: Container(
@@ -225,13 +231,14 @@ class _TestFallosState extends State<TestFallos> {
                 : const CircularProgressIndicator(color: Colors.amber, backgroundColor: Colors.transparent),
           ),
         ),
+        if (!quizFinished) 
         Flexible(
           child: ListView.builder(
             itemCount: totalOptions,
             itemBuilder: (_, index) {
               // Evitar mostrar preguntas cuando no hay más
               if (questionIndex >= widget.listadeFallos.preguntas.length) {
-                return const Text('No more questions.');
+                  return Container();
               }
 
               return Container(
@@ -254,6 +261,7 @@ class _TestFallosState extends State<TestFallos> {
             },
           ),
         ),
+        if (!quizFinished) 
         TextButton(
           onPressed: () {
             opcionSeleccionada('No contestada');
@@ -264,6 +272,7 @@ class _TestFallosState extends State<TestFallos> {
           ),
           child: const Text('Pasar'),
         ),
+        if (!quizFinished) 
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
           child: ClipRRect(
@@ -271,7 +280,7 @@ class _TestFallosState extends State<TestFallos> {
             child: LinearProgressIndicator(
               color: Colors.amber[700],
               backgroundColor: const Color(0xFFD9D9D9),
-              value: progressBar / widget.totalPreguntas,
+                value: (questionIndex + 1) / widget.totalPreguntas,
               minHeight: 20,
             ),
           ),

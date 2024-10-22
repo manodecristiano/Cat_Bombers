@@ -234,7 +234,6 @@ class _TestRapido extends State<TestRapido> {
     pregunta19.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
     questionario.preguntas.add(pregunta19);
 
-// Ahora tienes 5 preguntas para cada categoría (Hidráulica, Electricitat, Constitució, Construcció)
 
     setState(() {});
   }
@@ -448,7 +447,7 @@ class _TestRapido extends State<TestRapido> {
             child: LinearProgressIndicator(
               color: Colors.amber[700],
               backgroundColor: const Color(0xFFD9D9D9),
-              value: progressBar / widget.totaldePreguntas,
+              value: (questionIndex + 1) / widget.totaldePreguntas,
               minHeight: 20,
             ),
           ),
