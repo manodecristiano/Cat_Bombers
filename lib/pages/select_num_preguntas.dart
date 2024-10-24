@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cat_bombers/pages/test_rapido.dart';
+import 'package:cat_bombers/pages/test_rapido_tema.dart';
 import 'package:cat_bombers/pages/menu_home.dart';
 import 'package:flutter/material.dart';
 import 'test_fallos.dart';
@@ -92,21 +93,21 @@ class SelectNumPreguntas extends StatelessWidget {
 /**
  ** -----------------BOTON 10 PREGUNTAS-----------------------------------------------------
 **/
-                  if (falladas >= 10) ...[contructordeBotones(context, 10, boolentroaFallades), const Divider()],
+                  if (falladas >= 10) ...[contructordeBotones(context, 10, boolentroaFallades, ''), const Divider()],
 /**
  ** -----------------BOTON 20 PREGUNTAS-----------------------------------------------------
 **/
-                  if (falladas >= 20) ...[contructordeBotones(context, 20, boolentroaFallades), const Divider()],
+                  if (falladas >= 20) ...[contructordeBotones(context, 20, boolentroaFallades, ''), const Divider()],
 /**
  ** -----------------BOTON 30 PREGUNTAS-----------------------------------------------------
 **/
-                  if (falladas >= 30) contructordeBotones(context, 30, boolentroaFallades),
+                  if (falladas >= 30) contructordeBotones(context, 30, boolentroaFallades, ''),
                 ] else ...[
-                  contructordeBotones(context, 10, boolentroaFallades),
+                  contructordeBotones(context, 10, boolentroaFallades, tema),
                   const Divider(),
-                  contructordeBotones(context, 20, boolentroaFallades),
+                  contructordeBotones(context, 20, boolentroaFallades, tema),
                   const Divider(),
-                  contructordeBotones(context, 30, boolentroaFallades),
+                  contructordeBotones(context, 30, boolentroaFallades, tema),
                 ],
               ],
             ),
@@ -120,16 +121,25 @@ class SelectNumPreguntas extends StatelessWidget {
   }
 
 //^^ Función que crea los botones dinámicamente--------------------------------------------------
-  Widget contructordeBotones(BuildContext context, int numPreguntas, bool boolentroaFallades) {
+  Widget contructordeBotones(BuildContext context, int numPreguntas, bool boolentroaFallades, String tema) {
     return OutlinedButton(
       onPressed: () {
         if (boolentroaFallades == false) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: ((context) => TestRapido(numPreguntas)),
-            ),
-          );
+          if (tema != '') {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: ((context) => TestRapidoTema(numPreguntas, tema)),
+              ),
+            );
+          } else {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: ((context) => TestRapido(numPreguntas)),
+              ),
+            );
+          }
         } else {
           Navigator.pushReplacement(
             context,
