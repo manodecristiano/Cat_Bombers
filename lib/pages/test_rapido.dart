@@ -9,7 +9,8 @@ Questionario questionariodeFalladas = Questionario(name: 'Test Fallades', pregun
 
 class TestRapido extends StatefulWidget {
   final int totaldePreguntas;
-  const TestRapido(this.totaldePreguntas, {super.key});
+  final String tema;
+  const TestRapido(this.totaldePreguntas, this.tema, {super.key});
 
   @override
   State<TestRapido> createState() => _TestRapido();
@@ -20,7 +21,8 @@ class _TestRapido extends State<TestRapido> {
   int questionIndex = 0;
   int progressBar = 1;
 
-  Questionario questionario = Questionario(name: 'Test Rápid', preguntas: []);
+  Questionario todasLasPreguntas = Questionario(name: 'Test Rápid', preguntas: []);
+  List<Pregunta> listaPreguntas = [];
 
 //Creamos el listado de preguntas aleatorias
   // Future<void> readJson() async {
@@ -49,215 +51,123 @@ class _TestRapido extends State<TestRapido> {
   //   setState(() {});
   // }
 
-  Future<void> crearfalsoQuiz() async {
-    // Preguntas de la categoría Hidráulica
-    Pregunta pregunta0 = Pregunta.fromJson({
+  Future<void> crearlistadePreguntas() async {
+    listaPreguntas = [
+      Pregunta.fromJson({
+        'id': 0,
+        'categoria': 'Hidráulica',
+        'pregunta': 'De qué color es el caballo blanco?',
+        'respuesta': 'Correcta'
+      }),
+      Pregunta.fromJson(
+          {'id': 1, 'categoria': 'Electricitat', 'pregunta': 'España es el mejor país?', 'respuesta': 'Correcta'}),
+      Pregunta.fromJson({'id': 2, 'categoria': 'Hidráulica', 'pregunta': 'Donde vives?', 'respuesta': 'Correcta'}),
+      Pregunta.fromJson(
+          {'id': 3, 'categoria': 'Hidráulica', 'pregunta': 'Cuántas estrellas existen?', 'respuesta': 'Correcta'}),
+      Pregunta.fromJson(
+          {'id': 4, 'categoria': 'Hidráulica', 'pregunta': 'Después del 4 viene el...?', 'respuesta': 'Correcta'}),
+      Pregunta.fromJson(
+          {'id': 5, 'categoria': 'Electricitat', 'pregunta': '5 por el culo...?', 'respuesta': 'Correcta'}),
+      Pregunta.fromJson(
+          {'id': 6, 'categoria': 'Hidráulica', 'pregunta': 'Helicóptero lleva H?', 'respuesta': 'Correcta'}),
+      Pregunta.fromJson({
+        'id': 7,
+        'categoria': 'Construcció',
+        'pregunta': 'Mil, tres, uno, qué tienen en común?',
+        'respuesta': 'Correcta'
+      }),
+      Pregunta.fromJson(
+          {'id': 8, 'categoria': 'Hidráulica', 'pregunta': 'Tailandia es un país?', 'respuesta': 'Correcta'}),
+      Pregunta.fromJson(
+          {'id': 9, 'categoria': 'Electricitat', 'pregunta': '1988 fue el mejor año?', 'respuesta': 'Correcta'}),
+      Pregunta.fromJson({'id': 10, 'categoria': 'Hidráulica', 'pregunta': 'Acabarás la app?', 'respuesta': 'Correcta'}),
+      Pregunta.fromJson(
+          {'id': 11, 'categoria': 'Constitució', 'pregunta': 'Puerto Rico está rico?', 'respuesta': 'Correcta'}),
+      Pregunta.fromJson({'id': 12, 'categoria': 'Constitució', 'pregunta': 'Dónde naciste?', 'respuesta': 'Correcta'}),
+      Pregunta.fromJson(
+          {'id': 13, 'categoria': 'Construcció', 'pregunta': 'Cuántas pecas tienes?', 'respuesta': 'Correcta'}),
+      Pregunta.fromJson(
+          {'id': 14, 'categoria': 'Hidráulica', 'pregunta': 'Provincias de España?', 'respuesta': 'Correcta'}),
+      Pregunta.fromJson(
+          {'id': 15, 'categoria': 'Hidráulica', 'pregunta': 'Tu número favorito?', 'respuesta': 'Correcta'}),
+      Pregunta.fromJson({'id': 16, 'categoria': 'Hidráulica', 'pregunta': 'Cuántos son 2+2?', 'respuesta': 'Correcta'}),
+      Pregunta.fromJson(
+          {'id': 17, 'categoria': 'Construcció', 'pregunta': 'Error 500 significa...?', 'respuesta': 'Correcta'}),
+      Pregunta.fromJson(
+          {'id': 18, 'categoria': 'Electricitat', 'pregunta': 'De qué color es el verde?', 'respuesta': 'Correcta'}),
+      Pregunta.fromJson(
+          {'id': 19, 'categoria': 'Hidráulica', 'pregunta': 'Tu actor favorito?', 'respuesta': 'Correcta'}),
+    ];
+
+    /*  Pregunta pregunta0 = Pregunta.fromJson({
       'id': 0,
       'categoria': 'Hidráulica',
       'pregunta': 'De qué color es el caballo blanco?',
       'respuesta': 'Correcta',
     });
     pregunta0.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(pregunta0);
+    todasLasPreguntas.preguntas.add(pregunta0); */
 
-    Pregunta pregunta1 = Pregunta.fromJson({
-      'id': 1,
-      'categoria': 'Electricitat',
-      'pregunta': 'España es el mejor país?',
-      'respuesta': 'Correcta',
-    });
-    pregunta1.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(pregunta1);
-
-    Pregunta pregunta2 = Pregunta.fromJson({
-      'id': 2,
-      'categoria': 'Hidráulica',
-      'pregunta': 'Donde vives?',
-      'respuesta': 'Correcta',
-    });
-    pregunta2.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(pregunta2);
-
-    Pregunta pregunta3 = Pregunta.fromJson({
-      'id': 3,
-      'categoria': 'Hidráulica',
-      'pregunta': 'Cuántas estrellas existen?',
-      'respuesta': 'Correcta',
-    });
-    pregunta3.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(pregunta3);
-
-    Pregunta pregunta4 = Pregunta.fromJson({
-      'id': 4,
-      'categoria': 'Hidráulica',
-      'pregunta': 'Después del 4 viene el...?',
-      'respuesta': 'Correcta',
-    });
-    pregunta4.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(pregunta4);
-
-// Preguntas de la categoría Electricitat
-    Pregunta pregunta5 = Pregunta.fromJson({
-      'id': 5,
-      'categoria': 'Electricitat',
-      'pregunta': '5 por el culo...?',
-      'respuesta': 'Correcta',
-    });
-    pregunta5.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(pregunta5);
-
-    Pregunta pregunta6 = Pregunta.fromJson({
-      'id': 6,
-      'categoria': 'Electricitat',
-      'pregunta': 'Helicóptero lleva H?',
-      'respuesta': 'Correcta',
-    });
-    pregunta6.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(pregunta6);
-
-    Pregunta pregunta7 = Pregunta.fromJson({
-      'id': 7,
-      'categoria': 'Construcció',
-      'pregunta': 'Mil, tres, uno, qué tienen en común?',
-      'respuesta': 'Correcta',
-    });
-    pregunta7.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(pregunta7);
-
-    Pregunta pregunta8 = Pregunta.fromJson({
-      'id': 8,
-      'categoria': 'Hidráulica',
-      'pregunta': 'Tailandia es un país?',
-      'respuesta': 'Correcta',
-    });
-    pregunta8.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(pregunta8);
-
-    Pregunta pregunta9 = Pregunta.fromJson({
-      'id': 9,
-      'categoria': 'Electricitat',
-      'pregunta': '1988 fue el mejor año?',
-      'respuesta': 'Correcta',
-    });
-    pregunta9.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(pregunta9);
-
-// Preguntas de la categoría Constitució
-    Pregunta pregunta10 = Pregunta.fromJson({
-      'id': 10,
-      'categoria': 'Constitució',
-      'pregunta': 'Acabarás la app?',
-      'respuesta': 'Correcta',
-    });
-    pregunta10.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(pregunta10);
-
-    Pregunta pregunta11 = Pregunta.fromJson({
-      'id': 11,
-      'categoria': 'Constitució',
-      'pregunta': 'Puerto Rico está rico?',
-      'respuesta': 'Correcta',
-    });
-    pregunta11.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(pregunta11);
-
-    Pregunta pregunta12 = Pregunta.fromJson({
-      'id': 12,
-      'categoria': 'Constitució',
-      'pregunta': 'Dónde naciste?',
-      'respuesta': 'Correcta',
-    });
-    pregunta12.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(pregunta12);
-
-    Pregunta pregunta13 = Pregunta.fromJson({
-      'id': 13,
-      'categoria': 'Construcció',
-      'pregunta': 'Cuántas pecas tienes?',
-      'respuesta': 'Correcta',
-    });
-    pregunta13.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(pregunta13);
-
-    Pregunta pregunta14 = Pregunta.fromJson({
-      'id': 14,
-      'categoria': 'Constitució',
-      'pregunta': 'Provincias de España?',
-      'respuesta': 'Correcta',
-    });
-    pregunta14.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(pregunta14);
-
-// Preguntas de la categoría Construcció
-    Pregunta pregunta15 = Pregunta.fromJson({
-      'id': 15,
-      'categoria': 'Construcció',
-      'pregunta': 'Tu número favorito?',
-      'respuesta': 'Correcta',
-    });
-    pregunta15.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(pregunta15);
-
-    Pregunta pregunta16 = Pregunta.fromJson({
-      'id': 16,
-      'categoria': 'Construcció',
-      'pregunta': 'Cuántos son 2+2?',
-      'respuesta': 'Correcta',
-    });
-    pregunta16.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(pregunta16);
-
-    Pregunta pregunta17 = Pregunta.fromJson({
-      'id': 17,
-      'categoria': 'Construcció',
-      'pregunta': 'Error 500 significa...?',
-      'respuesta': 'Correcta',
-    });
-    pregunta17.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(pregunta17);
-
-    Pregunta pregunta18 = Pregunta.fromJson({
-      'id': 18,
-      'categoria': 'Electricitat',
-      'pregunta': 'De qué color es el verde?',
-      'respuesta': 'Correcta',
-    });
-    pregunta18.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(pregunta18);
-
-    Pregunta pregunta19 = Pregunta.fromJson({
-      'id': 19,
-      'categoria': 'Constitució',
-      'pregunta': 'Tu actor favorito?',
-      'respuesta': 'Correcta',
-    });
-    pregunta19.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
-    questionario.preguntas.add(pregunta19);
-
-
-    setState(() {});
+    setState(() {}); // Actualizació de que la pantalla  crear listadepreguntas
   }
+
+
 
   @override
   void initState() {
     super.initState();
     //readJson();
-    crearfalsoQuiz();
+    crearlistadePreguntas().then((_) {
+      
+      filtrarporcategoria(widget.tema); // Filtrar preguntas solo después de que se hayan cargado
+    });
   }
+
+//** -----------------FUNCIÓN QUE SE LLAMA SI ES POR TEMES---------------------------------------
+ 
+  void filtrarporcategoria(tema) {
+    todasLasPreguntas.preguntas.clear();
+    if (tema == '') {
+      debugPrint('-------TEMA VACIO------ ');
+      for (var pregunta in listaPreguntas) {
+        pregunta.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+        todasLasPreguntas.preguntas.add(pregunta);
+      }
+    } else {
+      debugPrint('-------TEMA------ $tema');
+      for (var pregunta in listaPreguntas) {
+        debugPrint('-------CATEGORIA------$pregunta.categoria');
+        if (pregunta.categoria == tema) {
+          debugPrint('----ENTRO----');
+          pregunta.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+          todasLasPreguntas.preguntas.add(pregunta);
+        }
+      }
+    }
+    setState(() {}); // Actualizació de que la pantalla  después de filtrar
+  }
+
+
+
+
+//** ----------------------------------------------------------------------------*
+
+//** -----------------LÓGICA DE LA INTERACCIÓN---------------------------------------
 
   void _optionSelected(String userSelected) {
 //Marcar como opción correcta si es la recogida en el Json
-    questionario.preguntas[questionIndex].selected = userSelected;
-    if (userSelected == questionario.preguntas[questionIndex].respuesta) {
+    todasLasPreguntas.preguntas[questionIndex].selected = userSelected;
+    if (userSelected == todasLasPreguntas.preguntas[questionIndex].respuesta) {
       debugPrint('------------SI CORRECTA-----------');
-      questionario.preguntas[questionIndex].correct = true;
+      todasLasPreguntas.preguntas[questionIndex].correct = true;
 //Aumentamnos el valor total de correctas
-      questionario.right += 1;
+      todasLasPreguntas.right += 1;
     } else {
       debugPrint('--------NO correct----------');
 //añadimos a la lista de fallos
-      debugPrint('----------Añadida a testFails===>[${questionario.preguntas[questionIndex].pregunta}]-----------');
-      questionariodeFalladas.preguntas.add(questionario.preguntas[questionIndex]);
+      debugPrint(
+          '----------Añadida a testFails===>[${todasLasPreguntas.preguntas[questionIndex].pregunta}]-----------');
+      questionariodeFalladas.preguntas.add(todasLasPreguntas.preguntas[questionIndex]);
     }
 
 //Siguiente pregunta y recarga la pantalla
@@ -272,8 +182,15 @@ class _TestRapido extends State<TestRapido> {
     setState(() {});
   }
 
+//** ----------------------------------------------------------------------------*
+
+
+
+
+//** ----------AL FINAL DEL TEST MOSTRAMOS UN RESULTADO-------------------------------
+
   Widget resultadoALert(BuildContext context) {
-    int porcentaje = ((questionario.right / widget.totaldePreguntas) * 100).toInt();
+    int porcentaje = ((todasLasPreguntas.right / widget.totaldePreguntas) * 100).toInt();
     int numPreguntas = widget.totaldePreguntas;
 
     return AlertDialog(
@@ -284,11 +201,11 @@ class _TestRapido extends State<TestRapido> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Preguntas  :  ' '${widget.totaldePreguntas}'),
-          Text('Correctas   :  ' '${questionario.right}',
+          Text('Correctas   :  ' '${todasLasPreguntas.right}',
               style: const TextStyle(color: Colors.greenAccent, fontWeight: FontWeight.bold)),
           Text(
               'Incorrectas:  '
-              '${(widget.totaldePreguntas - questionario.right)}',
+              '${(widget.totaldePreguntas - todasLasPreguntas.right)}',
               style: const TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold)),
           Text('Porcentaje :  ' '$porcentaje%'),
         ],
@@ -300,8 +217,8 @@ class _TestRapido extends State<TestRapido> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: ((context) =>
-                      ResultadoTest(questionario: questionario, numPreguntas: numPreguntas, porcentaje: porcentaje)),
+                  builder: ((context) => ResultadoTest(
+                      questionario: todasLasPreguntas, numPreguntas: numPreguntas, porcentaje: porcentaje)),
                 ),
               );
             },
@@ -330,6 +247,19 @@ class _TestRapido extends State<TestRapido> {
     );
   }
 
+
+//** ----------------------------------------------------------------*
+
+
+
+
+
+
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -339,7 +269,7 @@ class _TestRapido extends State<TestRapido> {
           color: Colors.black87,
         ),
         title: AutoSizeText(
-          questionario.name,
+          todasLasPreguntas.name,
           style: const TextStyle(
             color: Colors.black54,
             fontWeight: FontWeight.bold,
@@ -354,7 +284,7 @@ class _TestRapido extends State<TestRapido> {
           constraints: const BoxConstraints(maxHeight: 450),
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
-            child: questionario.preguntas.isNotEmpty
+            child: todasLasPreguntas.preguntas.isNotEmpty
                 ? Card(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -362,7 +292,7 @@ class _TestRapido extends State<TestRapido> {
                         Container(
                           margin: const EdgeInsets.all(2),
                           child: AutoSizeText(
-                            questionario.preguntas[questionIndex].id.toString(),
+                            todasLasPreguntas.preguntas[questionIndex].id.toString(),
                             minFontSize: 16,
                             maxFontSize: 35,
                             style: const TextStyle(
@@ -375,7 +305,7 @@ class _TestRapido extends State<TestRapido> {
                         Container(
                           margin: const EdgeInsets.all(20),
                           child: AutoSizeText(
-                            questionario.preguntas[questionIndex].categoria.toString(),
+                            todasLasPreguntas.preguntas[questionIndex].categoria.toString(),
                             minFontSize: 16,
                             maxFontSize: 35,
                             style: const TextStyle(
@@ -388,7 +318,7 @@ class _TestRapido extends State<TestRapido> {
                         Container(
                           margin: const EdgeInsets.all(20),
                           child: AutoSizeText(
-                            questionario.preguntas[questionIndex].pregunta,
+                            todasLasPreguntas.preguntas[questionIndex].pregunta,
                             minFontSize: 16,
                             maxFontSize: 35,
                             style: const TextStyle(
@@ -421,9 +351,9 @@ class _TestRapido extends State<TestRapido> {
                     ),
                   ),
                   leading: AutoSizeText('${index + 1}'),
-                  title: AutoSizeText(questionario.preguntas[questionIndex].options[index]),
+                  title: AutoSizeText(todasLasPreguntas.preguntas[questionIndex].options[index]),
                   onTap: () {
-                    _optionSelected(questionario.preguntas[questionIndex].options[index]);
+                    _optionSelected(todasLasPreguntas.preguntas[questionIndex].options[index]);
                   },
                 ),
               );

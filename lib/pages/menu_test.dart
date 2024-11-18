@@ -79,7 +79,7 @@ class MenuTest extends StatelessWidget {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: ((context) => const TestRapido(40)),
+                        builder: ((context) => const TestRapido(40,'')),
                       ),
                     );
                   },
@@ -112,7 +112,7 @@ class MenuTest extends StatelessWidget {
 **/
                 OutlinedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/ruta-para-crear_test');
+                    Navigator.pushNamed(context, '/ruta-para-lluita');
                   },
                   style: OutlinedButton.styleFrom(
                     backgroundColor: const Color(0xFFF9F5E5),

@@ -7,6 +7,13 @@ class Pregunta {
   String selected = 'Skipped';
   bool correct = false;
 
+    Pregunta({
+    required this.id,
+    required this.pregunta,
+    required this.respuesta,
+    required this.options,
+  });
+
 // Constructor que convierte un objeto JSON en una instancia de la clase
   Pregunta.fromJson(Map<String, dynamic> json)
       : pregunta = json['pregunta'], // Asigna la pregunta desde el JSON

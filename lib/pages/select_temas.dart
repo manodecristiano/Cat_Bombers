@@ -90,7 +90,7 @@ class SelectTheme extends StatelessWidget {
                     Navigator.pushNamed(
                       context,
                       '/ruta-para-select_num_preguntas',
-                      arguments: {'boolentroaFallades': false, 'tema': 'hidraulica'},
+                      arguments: {'boolentroaFallades': false, 'tema': 'Hidráulica'},
                     );
                   },
                   style: OutlinedButton.styleFrom(
@@ -160,7 +160,11 @@ class SelectTheme extends StatelessWidget {
                 const Divider(),
                 OutlinedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/contruccion');
+                    Navigator.pushNamed(
+                      context,
+                      '/ruta-para-select_num_preguntas',
+                      arguments: {'boolentroaFallades': false, 'tema': 'Construcció'},
+                    );
                   },
                   style: OutlinedButton.styleFrom(
                     backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),

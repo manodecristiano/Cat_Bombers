@@ -1,6 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cat_bombers/pages/test_rapido.dart';
-import 'package:cat_bombers/pages/test_rapido_tema.dart';
 import 'package:cat_bombers/pages/menu_home.dart';
 import 'package:flutter/material.dart';
 import 'test_fallos.dart';
@@ -129,14 +128,14 @@ class SelectNumPreguntas extends StatelessWidget {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: ((context) => TestRapidoTema(numPreguntas, tema)),
+                builder: ((context) => TestRapido(numPreguntas, tema)),
               ),
             );
           } else {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: ((context) => TestRapido(numPreguntas)),
+                builder: ((context) => TestRapido(numPreguntas, '')),
               ),
             );
           }

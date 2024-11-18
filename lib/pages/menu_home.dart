@@ -95,7 +95,7 @@ class Homepage extends StatelessWidget {
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: ((context) => TestRapido(numeroPreguntas)),
+                          builder: ((context) => TestRapido(numeroPreguntas, '')),
                         ));
                   },
                   style: OutlinedButton.styleFrom(

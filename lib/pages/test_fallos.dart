@@ -22,10 +22,13 @@ class _TestFallosState extends State<TestFallos> {
   bool quizFinished = false;
   
   int totalOptions = 4; //Todas las preguntas tienen siempre 4 opciones
-  Questionario copiaListaFallos = Questionario(name: 'Lista de Re-Fallades', preguntas: []);
-  Questionario listCorrects = Questionario(name: 'Lista de Salvades', preguntas: []);
-  // Una copia separada de la lista original de fallos para mostrar el resultado sin alterarla
+  
   late Questionario listadeFallosOriginal;
+  Questionario copiaListaFallos = Questionario(name: 'Lista de Re-Fallades', preguntas: []); // Una copia separada de la lista original de fallos para mostrar el resultado sin alterarla
+  Questionario listCorrects = Questionario(name: 'Lista de Salvades', preguntas: []);
+
+
+
 //** -----------------Función que utlizamos para dar valor a variables -------------
 
   @override
