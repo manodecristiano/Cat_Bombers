@@ -41,7 +41,7 @@ class _LLuita extends State<LLuita> {
         'categoria': 'Hidráulica',
         'pregunta':
             "¿Quina de les següents propietats de l'aigua és una bona qualitat per extingir incendis,Quina de les següents propietats de l'aigua és una bona qualitat per extingir incendis?",
-        'respuesta': "L'aigua pura no conduiex l'electricitat  és una bona qualitat per extingir"
+        'respuesta': "L'aigua pura Correcta no conduiex l'electricitat  és una bona qualitat per extingir"
       }),
       Pregunta.fromJson(
           {'id': 1, 'categoria': 'Electricitat', 'pregunta': 'España es el mejor país?', 'respuesta': 'Correcta'}),
@@ -85,7 +85,11 @@ class _LLuita extends State<LLuita> {
 
     for (var pregunta in listaPreguntas) {
       // Asegúrate de que las opciones estén inicializadas
-      pregunta.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
+      pregunta.addOptions([
+        'Lorem ipsum 1 Lorem ipsumLorem Chiuwuka persoinelle yemapeil.',
+        'Ameneci cuague 2 viva,Ipsum lorem. Lorem ipsum Lorem ipsumLorem Chiuwuka persoinelle yemapeil.',
+        'Lorem jeterly 3 viure barsovia ipsum Lorem ipsumLorem Chiuwuka persoinelle yemapeil  persoinelle yemapeil Nepal. Lorem jeterly 3 viure barsovia ipsum Lorem.'
+      ]);
 
       // Copia para test 1
       var copiaTest1 = Pregunta(
@@ -418,56 +422,111 @@ class _LLuita extends State<LLuita> {
     required Function(String) onOptionSelected,
   }) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        // Pregunta
+        // Pregunta (o ícono '?')
         GestureDetector(
           onTap: toggleMostrarRespuestas, // Alternar entre pregunta y respuestas
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxHeight: 200),
-            child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
-              child: Card(
-                color: const Color.fromRGBO(250, 235, 215, 1.0),
-                child: Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Center(
-                    child: Text(
-                      testPreguntas.preguntas[testIndex].pregunta,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
+          child: Container(
+            margin: const EdgeInsets.only(
+              top: 5,
+              bottom: 0,
+              left: 18,
+              right: 18,
+            ),
+            child: Card(
+              color: const Color.fromRGBO(250, 235, 215, 1.0),
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 1, // Margen superior
+                  bottom: 0,
+                  left: 18,
+                  right: 18,
+                ),
+                child: Center(
+                  child: mostrarRespuestas
+                      ? // Progreso
+                      Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 2),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween, // Separar elementos
+                              children: [
+                                Expanded(
+                                  flex: 4, // Espacio proporcional para el progreso
+                                  child: LinearProgressIndicator(
+                                    color: Colors.amber[700],
+                                    backgroundColor: const Color(0xFFD9D9D9),
+                                    value: (testIndex + 1) / testPreguntas.preguntas.length,
+                                    minHeight: 20,
+                                  ),
+                                ),
+                                const SizedBox(width: 10), // Espaciado entre progreso e ícono
+                                const Icon(
+                                  Icons.help_outline, // Ícono '?'
+                                  size: 24,
+                                  color: Colors.black54,
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      : Text(
+                          testPreguntas.preguntas[testIndex].pregunta,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
                 ),
               ),
             ),
           ),
         ),
-
         // Respuestas (se muestran si `mostrarRespuestas` es true)
         if (mostrarRespuestas)
           Flexible(
             child: ListView.builder(
-              itemCount: testPreguntas.preguntas[testIndex].options.length,
+              itemCount: totalOptions,
               itemBuilder: (_, index) {
-                return ListTile(
-                  title: Text(testPreguntas.preguntas[testIndex].options[index]),
-                  onTap: () => onOptionSelected(testPreguntas.preguntas[testIndex].options[index]),
+                return Container(
+                  margin: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black87),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: ListTile(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(15),
+                      ),
+                    ),
+                    leading: FittedBox(
+                      child: AutoSizeText(
+                        '${index + 1}',
+                        maxLines: 1,
+                        minFontSize: 20, // Tamaño mínimo permitido
+                        maxFontSize: 20, // Tamaño máximo permitido
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    title: AutoSizeText(
+                      testPreguntas.preguntas[testIndex].options[index],
+                      maxLines: 2, // Máximo de líneas permitidas para el texto
+                      minFontSize: 9, // Tamaño mínimo del texto
+                      maxFontSize: 16, // Tamaño máximo del texto
+                      overflow: TextOverflow.ellipsis, // Añade "..." si el texto se recorta
+                      style: const TextStyle(fontWeight: FontWeight.w400),
+                    ),
+                    onTap: () {
+                      onOptionSelected(testPreguntas.preguntas[testIndex].options[index]);
+                    },
+                  ),
                 );
               },
             ),
           ),
-
-        // Progreso
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-          child: LinearProgressIndicator(
-            value: (testIndex + 1) / testPreguntas.preguntas.length,
-          ),
-        ),
       ],
     );
   }
