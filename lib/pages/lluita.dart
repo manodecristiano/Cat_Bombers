@@ -19,6 +19,9 @@ class _LLuita extends State<LLuita> {
   bool mostrarRespuestasTest1 = false;
   bool mostrarRespuestasTest2 = false;
 
+  int touchedOptionIndex = -1; // Índice de la opción tocada (naranja)
+  int selectedOptionIndex = -1; // Índice de la opción seleccionada (verde)
+
   // Test 1 variables
   Questionario test1Preguntas = Questionario(name: 'Test 1', preguntas: []);
   int test1Index = 0;
@@ -83,6 +86,20 @@ class _LLuita extends State<LLuita> {
           {'id': 19, 'categoria': 'Hidráulica', 'pregunta': 'Tu actor favorito?', 'respuesta': 'Correcta'}),
     ];
 
+    // Maneja la interacción al tocar una opción
+    void _handleOptionTapped(int optionIndex) {
+      setState(() {
+        if (touchedOptionIndex == optionIndex) {
+          // Si ya estaba tocada, se selecciona
+          selectedOptionIndex = optionIndex;
+          touchedOptionIndex = -1; // Resetea el estado de tocada
+        } else {
+          // Si no estaba tocada, marca como tocada
+          touchedOptionIndex = optionIndex;
+        }
+      });
+    }
+
     for (var pregunta in listaPreguntas) {
       // Asegúrate de que las opciones estén inicializadas
       pregunta.addOptions([
@@ -144,6 +161,20 @@ class _LLuita extends State<LLuita> {
       if (test2Index < test2Preguntas.preguntas.length - 1) {
         test2Index++;
         test2Progress++;
+      }
+    });
+  }
+
+  // Maneja la interacción al tocar una opción
+  void _handleOptionTapped(int optionIndex) {
+    setState(() {
+      if (touchedOptionIndex == optionIndex) {
+        // Si ya estaba tocada, se selecciona
+        selectedOptionIndex = optionIndex;
+        touchedOptionIndex = -1; // Resetea el estado de tocada
+      } else {
+        // Si no estaba tocada, marca como tocada
+        touchedOptionIndex = optionIndex;
       }
     });
   }
@@ -212,208 +243,7 @@ class _LLuita extends State<LLuita> {
 
 //** ----------------------------------------------------------------*
 
-//* -----------------CREACIÓN DE LA INTERFAZ---------------------
-
-  /*  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),
-      body: Column(
-        children: [
-          // Test volteado
-          Expanded(
-            flex: 1,
-            child: Transform.rotate(
-              angle: 3.14159, // Rotación de 180 grados (π en radianes)
-              child: _buildTestCard(volteado: true),
-            ),
-          ),
-
-          // Espacio entre los tests
-          const Divider(
-            color: Colors.black45,
-            height: 1,
-            thickness: 1,
-          ),
-          Container(
-            color: Colors.amber[200],
-            height: 15, // Altura ajustada para mayor visibilidad
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center, // Centra verticalmente
-              children: [
-                IconButton(
-                  iconSize: 15, 
-                  padding: EdgeInsets.zero,// Tamaño del icono
-                  icon: const Icon(Icons.arrow_back, color: Colors.black87),
-                  onPressed: () => Navigator.of(context).pop(),
-                ),
-              ],
-            ),
-          ),
-          // Test normal
-          Expanded(
-            flex: 1,
-            child: _buildTestCard(volteado: false),
-          ),
-        ],
-      ),
-    );
-  }
-
-// Método para construir el diseño del test
-  Widget _buildTestCard({required bool volteado}) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        ConstrainedBox(
-          constraints: const BoxConstraints(maxHeight: 200),
-          child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
-            child: todasLasPreguntas.preguntas.isNotEmpty
-                ? Card(
-                    color:
-                        volteado ? const Color.fromRGBO(250, 235, 215, 1.0) : const Color.fromRGBO(255, 245, 220, 1.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.all(2),
-                          child: AutoSizeText(
-                            todasLasPreguntas.preguntas[questionIndex].id.toString(),
-                            minFontSize: 16,
-                            maxFontSize: 35,
-                            style: const TextStyle(
-                              color: Colors.black54,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Roboto',
-                            ),
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.all(20),
-                          child: AutoSizeText(
-                            todasLasPreguntas.preguntas[questionIndex].pregunta,
-                            minFontSize: 16,
-                            maxFontSize: 35,
-                            style: TextStyle(
-                              color:
-                                  volteado ? const Color.fromRGBO(70, 70, 70, 1) : const Color.fromRGBO(0, 0, 0, 0.8),
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Roboto',
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                : const CircularProgressIndicator(color: Colors.amber, backgroundColor: Colors.transparent),
-          ),
-        ),
-        Flexible(
-          child: ListView.builder(
-            itemCount: totalOptions,
-            itemBuilder: (_, index) {
-              return Container(
-                margin: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black87),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: ListTile(
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(15),
-                    ),
-                  ),
-                  leading: AutoSizeText('${index + 1}'),
-                  title: AutoSizeText(todasLasPreguntas.preguntas[questionIndex].options[index]),
-                  onTap: () {
-                    _optionSelected(todasLasPreguntas.preguntas[questionIndex].options[index]);
-                  },
-                ),
-              );
-            },
-          ),
-        ),
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(15),
-            child: LinearProgressIndicator(
-              color: Colors.amber[700],
-              backgroundColor: const Color(0xFFD9D9D9),
-              value: (questionIndex + 1) / totaldePreguntas,
-              minHeight: 20,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
- */
-/* 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromRGBO(249, 245, 229, 1.0),
-      body: Column(
-        children: [
-          // Test volteado (Test 1)
-          Expanded(
-            flex: 1,
-            child: Transform.rotate(
-              angle: 3.14159, // Rotación 180°
-              child: _buildTestCard(
-                testPreguntas: test1Preguntas,
-                testIndex: test1Index,
-                progress: test1Progress,
-                totalRight: test1RightAnswers,
-                onOptionSelected: _handleOptionSelectedTest1,
-              ),
-            ),
-          ),
-
-          // Espaciador entre tests
-          const Divider(
-            color: Colors.black45,
-            height: 1,
-            thickness: 1,
-          ),
-
-          // Barra de control
-          Container(
-            color: Colors.amber[200],
-            height: 15,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                IconButton(
-                  iconSize: 15,
-                  padding: EdgeInsets.zero,
-                  icon: const Icon(Icons.arrow_back, color: Colors.black87),
-                  onPressed: () => Navigator.of(context).pop(),
-                ),
-              ],
-            ),
-          ),
-
-          // Test normal (Test 2)
-          Expanded(
-            flex: 1,
-            child: _buildTestCard(
-              testPreguntas: test2Preguntas,
-              testIndex: test2Index,
-              progress: test2Progress,
-              totalRight: test2RightAnswers,
-              onOptionSelected: _handleOptionSelectedTest2,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
- */
+  //* -----------------BLOQUES para la INTERFAZ---------------------
   Widget _buildTestCard({
     required Questionario testPreguntas,
     required int testIndex,
@@ -492,29 +322,16 @@ class _LLuita extends State<LLuita> {
               itemBuilder: (_, index) {
                 return Container(
                   margin: const EdgeInsets.all(6),
+                  padding: const EdgeInsets.all(1),
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.black87),
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(5),
                   ),
                   child: ListTile(
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(15),
-                      ),
-                    ),
-                    leading: FittedBox(
-                      child: AutoSizeText(
-                        '${index + 1}',
-                        maxLines: 1,
-                        minFontSize: 20, // Tamaño mínimo permitido
-                        maxFontSize: 20, // Tamaño máximo permitido
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ),
                     title: AutoSizeText(
                       testPreguntas.preguntas[testIndex].options[index],
                       maxLines: 2, // Máximo de líneas permitidas para el texto
-                      minFontSize: 9, // Tamaño mínimo del texto
+                      minFontSize: 11, // Tamaño mínimo del texto
                       maxFontSize: 16, // Tamaño máximo del texto
                       overflow: TextOverflow.ellipsis, // Añade "..." si el texto se recorta
                       style: const TextStyle(fontWeight: FontWeight.w400),
@@ -531,6 +348,7 @@ class _LLuita extends State<LLuita> {
     );
   }
 
+//* -----------------CREACIÓN DE LA INTERFAZ---------------------
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -600,128 +418,3 @@ class _LLuita extends State<LLuita> {
     );
   }
 }
-
-  /* Widget _buildTestCard({
-    required Questionario testPreguntas,
-    required int testIndex,
-    required int progress,
-    required int totalRight,
-    required Function(String) onOptionSelected,
-  }) {
-    return Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-      ConstrainedBox(
-        constraints: const BoxConstraints(maxHeight: 450),
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
-          child: testPreguntas.preguntas.isNotEmpty
-            /  ? Card(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.all(2),
-                        child: AutoSizeText(
-                          testPreguntas.preguntas[testIndex].pregunta,
-                          minFontSize: 16,
-                          maxFontSize: 35,
-                          style: const TextStyle(
-                            color: Colors.black54,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Roboto',
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              : const CircularProgressIndicator(color: Colors.amber, backgroundColor: Colors.transparent),
-        ),
-      ),
-      Flexible(
-        child: ListView.builder(
-          itemCount: totalOptions,
-          itemBuilder: (_, index) {
-            return Container(
-              margin: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black87),
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: ListTile(
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(15),
-                  ),
-                ),
-                leading: AutoSizeText('${index + 1}'),
-                title: AutoSizeText(testPreguntas.preguntas[testIndex].options[index]),
-                onTap: () {
-                  onOptionSelected(testPreguntas.preguntas[testIndex].options[index]);
-                },
-              ),
-            );
-          },
-        ),
-      ),
-      Container(
-        margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(15),
-          child: LinearProgressIndicator(
-            color: Colors.amber[700],
-            backgroundColor: const Color(0xFFD9D9D9),
-            value: progress / testPreguntas.preguntas.length,
-            minHeight: 20,
-          ),
-        ),
-      ),
-    ]);
-  }
-} */
-
-        // Pregunta
-       /*  ConstrainedBox(
-          constraints: const BoxConstraints(maxHeight: 200),
-          child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
-            child: testPreguntas.preguntas.isNotEmpty
-                /? Card(
-                    color: const Color.fromRGBO(250, 235, 215, 1.0),
-                    child: Column(
-                      children: [
-                        Text(
-                          testPreguntas.preguntas[testIndex].pregunta,
-                          style: const TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                  )
-                : const CircularProgressIndicator(),
-          ),
-        ),
-
-        // Opciones
-        Flexible(
-          child: ListView.builder(
-            itemCount: totalOptions,
-            itemBuilder: (_, index) {
-              return ListTile(
-                title: Text(testPreguntas.preguntas[testIndex].options[index]),
-                onTap: () => onOptionSelected(testPreguntas.preguntas[testIndex].options[index]),
-              );
-            },
-          ),
-        ),
-
-        // Progreso
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-          child: LinearProgressIndicator(
-            value: progress / testPreguntas.preguntas.length,
-          ),
-        ),
-      ],
-    );
-  }
-}
- */
