@@ -57,46 +57,182 @@ class _TestRapido extends State<TestRapido> {
         'id': 0,
         'categoria': 'Hidráulica',
         'pregunta': 'De qué color es el caballo blanco?',
-        'respuesta': 'Correcta'
+        'respuesta': 'Correcta',
+        'opcion1': 'Incorrecta',
+        'opcion2': 'Incorrecta',
+        'opcion3': 'Incorrecta',
       }),
-      Pregunta.fromJson(
-          {'id': 1, 'categoria': 'Electricitat', 'pregunta': 'España es el mejor país?', 'respuesta': 'Correcta'}),
-      Pregunta.fromJson({'id': 2, 'categoria': 'Hidráulica', 'pregunta': 'Donde vives?', 'respuesta': 'Correcta'}),
-      Pregunta.fromJson(
-          {'id': 3, 'categoria': 'Hidráulica', 'pregunta': 'Cuántas estrellas existen?', 'respuesta': 'Correcta'}),
-      Pregunta.fromJson(
-          {'id': 4, 'categoria': 'Hidráulica', 'pregunta': 'Después del 4 viene el...?', 'respuesta': 'Correcta'}),
-      Pregunta.fromJson(
-          {'id': 5, 'categoria': 'Electricitat', 'pregunta': '5 por el culo...?', 'respuesta': 'Correcta'}),
-      Pregunta.fromJson(
-          {'id': 6, 'categoria': 'Hidráulica', 'pregunta': 'Helicóptero lleva H?', 'respuesta': 'Correcta'}),
+      Pregunta.fromJson({
+        'id': 1,
+        'categoria': 'Electricitat',
+        'pregunta': 'España es el mejor país?',
+        'respuesta': 'Correcta',
+        'opcion1': 'Incorrecta',
+        'opcion2': 'Incorrecta',
+        'opcion3': 'Incorrecta',
+      }),
+      Pregunta.fromJson({
+        'id': 2,
+        'categoria': 'Hidráulica',
+        'pregunta': 'Donde vives?',
+        'respuesta': 'Correcta',
+        'opcion1': 'Incorrecta',
+        'opcion2': 'Incorrecta',
+        'opcion3': 'Incorrecta',
+      }),
+      Pregunta.fromJson({
+        'id': 3,
+        'categoria': 'Hidráulica',
+        'pregunta': 'Cuántas estrellas existen?',
+        'respuesta': 'Correcta',
+        'opcion1': 'Incorrecta',
+        'opcion2': 'Incorrecta',
+        'opcion3': 'Incorrecta',
+      }),
+      Pregunta.fromJson({
+        'id': 4,
+        'categoria': 'Hidráulica',
+        'pregunta': 'Después del 4 viene el...?',
+        'respuesta': 'Correcta',
+        'opcion1': 'Incorrecta',
+        'opcion2': 'Incorrecta',
+        'opcion3': 'Incorrecta',
+      }),
+      Pregunta.fromJson({
+        'id': 5,
+        'categoria': 'Electricitat',
+        'pregunta': '5 por el culo...?',
+        'respuesta': 'Correcta',
+        'opcion1': 'Incorrecta',
+        'opcion2': 'Incorrecta',
+        'opcion3': 'Incorrecta',
+      }),
+      Pregunta.fromJson({
+        'id': 6,
+        'categoria': 'Hidráulica',
+        'pregunta': 'Helicóptero lleva H?',
+        'respuesta': 'Correcta',
+        'opcion1': 'Incorrecta',
+        'opcion2': 'Incorrecta',
+        'opcion3': 'Incorrecta',
+      }),
       Pregunta.fromJson({
         'id': 7,
         'categoria': 'Construcció',
         'pregunta': 'Mil, tres, uno, qué tienen en común?',
-        'respuesta': 'Correcta'
+        'respuesta': 'Correcta',
+        'opcion1': 'Incorrecta',
+        'opcion2': 'Incorrecta',
+        'opcion3': 'Incorrecta',
       }),
-      Pregunta.fromJson(
-          {'id': 8, 'categoria': 'Hidráulica', 'pregunta': 'Tailandia es un país?', 'respuesta': 'Correcta'}),
-      Pregunta.fromJson(
-          {'id': 9, 'categoria': 'Electricitat', 'pregunta': '1988 fue el mejor año?', 'respuesta': 'Correcta'}),
-      Pregunta.fromJson({'id': 10, 'categoria': 'Hidráulica', 'pregunta': 'Acabarás la app?', 'respuesta': 'Correcta'}),
-      Pregunta.fromJson(
-          {'id': 11, 'categoria': 'Constitució', 'pregunta': 'Puerto Rico está rico?', 'respuesta': 'Correcta'}),
-      Pregunta.fromJson({'id': 12, 'categoria': 'Constitució', 'pregunta': 'Dónde naciste?', 'respuesta': 'Correcta'}),
-      Pregunta.fromJson(
-          {'id': 13, 'categoria': 'Construcció', 'pregunta': 'Cuántas pecas tienes?', 'respuesta': 'Correcta'}),
-      Pregunta.fromJson(
-          {'id': 14, 'categoria': 'Hidráulica', 'pregunta': 'Provincias de España?', 'respuesta': 'Correcta'}),
-      Pregunta.fromJson(
-          {'id': 15, 'categoria': 'Hidráulica', 'pregunta': 'Tu número favorito?', 'respuesta': 'Correcta'}),
-      Pregunta.fromJson({'id': 16, 'categoria': 'Hidráulica', 'pregunta': 'Cuántos son 2+2?', 'respuesta': 'Correcta'}),
-      Pregunta.fromJson(
-          {'id': 17, 'categoria': 'Construcció', 'pregunta': 'Error 500 significa...?', 'respuesta': 'Correcta'}),
-      Pregunta.fromJson(
-          {'id': 18, 'categoria': 'Electricitat', 'pregunta': 'De qué color es el verde?', 'respuesta': 'Correcta'}),
-      Pregunta.fromJson(
-          {'id': 19, 'categoria': 'Hidráulica', 'pregunta': 'Tu actor favorito?', 'respuesta': 'Correcta'}),
+      Pregunta.fromJson({
+        'id': 8,
+        'categoria': 'Hidráulica',
+        'pregunta': 'Tailandia es un país?',
+        'respuesta': 'Correcta',
+        'opcion1': 'Incorrecta',
+        'opcion2': 'Incorrecta',
+        'opcion3': 'Incorrecta',
+      }),
+      Pregunta.fromJson({
+        'id': 9,
+        'categoria': 'Electricitat',
+        'pregunta': '1988 fue el mejor año?',
+        'respuesta': 'Correcta',
+        'opcion1': 'Incorrecta',
+        'opcion2': 'Incorrecta',
+        'opcion3': 'Incorrecta',
+      }),
+      Pregunta.fromJson({
+        'id': 10,
+        'categoria': 'Hidráulica',
+        'pregunta': 'Acabarás la app?',
+        'respuesta': 'Correcta',
+        'opcion1': 'Incorrecta',
+        'opcion2': 'Incorrecta',
+        'opcion3': 'Incorrecta',
+      }),
+      Pregunta.fromJson({
+        'id': 11,
+        'categoria': 'Constitució',
+        'pregunta': 'Puerto Rico está rico?',
+        'respuesta': 'Correcta',
+        'opcion1': 'Incorrecta',
+        'opcion2': 'Incorrecta',
+        'opcion3': 'Incorrecta',
+      }),
+      Pregunta.fromJson({
+        'id': 12,
+        'categoria': 'Constitució',
+        'pregunta': 'Dónde naciste?',
+        'respuesta': 'Correcta',
+        'opcion1': 'Incorrecta',
+        'opcion2': 'Incorrecta',
+        'opcion3': 'Incorrecta',
+      }),
+      Pregunta.fromJson({
+        'id': 13,
+        'categoria': 'Construcció',
+        'pregunta': 'Cuántas pecas tienes?',
+        'respuesta': 'Correcta',
+        'opcion1': 'Incorrecta',
+        'opcion2': 'Incorrecta',
+        'opcion3': 'Incorrecta',
+      }),
+      Pregunta.fromJson({
+        'id': 14,
+        'categoria': 'Hidráulica',
+        'pregunta': 'Provincias de España?',
+        'respuesta': 'Correcta',
+        'opcion1': 'Incorrecta',
+        'opcion2': 'Incorrecta',
+        'opcion3': 'Incorrecta',
+      }),
+      Pregunta.fromJson({
+        'id': 15,
+        'categoria': 'Hidráulica',
+        'pregunta': 'Tu número favorito?',
+        'respuesta': 'Correcta',
+        'opcion1': 'Incorrecta',
+        'opcion2': 'Incorrecta',
+        'opcion3': 'Incorrecta',
+      }),
+      Pregunta.fromJson({
+        'id': 16,
+        'categoria': 'Hidráulica',
+        'pregunta': 'Cuántos son 2+2?',
+        'respuesta': 'Correcta',
+        'opcion1': 'Incorrecta',
+        'opcion2': 'Incorrecta',
+        'opcion3': 'Incorrecta',
+      }),
+      Pregunta.fromJson({
+        'id': 17,
+        'categoria': 'Construcció',
+        'pregunta': 'Error 500 significa...?',
+        'respuesta': 'Correcta',
+        'opcion1': 'Incorrecta',
+        'opcion2': 'Incorrecta',
+        'opcion3': 'Incorrecta',
+      }),
+      Pregunta.fromJson({
+        'id': 18,
+        'categoria': 'Electricitat',
+        'pregunta': 'De qué color es el verde?',
+        'respuesta': 'Correcta',
+        'opcion1': 'Incorrecta',
+        'opcion2': 'Incorrecta',
+        'opcion3': 'Incorrecta',
+      }),
+      Pregunta.fromJson({
+        'id': 19,
+        'categoria': 'Hidráulica',
+        'pregunta': 'Tu actor favorito?',
+        'respuesta': 'Correcta',
+        'opcion1': 'Incorrecta',
+        'opcion2': 'Incorrecta',
+        'opcion3': 'Incorrecta',
+      }),
     ];
 
     /*  Pregunta pregunta0 = Pregunta.fromJson({
@@ -111,26 +247,22 @@ class _TestRapido extends State<TestRapido> {
     setState(() {}); // Actualizació de que la pantalla  crear listadepreguntas
   }
 
-
-
   @override
   void initState() {
     super.initState();
     //readJson();
     crearlistadePreguntas().then((_) {
-      
       filtrarporcategoria(widget.tema); // Filtrar preguntas solo después de que se hayan cargado
     });
   }
 
 //** -----------------FUNCIÓN QUE SE LLAMA SI ES POR TEMES---------------------------------------
- 
+
   void filtrarporcategoria(tema) {
     todasLasPreguntas.preguntas.clear();
     if (tema == '') {
       debugPrint('-------TEMA VACIO------ ');
       for (var pregunta in listaPreguntas) {
-        pregunta.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
         todasLasPreguntas.preguntas.add(pregunta);
       }
     } else {
@@ -139,16 +271,16 @@ class _TestRapido extends State<TestRapido> {
         debugPrint('-------CATEGORIA------$pregunta.categoria');
         if (pregunta.categoria == tema) {
           debugPrint('----ENTRO----');
-          pregunta.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
           todasLasPreguntas.preguntas.add(pregunta);
         }
       }
     }
+    // Mezcla las opciones de cada pregunta filtrada
+    for (var pregunta in todasLasPreguntas.preguntas) {
+      pregunta.addOptions([pregunta.opcion1, pregunta.opcion2, pregunta.opcion3]);
+    }
     setState(() {}); // Actualizació de que la pantalla  después de filtrar
   }
-
-
-
 
 //** ----------------------------------------------------------------------------*
 
@@ -183,9 +315,6 @@ class _TestRapido extends State<TestRapido> {
   }
 
 //** ----------------------------------------------------------------------------*
-
-
-
 
 //** ----------AL FINAL DEL TEST MOSTRAMOS UN RESULTADO-------------------------------
 
@@ -247,18 +376,7 @@ class _TestRapido extends State<TestRapido> {
     );
   }
 
-
 //** ----------------------------------------------------------------*
-
-
-
-
-
-
-
-
-
-
 
   @override
   Widget build(BuildContext context) {

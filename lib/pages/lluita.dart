@@ -45,32 +45,46 @@ class _LLuita extends State<LLuita> {
         'id': 0,
         'categoria': 'Hidráulica',
         'pregunta': "¿En que país no hemos estado ninguno de los 2??",
-        'respuesta': "Bélgica"
+        'respuesta': "Bélgica",
+        'opcion1': "Paris",
+        'opcion2': "China",
+        'opcion3': "Suiza",
       }),
       Pregunta.fromJson({
         'id': 1,
         'categoria': 'Electricitat',
         'pregunta': '¿Que día empezamos nuestra relación sentimental?',
-        'respuesta': 'treinta de marzo de 2023'
+        'respuesta': 'treinta de marzo de 2023',
+        'opcion1': "veintisiete de marzo de 2023",
+        'opcion2': "treinta de marzo de 2022",
+        'opcion3': "treinta de mayo de 2023",
       }),
       Pregunta.fromJson({
         'id': 2,
         'categoria': 'Hidráulica',
         'pregunta': '¿Cuál es el país con más hablantes nativos de español en el mundo?',
-        'respuesta': 'México'
+        'respuesta': 'México',
+        'opcion1': "España",
+        'opcion2': "Ecuador",
+        'opcion3': "Italia",
       }),
       Pregunta.fromJson({
         'id': 3,
         'categoria': 'Hidráulica',
-        'pregunta':
-            ': ¿Qué país es conocido como la cuna del Renacimiento y qué ciudad fue su principal centro cultural?',
-        'respuesta': ' Italia'
+        'pregunta':'¿Qué país es conocido como la cuna del Renacimiento y qué ciudad fue su principal centro cultural?',
+        'respuesta': ' Italia',
+        'opcion1': "Francia",
+        'opcion2': "España",
+        'opcion3': "Suecia",
       }),
       Pregunta.fromJson({
         'id': 4,
         'categoria': 'Hidráulica',
         'pregunta': '¿En qué país se originaron los Juegos Olímpicos antiguos y qué ciudad los albergaba?',
-        'respuesta': 'Los Juegos Olímpicos antiguos se originaron en Grecia y se celebraban en la ciudad de Olimpia.'
+        'respuesta': 'Los Juegos Olímpicos antiguos se originaron en Grecia y se celebraban en la ciudad de Olimpia.',
+        'opcion1': "Los Juegos Olímpicos antiguos se originaron en Italia y se celebraban en la ciudad de Roma.",
+        'opcion2': "Los Juegos Olímpicos antiguos se originaron en Atenas y se celebraban en la ciudad de Atenas.",
+        'opcion3': "Los Juegos Olímpicos antiguos se originaron en Italia y se celebraban en la ciudad de Venecia.",
       }),
       Pregunta.fromJson({
         'id': 5,
@@ -78,12 +92,24 @@ class _LLuita extends State<LLuita> {
         'pregunta':
             '¿Qué monumento histórico fue construido como una tumba en la India y es considerado una de las siete maravillas del mundo moderno?',
         'respuesta':
-            'El Taj Mahal fue construido como una tumba en la India y es una de las siete maravillas del mundo moderno.'
+            'El Taj Mahal fue construido como una tumba en la India y es una de las siete maravillas del mundo moderno.',
+        'opcion1':
+            "'La Torre Eifel fue construido como un gran falo simbolo de amor y es una de las siete maravillas del mundo moderno.",
+        'opcion2':
+            "'El Bur kalifa fue construido como una tumba en la Abu dabí y es una de las siete maravillas del mundo contemporaneo.",
+        'opcion3':
+            "'La torre Agbar fue construido como una tumba en la Barcelona y es una de las siete maravillas del mundo contemporaneo.",
       }),
-
-      /*  Pregunta.fromJson(
-          {'id': 6, 'categoria': 'Hidráulica', 'pregunta': 'Helicóptero lleva H?', 'respuesta': 'Correcta'}),
       Pregunta.fromJson({
+        'id': 6,
+        'categoria': 'Electricitat',
+        'pregunta': '¿Quieres tener un niño conmigo?',
+        'respuesta': 'Si',
+        'opcion1': 'No',
+        'opcion2': 'Me gustaría pero tengo miedo',
+        'opcion3': 'No me gustan los mulatos',
+      }),
+      /* Pregunta.fromJson({
         'id': 7,
         'categoria': 'Construcció',
         'pregunta': 'Mil, tres, uno, qué tienen en común?',
@@ -128,18 +154,21 @@ class _LLuita extends State<LLuita> {
 
     for (var pregunta in listaPreguntas) {
       // Asegúrate de que las opciones estén inicializadas
-      pregunta.addOptions([
+      /*      pregunta.addOptions([
         'Lorem ipsum 1 Lorem ipsumLorem Chiuwuka persoinelle yemapeil.',
         'Ameneci cuague 2 viva,Ipsum lorem. Lorem ipsum Lorem ipsumLorem Chiuwuka persoinelle yemapeil.',
         'Lorem jeterly 3 viure barsovia ipsum Lorem ipsumLorem Chiuwuka persoinelle yemapeil  persoinelle yemapeil Nepal. Lorem jeterly 3 viure barsovia ipsum Lorem.'
-      ]);
+      ]); */
 
       // Copia para test 1
       var copiaTest1 = Pregunta(
         id: pregunta.id,
         pregunta: pregunta.pregunta,
         respuesta: pregunta.respuesta,
-        options: List<String>.from(pregunta.options), // Clonar opciones
+        opcion1: pregunta.opcion1,
+        opcion2: pregunta.opcion2,
+        opcion3: pregunta.opcion3,
+        // Clonar opciones
       );
       test1Preguntas.preguntas.add(copiaTest1);
 
@@ -148,7 +177,9 @@ class _LLuita extends State<LLuita> {
         id: pregunta.id,
         pregunta: pregunta.pregunta,
         respuesta: pregunta.respuesta,
-        options: List<String>.from(pregunta.options), // Clonar opciones
+        opcion1: pregunta.opcion1,
+        opcion2: pregunta.opcion2,
+        opcion3: pregunta.opcion3, // Clonar opciones
       );
       test2Preguntas.preguntas.add(copiaTest2);
     }

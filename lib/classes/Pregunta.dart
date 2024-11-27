@@ -6,26 +6,34 @@ class Pregunta {
   List<String> options = [];
   String selected = 'Skipped';
   bool correct = false;
+  late String opcion1;
+  late String opcion2;
+  late String opcion3;
 
-    Pregunta({
+  Pregunta({
     required this.id,
     required this.pregunta,
     required this.respuesta,
-    required this.options,
-  });
+    required this.opcion1,
+    required this.opcion2,
+    required this.opcion3,
+  }) {}
 
-// Constructor que convierte un objeto JSON en una instancia de la clase
+  // Constructor que convierte un objeto JSON en una instancia de la clase
   Pregunta.fromJson(Map<String, dynamic> json)
-      : pregunta = json['pregunta'], // Asigna la pregunta desde el JSON
+      : id = json['id'],
+        pregunta = json['pregunta'],
         respuesta = json['respuesta'],
-        id = json['id'],
-        categoria = json['categoria']; // Asigna la respuesta correcta desde el JSON
+        categoria = json['categoria'],
+        opcion1 = json['opcion1'], // Asignar un valor vacío si no existe
+        opcion2 = json['opcion2'],
+        opcion3 = json['opcion3'] {
+    addOptions([opcion1, opcion2, opcion3]);
+  }
 
-// Método para agregar opciones de respuesta a la pregunta
   void addOptions(List<String> newOptions) {
-    pregunta;
-    options.add(respuesta);
-    options.addAll(newOptions);
-    options.shuffle();
+    // Combina las opciones sin duplicar y mezcla
+    options = {respuesta, ...newOptions}.toList();
+    options.shuffle(); // Mezclar para orden aleatorio
   }
 }
