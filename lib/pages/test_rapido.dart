@@ -277,7 +277,7 @@ class _TestRapido extends State<TestRapido> {
     }
     // Mezcla las opciones de cada pregunta filtrada
     for (var pregunta in todasLasPreguntas.preguntas) {
-      pregunta.addOptions([pregunta.opcion1, pregunta.opcion2, pregunta.opcion3]);
+      pregunta.addOptions(['Incorrecta', 'Incorrecta', 'Incorrecta']);
     }
     setState(() {}); // Actualizació de que la pantalla  después de filtrar
   }

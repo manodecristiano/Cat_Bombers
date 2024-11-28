@@ -71,7 +71,8 @@ class _LLuita extends State<LLuita> {
       Pregunta.fromJson({
         'id': 3,
         'categoria': 'Hidráulica',
-        'pregunta':'¿Qué país es conocido como la cuna del Renacimiento y qué ciudad fue su principal centro cultural?',
+        'pregunta':
+            '¿Qué país es conocido como la cuna del Renacimiento y qué ciudad fue su principal centro cultural?',
         'respuesta': ' Italia',
         'opcion1': "Francia",
         'opcion2': "España",
@@ -153,22 +154,16 @@ class _LLuita extends State<LLuita> {
     }
 
     for (var pregunta in listaPreguntas) {
-      // Asegúrate de que las opciones estén inicializadas
-      /*      pregunta.addOptions([
-        'Lorem ipsum 1 Lorem ipsumLorem Chiuwuka persoinelle yemapeil.',
-        'Ameneci cuague 2 viva,Ipsum lorem. Lorem ipsum Lorem ipsumLorem Chiuwuka persoinelle yemapeil.',
-        'Lorem jeterly 3 viure barsovia ipsum Lorem ipsumLorem Chiuwuka persoinelle yemapeil  persoinelle yemapeil Nepal. Lorem jeterly 3 viure barsovia ipsum Lorem.'
-      ]); */
-
+      if (pregunta.options.isEmpty || pregunta.options.length < 2) {
+        print("Advertencia: La pregunta con id ${pregunta.id} tiene opciones insuficientes.");
+        continue; // Salta preguntas mal configuradas
+      }
       // Copia para test 1
       var copiaTest1 = Pregunta(
         id: pregunta.id,
         pregunta: pregunta.pregunta,
         respuesta: pregunta.respuesta,
-        opcion1: pregunta.opcion1,
-        opcion2: pregunta.opcion2,
-        opcion3: pregunta.opcion3,
-        // Clonar opciones
+        options: List<String>.from(pregunta.options),
       );
       test1Preguntas.preguntas.add(copiaTest1);
 
@@ -177,9 +172,7 @@ class _LLuita extends State<LLuita> {
         id: pregunta.id,
         pregunta: pregunta.pregunta,
         respuesta: pregunta.respuesta,
-        opcion1: pregunta.opcion1,
-        opcion2: pregunta.opcion2,
-        opcion3: pregunta.opcion3, // Clonar opciones
+        options: List<String>.from(pregunta.options),
       );
       test2Preguntas.preguntas.add(copiaTest2);
     }
